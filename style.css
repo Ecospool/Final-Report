@@ -856,6 +856,24 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   margin: 1rem 0 1.2rem;
 }
 
+.appendix-figure-label {
+  margin-top: 1rem;
+}
+
+.appendix-list {
+  margin: 0.35rem 0 0 1.5rem;
+  padding-left: 1rem;
+}
+
+.appendix-list li {
+  margin: 0.08rem 0;
+}
+
+.appendix-sublist {
+  list-style-type: circle;
+  margin-top: 0.3rem;
+}
+
 .indented-block {
   width: calc(100% - 2rem);
   margin: 0 0 1rem 2rem;

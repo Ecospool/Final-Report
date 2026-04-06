@@ -48,7 +48,6 @@
         </tbody>
       </table>
     </div>
-    <div class="table-divider" aria-hidden="true"></div>
 
     <p>Viable Methods for Handling PP Waste</p>
     <p>To effectively address PP waste, our team explored and compared three viable methods for upcycling and reusing this material: sequestration, repurposing, and recycling. These methods were evaluated based on their potential for further reuse, which creates new value for the material.</p>
@@ -88,7 +87,6 @@ The reprocessed material can be remade into different forms and used across vari
         </tbody>
       </table>
     </div>
-    <div class="table-divider" aria-hidden="true"></div>
 
     <p>Based on this comparison, recycling emerges as the most sustainable and value-generating approach for managing PP waste. Not only does it allow for the creation of new products, but it also promotes the circulation of materials, thereby contributing to a more sustainable, closed-loop system.</p>
     <p>Therefore, focusing efforts on improving the infrastructure and processes for recycling PP is crucial for enhancing its reusability and maximising its potential as a valuable resource.</p>
@@ -164,5 +162,501 @@ This method allows PP to be reprocessed at a larger, industrial scale, providing
 
   <div id="appendix-c" class="subsection">
     <h3>Appendix C: User Needs Analysis</h3>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/figc.1.jpeg" alt="Appendix C figure 1">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/figc.2.jpeg" alt="Appendix C figure 2">
+    </figure>
+    <p>*Level 5 indicates the highest level of need, and Level 1 is the lowest.</p>
+    <p>Location for deploying extruder set-up - Innovation &amp; Design Hub</p>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/figc.3.jpeg" alt="Location for deploying extruder set-up - Innovation and Design Hub">
+    </figure>
+    <div class="table-divider" aria-hidden="true"></div>
+  </div>
+
+  <div id="appendix-d" class="subsection">
+    <h3>Appendix D: Generic Extruder Dimensions and Material</h3>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>Material</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Barrel</td>
+            <td>38CrMoAlA</td>
+          </tr>
+          <tr>
+            <td>Screw</td>
+            <td rowspan="2">SKD61 Stainless Steel, Nitrided</td>
+          </tr>
+          <tr>
+            <td>Nozzle</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="appendix-figure-label">CAD Drawing of Barrel</p>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_caddrawingofbarrel1.png" alt="CAD drawing of barrel 1">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_caddrawingofbarrel2.PNG" alt="CAD drawing of barrel 2">
+    </figure>
+    <p class="appendix-figure-label">CAD Drawing of Screw</p>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_caddrawingofscrew.PNG" alt="CAD drawing of screw">
+    </figure>
+    <p class="appendix-figure-label">CAD Drawing of Nozzle</p>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_caddrawingofnozzle.PNG" alt="CAD drawing of nozzle">
+    </figure>
+
+  </div>
+
+  <div class="table-divider" aria-hidden="true"></div>
+
+  <div id="appendix-e" class="subsection">
+    <h3>Appendix E: Calculations for Shear Rate</h3>
+    <p class="formula-inline">Shear rate = <span class="fraction"><span class="top">&pi;dn</span><span class="bottom">60h</span></span></p>
+    <p>Where <em>d</em> is screw diameter (mm), <em>n</em> is the screw speed (rpm), <em>h</em> is the channel depth (mm).</p>
+    <p>In the feeding zone,</p>
+    <p><em>d</em> = 16mm, <em>n</em> = 2rpm, <em>h</em> = <span class="fraction"><span class="top">25-16</span><span class="bottom">2</span></span></p>
+    <p class="formula-inline">Shear rate in feeding zone is thus <span class="fraction"><span class="top">&pi; &times; 16 &times; 2</span><span class="bottom">60 &times; 4.5</span></span> = 0.372s<sup>-1</sup> (3 s.f)</p>
+    <p>In the metering zone (highest compression),</p>
+    <p><em>d</em> = 22mm, <em>n</em> = 2rpm, <em>h</em> = <span class="fraction"><span class="top">25-22</span><span class="bottom">2</span></span></p>
+    <p class="formula-inline">Shear rate in metering zone is thus <span class="fraction"><span class="top">&pi; &times; 22 &times; 2</span><span class="bottom">60 &times; 1.5</span></span> = 1.54s<sup>-1</sup> (3 s.f)</p>
+
+    <p class="appendix-figure-label">Calculations for Brinkman&rsquo;s Equation</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Symbol</th>
+            <th>Value</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Screw Diameter</td><td>D</td><td>0.025m</td><td>System Design</td></tr>
+          <tr><td>Screw Speed</td><td>N</td><td>2 RPM</td><td>Operational Set-point</td></tr>
+          <tr><td>Zero-Shear Viscosity</td><td>&eta;<sub>0</sub></td><td>12,000 Pa&sdot;s</td><td>Tadmor &amp; Gogos (2006)</td></tr>
+          <tr><td>Relaxation Time</td><td>&lambda;</td><td>1.5s</td><td>Tadmor &amp; Gogos (2006)</td></tr>
+          <tr><td>Power Law Index</td><td>n</td><td>0.35</td><td>Tadmor &amp; Gogos (2006)</td></tr>
+          <tr><td>Thermal Conductivity</td><td>&kappa;</td><td>0.17 W/m&middot;K</td><td>[62]</td></tr>
+          <tr><td>Barrel Temp (Set)</td><td>T<sub>b</sub></td><td>200&deg;C</td><td>Experimental Setup</td></tr>
+          <tr><td>PP Melting Temp</td><td>T<sub>m</sub></td><td>160&deg;C</td><td>[65]</td></tr>
+          <tr><td>Temperature Delta</td><td>&Delta;T</td><td>40K</td><td>Calculated (T<sub>b</sub>- T<sub>m</sub>)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="appendix-figure-label">Peripheral Velocity (v)</p>
+    <p>The peripheral velocity at the screw flight tip determines the kinetic energy input from rotation.</p>
+    <p class="formula-inline">v = <span class="fraction"><span class="top">&pi;DN</span><span class="bottom">60</span></span> = <span class="fraction"><span class="top">&pi;(0.025)(2)</span><span class="bottom">60</span></span></p>
+    <p>v &asymp; 0.002618 m/s (4 s.f)</p>
+
+    <p class="appendix-figure-label">Apparent Viscosity (&eta;) using the Carreau Model</p>
+    <p>The Carreau model is employed to accurately capture the viscosity within the Newtonian plateau at low shear rates.</p>
+    <p class="formula-inline">&eta;(&gamma;&#x307;) = &eta;<sub>0</sub>[1+(&lambda;&gamma;&#x307;)<sup>2</sup>]<sup><span class="fraction"><span class="top">n-1</span><span class="bottom">2</span></span></sup></p>
+    <p>Feed Zone (&gamma;&#x307; = 0.372 s<sup>-1</sup>):</p>
+    <div class="indented-block">
+      <p class="formula-inline">&eta;<sub>feed</sub> = 12000[1+(1.5 &sdot; 0.372)<sup>2</sup>]<sup><span class="fraction"><span class="top">0.35 - 1</span><span class="bottom">2</span></span></sup> &asymp; 10,988 Pa&sdot;s</p>
+    </div>
+    <p>Metering Zone (&gamma;&#x307; = 1.54 s<sup>-1</sup>):</p>
+    <div class="indented-block">
+      <p class="formula-inline">&eta;<sub>metering</sub> = 12000[1+(1.5 &sdot; 1.54)<sup>2</sup>]<sup><span class="fraction"><span class="top">0.35 - 1</span><span class="bottom">2</span></span></sup> &asymp; 6,585 Pa&sdot;s</p>
+    </div>
+
+    <p class="appendix-figure-label">Brinkman Number (Br) Calculation</p>
+    <p>The Brinkman number evaluates the ratio of viscous heat generation to conductive heat transfer.</p>
+    <p class="formula-inline">Br = <span class="fraction"><span class="top">&eta;v<sup>2</sup></span><span class="bottom">&kappa;(T<sub>b</sub>-T<sub>m</sub>)</span></span></p>
+    <p>Feed Zone:</p>
+    <div class="indented-block">
+      <p class="formula-inline">Br<sub>feed</sub> = <span class="fraction"><span class="top">10988 &sdot; (0.002618)<sup>2</sup></span><span class="bottom">0.17 &sdot; 40</span></span> = <span class="fraction"><span class="top">0.0753</span><span class="bottom">6.8</span></span> &asymp; 0.0111</p>
+    </div>
+    <p>Metering Zone:</p>
+    <div class="indented-block">
+      <p class="formula-inline">Br<sub>metering</sub> = <span class="fraction"><span class="top">6585 &sdot; (0.002618)<sup>2</sup></span><span class="bottom">0.17 &sdot; 40</span></span> = <span class="fraction"><span class="top">0.0451</span><span class="bottom">6.8</span></span> &asymp; 0.0066</p>
+    </div>
+
+    <p class="appendix-figure-label">Theoretical Temperature Rise</p>
+    <p>To quantify the impact of viscous dissipation, the maximum potential temperature rise in the melt due to shear is calculated.</p>
+    <p class="formula-inline">&Delta;T<sub>viscous</sub> &asymp; (T<sub>b</sub>-T<sub>m</sub>) &sdot; <span class="fraction"><span class="top">Br</span><span class="bottom">2</span></span> = 40 &sdot; <span class="fraction"><span class="top">0.0111</span><span class="bottom">2</span></span> = 0.222&deg;C</p>
+  </div>
+
+  <div class="table-divider" aria-hidden="true"></div>
+
+  <div id="appendix-f" class="subsection">
+    <h3>Appendix F: Calculations for expected thermal parameters</h3>
+    <p class="appendix-figure-label">Conductive Heat Transfer Coefficient, H<sub>c</sub></p>
+    <p class="formula-inline">Bi = <span class="fraction"><span class="top">H<sub>c</sub>L<sub>c</sub></span><span class="bottom">k<sub>PP</sub></span></span> [xx]</p>
+    <p class="formula-inline">H<sub>c</sub> = <span class="fraction"><span class="top">Bi &sdot; k<sub>PP</sub></span><span class="bottom">L<sub>c</sub></span></span> = <span class="fraction"><span class="top">1 &sdot; 0.11</span><span class="bottom">0.00175/4</span></span> = 251 W/m<sup>2</sup>&middot;K</p>
+
+    <p class="appendix-figure-label">Local Nusselt Number of air, Nu<sub>air</sub></p>
+    <p class="formula-inline">Nu<sub>air</sub> = <span class="fraction"><span class="top">2 H<sub>c</sub> R</span><span class="bottom">k<sub>air</sub></span></span> = <span class="fraction"><span class="top">2 &sdot; 251 &sdot; 0.00175/2</span><span class="bottom">0.02624</span></span> = 16.7397 (6 s.f) [xx]</p>
+
+    <p class="appendix-figure-label">Local Reynold Number of air, Re<sub>air</sub></p>
+    <p class="formula-inline">Re<sub>air</sub> = <sup>0.334</sup><span class="radical">√<span class="radicand">Nu<sub>air</sub>/0.42</span></span> = 61931.6 (6 s.f) [xx]</p>
+
+    <p class="appendix-figure-label">Maximum Allowable Wind Speed of air</p>
+    <p class="formula-inline">U<sub>air</sub> = <span class="fraction"><span class="top">Re<sub>air</sub> &sdot; &nu;<sub>air</sub></span><span class="bottom">2 &sdot; 0.00175/2</span></span> = 555 m/s (3 s.f) [xx]</p>
+
+    <p class="appendix-figure-label">Local Nusselt Number of water, Nu<sub>water</sub></p>
+    <p>Since H<sub>c</sub> must be less than 251 W/m<sup>2</sup>&middot;K throughout the water bath, assume H<sub>c</sub> &lt; 251 W/m<sup>2</sup>&middot;K begins at x = 1cm in the still water bath.</p>
+    <p class="formula-inline">Nu<sub>water</sub> = <span class="fraction"><span class="top">H<sub>c</sub> x</span><span class="bottom">k<sub>water</sub></span></span> = <span class="fraction"><span class="top">251 &sdot; 0.01</span><span class="bottom">0.6067</span></span> = 4.13714 (6 s.f) [xx]</p>
+
+    <p class="appendix-figure-label">Local Reynold Number of water, Re<sub>water</sub></p>
+    <p>From interpolation, when Pr = 5.82, -&Oslash;&prime;(0) = 1.0820 [xx]</p>
+    <p class="formula-inline">Re<sub>water</sub> = (<span class="fraction"><span class="top">Nu<sub>water</sub></span><span class="bottom">-&Oslash;&prime;(0)</span></span>)<sup>2</sup> = 14.6199 (6 s.f)</p>
+
+    <p class="appendix-figure-label">Maximum Allowable pull speed in water bath, U</p>
+    <p class="formula-inline">U = Re<sub>water</sub> &divide; <span class="fraction"><span class="top">x</span><span class="bottom">&nu;</span></span> = 0.00126 m/s (3 s.f)</p>
+
+    <p class="appendix-figure-label">Minimum Pull Speed of filament, V<sub>filament</sub>, to achieve 100 g/h production rate</p>
+    <p>Density of PP, &rho;<sub>pp</sub> = 0.9 g/cm<sup>3</sup> [xx]</p>
+    <p class="formula-inline">V<sub>filament</sub> = <span class="fraction"><span class="top">production rate</span><span class="bottom">&rho;<sub>pp</sub></span></span> &divide; (r<sub>o</sub><sup>2</sup>&pi;) = 0.0128 m/s (3 s.f) or 0.768 m/min</p>
+  </div>
+
+  <div class="table-divider" aria-hidden="true"></div>
+
+  <div id="appendix-g" class="subsection">
+    <h3>Appendix G: SolidWorks Flow Simulation: Summary of Parameters</h3>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <tbody>
+          <tr>
+            <td>Mesh</td>
+            <td>Global Mesh Settings:
+              <ul class="appendix-list">
+                <li>Automatic initial mesh: On</li>
+                <li>Result resolution level: 5</li>
+                <li>Advanced narrow channel refinement: Off</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Physical Features</td>
+            <td>
+              <ul class="appendix-list">
+                <li>Fluid Flow: On</li>
+                <li>Conduction: On</li>
+                <li>Time dependent: On (0-30s)</li>
+                <li>Gravitational effects: On</li>
+                <li>Flow type: Laminar and turbulent</li>
+                <li>High Mach number flow: Off</li>
+                <li>Relative humidity: 50.00 %</li>
+                <li>Default roughness: 7.0e-03mm</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Gravitational Settings</td>
+            <td>
+              <ul class="appendix-list">
+                <li>X component: 0 m/s<sup>2</sup></li>
+                <li>Y component: 0 m/s<sup>2</sup></li>
+                <li>Z component: -9.81 m/s<sup>2</sup></li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Ambient Conditions</td>
+            <td>Thermodynamic parameters
+              <ul class="appendix-list">
+                <li>Static Pressure: 101325.00 Pa</li>
+                <li>Temperature: 28.00&deg;C</li>
+              </ul>
+              <br>
+              Turbulence parameters
+              <ul class="appendix-list">
+                <li>Turbulence intensity and length</li>
+                <li>Intensity: 0.10 %</li>
+                <li>Length: 0.002 m</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Material Settings</td>
+            <td>Fluids
+              <ul class="appendix-list">
+                <li>Air</li>
+              </ul>
+              <br>
+              Solids
+              <ul class="appendix-list">
+                <li>Cast Alloy Steel</li>
+                <li>PP Copolymer</li>
+                <li>Glass (lids to insert Fan conditions)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Solid Materials</td>
+            <td>PP Copolymer
+              <ul class="appendix-list">
+                <li>Components: Nozzle and Guide Vanes for Fans</li>
+                <li>Solid substance: PP Copolymer</li>
+              </ul>
+              <br>
+              PP Copolymer 2
+              <ul class="appendix-list">
+                <li>Components: Filament</li>
+                <li>Solid substance: PP Copolymer</li>
+              </ul>
+              <br>
+              Cast Alloy Steel
+              <ul class="appendix-list">
+                <li>Components: Filament Nozzle</li>
+                <li>Solid substance: Cast Alloy Steel</li>
+              </ul>
+              <br>
+              Glass
+              <ul class="appendix-list">
+                <li>Components: Lids</li>
+                <li>Solid substance: Glass</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Fans</td>
+            <td>External Inlet Fans
+              <ul class="appendix-list">
+                <li>Type: External Inlet Fan</li>
+                <li>Fan curve: FX5015SH (User Defined. See Figure xx.)</li>
+              </ul>
+              <br>
+              Flow parameters
+              <ul class="appendix-list">
+                <li>Inlet flow vector direction: Normal to face</li>
+              </ul>
+              <br>
+              Thermodynamic parameters
+              <ul class="appendix-list">
+                <li>Environment pressure: 101325.00 Pa</li>
+                <li>Temperature: 28.00&deg;C</li>
+              </ul>
+              <br>
+              Turbulence parameters
+              <ul class="appendix-list">
+                <li>Turbulence intensity and length</li>
+                <li>Intensity: 0.10 %</li>
+                <li>Length: 0.002 m</li>
+                <li>Toggle: On</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Calculation Control Options</td>
+            <td>Finish Conditions
+              <ul class="appendix-list">
+                <li>Finish Conditions: If one is satisfied</li>
+                <li>Maximum physical time: 30.000 s</li>
+              </ul>
+              <br>
+              Solver Refinement
+              <ul class="appendix-list">
+                <li>Refinement: Disabled</li>
+              </ul>
+              <br>
+              Advanced Control Options
+              <ul class="appendix-list">
+                <li>Flow Freezing
+                  <ul class="appendix-list appendix-sublist">
+                    <li>Flow freezing strategy: Periodic</li>
+                    <li>Maximum freezing period: 2 iteration(s)</li>
+                    <li>Start: 0.25 travel(s)</li>
+                    <li>Manual time step (Freezing): Off</li>
+                    <li>Manual time step: Off</li>
+                  </ul>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="appendix-figure-label">Fan curve for FX5015SH (Reference to SUNON DC Brushless Fan’s MF50151V1-1B00U-A99) [xx]</p>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_fancurve.png" alt="Fan curve for FX5015SH">
+    </figure>
+
+    <p class="appendix-figure-label">Flow Freezing Conditions</p>
+    <p>To ensure a steady state or close to steady state is achieved, air velocity Point Goals (PG) were placed in a plane perpendicular to the air flow. When the air velocity of all the PG stabilises as shown in Figure xx.’s. The Physical Time of the simulation is noted and Flow Freezing is applied.</p>
+
+    <p>Goal plot for Point Goals of air velocity showing current value of velocity, the progress towards steady state, the criterion, and average value of velocity</p>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_goalplot.jpeg" alt="Goal plot for point goals of air velocity">
+    </figure>
+  </div>
+
+  <div class="table-divider" aria-hidden="true"></div>
+
+  <div id="appendix-h" class="subsection">
+    <h3>Appendix H: Required wind speed to prevent squishing at rollers</h3>
+    <p>Since pull speed = 0.013 m/s, set wind tunnel as 40 cm long, then total time spent cooling = <span class="fraction"><span class="top">0.4</span><span class="bottom">0.013</span></span> = 30.77 s</p>
+    <p>For PP to fall from 190&deg;C (buffer 10&deg;C from expected filament&rsquo;s temperature after extrusion) to core temperature, T<sub>core</sub> = 70&deg;C (buffer 15&deg;C from Vicat Softening Temperature [10]).</p>
+    <p>With reference to Heisler Chart [11],</p>
+    <p>@190&deg;C: &alpha;<sub>PP</sub> = 1.44 &times; 10<sup>-7</sup> m<sup>2</sup>/s [12]</p>
+    <p>@32&deg;C: &alpha;<sub>PP</sub> = 0.63 &times; 10<sup>-7</sup> m<sup>2</sup>/s [13]</p>
+    <p class="formula-inline"><span class="fraction"><span class="top">&theta;<sub>o</sub></span><span class="bottom">&theta;<sub>i</sub></span></span> = <span class="fraction"><span class="top">T<sub>o</sub>-T<sub>&infin;</sub></span><span class="bottom">T<sub>i</sub>-T<sub>&infin;</sub></span></span> = <span class="fraction"><span class="top">70-32</span><span class="bottom">190-32</span></span> = 0.241 (3 s.f)</p>
+    <p class="formula-inline"><span class="fraction"><span class="top">&alpha;<sub>avg</sub> t</span><span class="bottom">r<sub>o</sub><sup>2</sup></span></span> = <span class="fraction"><span class="top">((0.63+1.44)10<sup>-7</sup> / 2 ) &sdot; 30.77</span><span class="bottom">(0.00175/2)<sup>2</sup></span></span> = 2.08 (3 s.f)</p>
+    <p>Hence,</p>
+    <p class="formula-inline">Bi<sup>-1</sup> = <span class="fraction"><span class="top">k<sub>PP</sub></span><span class="bottom">H<sub>c</sub> r<sub>o</sub></span></span> = <span class="fraction"><span class="top">0.11</span><span class="bottom">H<sub>c</sub> (0.000875)</span></span> = 2.5</p>
+    <p class="formula-inline">H<sub>c</sub> = 50.2857 W/m<sup>2</sup> K</p>
+
+    <p>Using the equations for Nusselt and Reynold number in Appendix F,</p>
+    <p>Velocity of air:</p>
+    <p class="formula-inline">U<sub>air</sub> = 4.63 m/s (3 s.f)</p>
+
+    <p class="appendix-figure-label">Centerline temperature as a function of time for an infinite cylinder of radius r<sub>o</sub></p>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_centerline.png" alt="Centerline temperature as a function of time for an infinite cylinder of radius ro">
+    </figure>
+
+    <p class="appendix-figure-label">Temperature distribution in an infinite cylinder of radius r<sub>o</sub></p>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_tempdis.png" alt="Temperature distribution in an infinite cylinder of radius ro">
+    </figure>
+  </div>
+
+  <div class="table-divider" aria-hidden="true"></div>
+
+  <div id="appendix-i" class="subsection">
+    <h3>Appendix I: Slicer Settings for filament printability test in Ender v2 Neo</h3>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss1.png" alt="Slicer setting 1">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss2.png" alt="Slicer setting 2">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss3.png" alt="Slicer setting 3">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss4.png" alt="Slicer setting 4">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss5.png" alt="Slicer setting 5">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss6.png" alt="Slicer setting 6">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss7.png" alt="Slicer setting 7">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss8.png" alt="Slicer setting 8">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss9.png" alt="Slicer setting 9">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss10.png" alt="Slicer setting 10">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss11.png" alt="Slicer setting 11">
+    </figure>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/appendices/fig_ss12.png" alt="Slicer setting 12">
+    </figure>
+  </div>
+
+  <div class="table-divider" aria-hidden="true"></div>
+
+  <div id="appendix-j" class="subsection">
+    <h3>Appendix J: Bill of Materials</h3>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Description</th>
+            <th>Unit Cost</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" style="background:#fff1c9;"><strong>Extrusion Mechanism</strong></td></tr>
+          <tr><td>Motor</td><td></td><td>$540.00</td><td>1</td><td>$540.00</td></tr>
+          <tr><td>Extrusion Barrel</td><td></td><td>$534.00</td><td>1</td><td>$534.00</td></tr>
+          <tr><td>Compression Screw</td><td></td><td>$265.00</td><td>1</td><td>$265.00</td></tr>
+          <tr><td>Hopper</td><td></td><td>$40.00</td><td>1</td><td>$40.00</td></tr>
+
+          <tr><td colspan="5" style="background:#f3c9c9;"><strong>Heating Mechanism</strong></td></tr>
+          <tr><td>Heating Band</td><td></td><td>$26.00</td><td>3</td><td>$78.00</td></tr>
+          <tr><td>Thermocouple</td><td></td><td>$27.00</td><td>3</td><td>$81.00</td></tr>
+          <tr><td>RS400 Temperature Controller</td><td></td><td>$26.00</td><td>3</td><td>$78.00</td></tr>
+          <tr><td>3A Fuse</td><td></td><td>$1.00</td><td>3</td><td>$3.00</td></tr>
+          <tr><td>Terminal Block</td><td></td><td>$8.00</td><td>2</td><td>$16.00</td></tr>
+          <tr><td>Mechanical Switch</td><td></td><td>$2.00</td><td>3</td><td>$6.00</td></tr>
+          <tr><td>Rockwool</td><td></td><td>$10.00</td><td>1</td><td>$10.00</td></tr>
+
+          <tr><td colspan="5" style="background:#cfe0ff;"><strong>Cooling Mechanism</strong></td></tr>
+          <tr><td>Centrifugal Fan</td><td></td><td>$6.00</td><td>4</td><td>$24.00</td></tr>
+          <tr><td>Ball Bearing Roller</td><td></td><td>$4.00</td><td>2</td><td>$8.00</td></tr>
+
+          <tr><td colspan="5" style="background:#dceecf;"><strong>Spooling Mechanism</strong></td></tr>
+          <tr><td>Spooler</td><td></td><td>$1200.00</td><td>1</td><td>$1200.00</td></tr>
+          <tr><td>Diameter Dial Gauge</td><td></td><td>$40.00</td><td>2</td><td>$80.00</td></tr>
+          <tr><td>Roller</td><td></td><td>$0.85</td><td>4</td><td>$3.40</td></tr>
+
+          <tr><td colspan="5" style="background:#fde2bf;"><strong>Miscellaneous</strong></td></tr>
+          <tr><td>3D Printed Parts</td><td></td><td>$20</td><td>2</td><td>$40</td></tr>
+
+          <tr>
+            <td colspan="4" style="text-align:right;"><strong>Total Cost</strong></td>
+            <td><strong>$3006.40</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="table-divider" aria-hidden="true"></div>
+
+  <div id="appendix-k" class="subsection">
+    <h3>Appendix K: Electrical System</h3>
+    <p class="appendix-figure-label">Heating Mechanism Electrical Architecture</p>
+    <figure class="figure-block">
+      <div class="figure-placeholder">&lt;insert fig&gt;</div>
+    </figure>
+
+    <p class="appendix-figure-label">Power Budgeting</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th rowspan="2">Components</th>
+            <th rowspan="2">Quantity</th>
+            <th colspan="3">Maximum Power Consumption</th>
+            <th rowspan="2">Subtotal Power (W)</th>
+          </tr>
+          <tr>
+            <th>Voltage (V)</th>
+            <th>Current (A)</th>
+            <th>Power (W)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>RS400 Temperature Controller</td><td>3</td><td>230</td><td>0.035</td><td>8.05</td><td>24.15</td></tr>
+          <tr><td>Heating Band</td><td>3</td><td>230</td><td>2.0</td><td>460</td><td>1380</td></tr>
+          <tr><td>Motor</td><td>1</td><td>230</td><td>2.8</td><td>644</td><td>644</td></tr>
+          <tr><td>Spooler</td><td>1</td><td>230</td><td>0.26</td><td>60</td><td>60</td></tr>
+          <tr>
+            <td colspan="5" style="text-align:right;"><strong>Total Power Consumption</strong></td>
+            <td><strong>2108.15</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>

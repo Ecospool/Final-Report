@@ -41,9 +41,9 @@
     ch4: { file: 'chapters/ch4.html', title: 'Chapter 4 · Compression Screw' },
     ch5: { file: 'chapters/ch5.html', title: 'Chapter 5 · Heating & Melting Mechanisms' },
     ch6: { file: 'chapters/ch6.html', title: 'Chapter 6 · Cooling Systems' },
-    ch7: { file: 'chapters/ch7.html', title: 'Chapter 7 · Final Prototype & Test Configuration' },
-    ch8: { file: 'chapters/ch8.html', title: 'Chapter 8 · Integrated Prototype Validation' },
-    ch9: { file: 'chapters/ch9.html', title: 'Chapter 9 · Limitations & Future Work' },
+    ch7: { file: 'chapters/ch7.html', title: 'Chapter 7 · Integrated Prototype Validation' },
+    ch8: { file: 'chapters/ch8.html', title: 'Chapter 8 · Limitations & Future Work' },
+    ch9: { file: 'chapters/ch9.html', title: 'Chapter 9 · Conclusion' },
     ch10: { file: 'chapters/ch10.html', title: 'Chapter 10 · Conclusion' },
     appendices: { file: 'chapters/appendices.html', title: 'Appendices' }
   };
