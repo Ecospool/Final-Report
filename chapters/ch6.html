@@ -157,7 +157,7 @@
     <p>Subsequently, we analysed the cooling efficiency of the fans by setting the initial volumetric temperature of the PP filament at 180°C and running the same simulation for 30s, which is equivalent to ~40cm of filament length when pulled at 0.013 m/s.</p>
     <p>The final average surface temperature of the filament was then measured at regular intervals along the filament (Fig 45). From which, we identified two issues:</p>
     <ul class="paper-list">
-      <li>The filament was still too soft as its temperature was still high, more than 85°C, and would likely deform between the rollers [xx].</li>
+      <li>The filament was still too soft as its temperature was still high, more than 85°C, and would likely deform between the rollers [89].</li>
       <li>The temperature significantly increases down the filament (left to right) to a maximum of 161°C from 99°C (Fig 45).</li>
     </ul>
     <figure class="figure-block">
@@ -165,7 +165,7 @@
       <figcaption class="figure-caption">Fig 45: Simulation results for the average surface temperature of the PP filament</figcaption>
     </figure>
     <p>To understand the two identified issues, we applied the Continuity Equation [xx] to the fans:</p>
-    <p class="paper-formula">ṁ<sub>inlet</sub> = 𝑝AV = ṁ<sub>outlet</sub></p>
+    <p class="paper-formula" style="text-align: center;">ṁ<sub>inlet</sub> = 𝑝AV = ṁ<sub>outlet</sub></p>
     <p>where ṁ is the mass flow rate of air, 𝑝 is the air density, A is the cross-sectional area (perpendicular to the air flow’s direction), and V is the air velocity. From the equation, the blown air will quickly disperse after exiting the centrifugal fan’s outlet (small A) into the environment (infinite A), causing its velocity and hence cooling effectiveness to drop significantly further down the filament’s length. Our simulations also agreed with this theory (Fig 46).</p>
     <figure class="figure-block">
       <img src="assets/photos/ch6/fig46.png" alt="General flow trajectory for cooling" class="figure-image">
@@ -193,7 +193,7 @@
 
   <div id="ch6-2-3" class="subsection">
     <h4>6.2.3 Thermal Analysis</h4>
-    <p>To further optimise the Wind Tunnel’s 4-axis air cooling setup, we decided to study the correlation of the Wind Tunnel’s diameter with the filament’s final temperature. The simulation was run using diameters ranging from 50mm to 110mm. The results are shown in Table 27 and Fig 51.</p>
+    <p>To further optimise the Wind Tunnel’s 4-axis air cooling setup, we decided to study the correlation of the Wind Tunnel’s diameter with the filament’s final temperature. The simulation was run using diameters ranging from 50mm to 110mm,, where any smaller would make laying the filament  in the tunnel hard, and any larger would result in an exponentially smaller wind velocity following the Continuity Equation. The results are shown in Table 27 and Fig 51.</p>
     <p class="table-label table-label-top">Table 27: Simulation results for the average (surface) temperature of the PP filament in a wind tunnel with a diameter varied from 50mm to 110mm</p>
     <div class="spec-table-wrapper">
       <table class="spec-table">
@@ -224,7 +224,7 @@
       <figcaption class="figure-caption">Fig 51: Simulated Results of the Average (surface) Temperature of the PP filament vs Wind Tunnel Diameter</figcaption>
     </figure>
     <p>From Fig 51, a general trend was observed: the filament’s average surface temperature decreased as the diameter decreased. This was in agreement with the Continuity Equation, where at constant ṁ, the air’s velocity would increase and cool the filament down faster. The best cooling efficiency occurs at a diameter of 57.5mm with the lowest average surface temperature of 68.5°C.</p>
-    <p>However, an increase in temperature was observed from 57.5mm to 50mm in diameter. This is likely caused by a transition from a turbulent to a more laminar flow as the gap between the filament and the Wind Tunnel’s inner wall decreases, which reduces Hc [xx]. Additionally, a drop in temperature occurred from 95mm to 110mm diameter, likely due to a transition to a more turbulent flow, which increases Hc. However, it is unlikely that increasing the diameter further would improve cooling, as the air would eventually lose too much speed and disperse as A increases.</p>
+    <p>However, an increase in temperature was observed from 57.5mm to 50mm in diameter. This is likely caused by a transition from a turbulent to a more laminar flow as the gap between the filament and the Wind Tunnel’s inner wall decreases, which reduces Hc [90]. Additionally, a drop in temperature occurred from 95mm to 110mm diameter, likely due to a transition to a more turbulent flow, which increases Hc. However, it is unlikely that increasing the diameter further would improve cooling, as the air would eventually lose too much speed and disperse as A increases.</p>
   </div>
 
   <div id="ch6-3" class="subsection">
@@ -306,5 +306,30 @@
       </table>
     </div>
     <div class="table-divider" aria-hidden="true"></div>
+    <p class="table-label table-label-top">Table 29: Target Cooling Parameters</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Omni-Flow's Parameter</th>
+            <th>Target Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Wind Speed</td>
+            <td>&gt; 4.6 m/s</td>
+          </tr>
+          <tr>
+            <td>Diameter</td>
+            <td>57.5 mm</td>
+          </tr>
+          <tr>
+            <td>Length</td>
+            <td>40 cm</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
