@@ -1,35 +1,168 @@
 <section id="appendices" class="content-section chapter-section">
-    <div class="section-label">Appendices</div>
-    <div class="chapter-header">
-      <div class="ch-number-large">A–Z</div>
-      <div class="ch-title-block">
-        <h2>Appendices</h2>
-      </div>
+  <div class="section-label">Appendices</div>
+  <div class="chapter-header">
+    <div class="ch-number-large">A–C</div>
+    <div class="ch-title-block">
+      <h2>Appendices</h2>
     </div>
-    <div id="appendix-a" class="subsection"><h3>Appendix A: User Needs Analysis</h3><p>Structured interviews and surveys conducted with Robomaster, Bumblebee, and architecture student stakeholders to define rPP filament acceptance criteria and priority use cases. Full transcripts and analysis matrices included here.</p></div>
-    <div id="appendix-b" class="subsection"><h3>Appendix B</h3><p>[Experimental data tables, raw diameter logs, and supplementary figures.]</p></div>
-    <div id="appendix-bom" class="subsection"><h3>Appendix: Bill of Materials</h3>
-      <div class="spec-table-wrapper">
-        <table class="spec-table">
-          <thead><tr><th>Item</th><th>Specification</th><th>Qty</th><th>Est. Cost (SGD)</th></tr></thead>
-          <tbody>
-            <tr><td>Felfil Evo extruder</td><td>Base platform</td><td>1</td><td>~$800</td></tr>
-            <tr><td>Mica band heater</td><td>25 mm ID, 100 W, 230 V</td><td>3</td><td>~$60</td></tr>
-            <tr><td>Type-K thermocouple</td><td>M6 probe, 0–400 °C</td><td>3</td><td>~$30</td></tr>
-            <tr><td>SSR + PID controller</td><td>4-channel, 25 A SSR</td><td>1</td><td>~$120</td></tr>
-            <tr><td>40 mm DC fan</td><td>12 V, 0.2 A, PWM</td><td>4</td><td>~$40</td></tr>
-            <tr><td>Omni-Flow duct</td><td>3D-printed PLA, custom</td><td>1</td><td>~$15</td></tr>
-            <tr><td>Digital dial gauge</td><td>0–12.7 mm, RS-232 output</td><td>2</td><td>~$180</td></tr>
-            <tr><td>RS-232 USB adapter</td><td>Proprietary cable</td><td>2</td><td>~$40</td></tr>
-            <tr><td>Compression screw (CR 3.5)</td><td>25 mm OD, 400 mm L</td><td>1</td><td>~$200</td></tr>
-            <tr><td colspan="3"><strong>Total (estimated)</strong></td><td><strong>~$1,485</strong></td></tr>
-          </tbody>
-        </table>
-      </div>
+  </div>
+
+  <div id="appendix-a" class="subsection">
+    <h3>Appendix A: Project scope thought process</h3>
+    <p class="table-label table-label-top">Table 1: Key Issues Surrounding PP Recycling</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Reason</th>
+            <th>Explanation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Economic</td>
+            <td>Low Market Value</td>
+            <td>Recycled PP (rPP) often costs more to produce than virgin PP due to low oil prices and higher processing costs, making it economically unattractive.[5]</td>
+          </tr>
+          <tr>
+            <td>Technical</td>
+            <td>Difficult to sort and identify</td>
+            <td>PP’s density and appearance are close to PE, making it hard to separate using standard float-sink or optical sorting without advanced systems. [6]</td>
+          </tr>
+          <tr>
+            <td>Material Properties</td>
+            <td>Thermal degradation during recycling</td>
+            <td>PP loses tensile strength and flexibility after multiple extrusion cycles, limiting reuse in high-performance applications.</td>
+          </tr>
+          <tr>
+            <td>Contamination</td>
+            <td>Impurities from mixed waste</td>
+            <td>Food, labels, or lab residues on PP items hinder melt processing and reduce final recyclate purity.[7]</td>
+          </tr>
+          <tr>
+            <td>Market Demand</td>
+            <td>Few high-value applications for rPP</td>
+            <td>Compared to PET (used in textiles) or HDPE (used in bottles), PP’s recycling market is small and inconsistent.[8]</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div id="appendix-value" class="subsection">
-      <h3>1.5 Value Proposition &amp; Novelty</h3>
-      <h4>1.5.1 Stakeholder Value</h4>
-      <p>NUS SSU: diverts PP from incineration; reduces hazardous waste disposal cost. Student engineering teams: access to low-cost rPP filament (~$5/kg vs ~$40/kg commercial). NUS Sustainability Office: demonstrates measurable campus circular economy metric. Academic: reproducible system provides research platform for post-consumer PP rheology studies.</p>
+    <div class="table-divider" aria-hidden="true"></div>
+
+    <p>Viable Methods for Handling PP Waste</p>
+    <p>To effectively address PP waste, our team explored and compared three viable methods for upcycling and reusing this material: sequestration, repurposing, and recycling. These methods were evaluated based on their potential for further reuse, which creates new value for the material.</p>
+
+    <p class="table-label table-label-top">Table 2: Possible Methods of Upcycling and Reusing PP</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Ability for further reuse</th>
+            <th>Explanation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sequestration</td>
+            <td>Low</td>
+            <td>Sequestration refers to the permanent trapping of PP waste, typically by embedding it in infrastructure, such as using it as filler material in roads.
+
+While this method prevents the waste from ending up in landfills, it is a low-reusability option because once the material is embedded, it cannot be retrieved or repurposed for future use. Therefore, its potential to contribute to a circular economy is extremely limited.</td>
+          </tr>
+          <tr>
+            <td>Repurposing</td>
+            <td>Medium</td>
+            <td>Repurposing involves finding creative or practical uses for PP waste, such as converting it into art pieces, panels, or simple consumer products.
+
+This approach provides a second life for the material and helps divert waste from incineration or landfill. However, its moderate reusability means that while PP is given a new purpose, reuse is typically limited to one-off or low-volume applications. Furthermore, repurposed products often have limited functional applications, which reduces the long-term impact on material circulation.</td>
+          </tr>
+          <tr>
+            <td>Recycling</td>
+            <td>High</td>
+            <td>Recycling is the process of reprocessing PP waste into raw materials that can be used to create new products. This method stands out for its high reusability, as it enables PP to be transformed into a wide range of new products.
+
+The reprocessed material can be remade into different forms and used across various industries, contributing to a circular economy model where materials are kept in circulation. Given that PP can be repeatedly recycled into new products, this method offers the highest sustainability and long-term value creation potential.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </section>
+    <div class="table-divider" aria-hidden="true"></div>
+
+    <p>Based on this comparison, recycling emerges as the most sustainable and value-generating approach for managing PP waste. Not only does it allow for the creation of new products, but it also promotes the circulation of materials, thereby contributing to a more sustainable, closed-loop system.</p>
+    <p>Therefore, focusing efforts on improving the infrastructure and processes for recycling PP is crucial for enhancing its reusability and maximising its potential as a valuable resource.</p>
+    <p>Evaluation of Potential Methods for PP Recycling</p>
+    <p>To further explore the possibilities for recycling PP waste, we narrowed it down to three potential directions for reusing this material within the recycling process: plastic sheets, pellets, and 3D printing filament.</p>
+
+    <p class="table-label table-label-top">Table 3: Potential Directions for Reusing PP</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Direction</th>
+            <th>Explanation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Plastic Sheets</td>
+            <td>Plastic sheets are one of the simplest and most cost-effective methods for transforming PP waste into new material. This process involves melting and moulding PP waste into flat, flexible sheets for various applications, such as packaging, construction materials, and DIY projects.</td>
+          </tr>
+          <tr>
+            <td>Plastic Pellets</td>
+            <td>Pelletising is a more advanced recycling process that transforms PP waste into small, uniform plastic pellets. These pellets can then be used as raw material for the production of new plastic products.
+
+This method allows PP to be reprocessed at a larger, industrial scale, providing greater flexibility for manufacturing new products from recycled material.</td>
+          </tr>
+          <tr>
+            <td>3D Printing Filament</td>
+            <td>Recycling PP into 3D printing filament sits between the other two methods. This process transforms PP waste into usable filament that can be employed in 3D printers for educational and commercial purposes, such as prototyping, design, student projects and manufacturing plastic products.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-divider" aria-hidden="true"></div>
+  </div>
+
+  <div id="appendix-b" class="subsection">
+    <h3>Appendix B: Bulk Density Calculations</h3>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Mass</th>
+            <th>Volume</th>
+            <th>Bulk Density</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Virgin PP Pellet</td>
+            <td>87.0 g</td>
+            <td>141.56 cm<sup>3</sup></td>
+            <td>87.0/141.56 = 0.615 g/cm<sup>3</sup></td>
+          </tr>
+          <tr>
+            <td>PCW-PP Flake</td>
+            <td>63.0 g</td>
+            <td>141.56 cm<sup>3</sup></td>
+            <td>63.0/141.56 = 0.445 g/cm<sup>3</sup></td>
+          </tr>
+          <tr>
+            <td>rPP Flake</td>
+            <td>65.0 g</td>
+            <td>141.56 cm<sup>3</sup></td>
+            <td>65.0/141.56 = 0.459 g/cm<sup>3</sup></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-divider" aria-hidden="true"></div>
+  </div>
+
+  <div id="appendix-c" class="subsection">
+    <h3>Appendix C: User Needs Analysis</h3>
+  </div>
+</section>
