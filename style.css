@@ -389,18 +389,45 @@ body {
 /* ─── Hero ────────────────────────────────────────────────────── */
 .hero {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: calc(88vh - var(--nav-h));
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  min-height: calc(100vh - var(--nav-h));
   border-bottom: 0.5px solid var(--border);
   background: linear-gradient(135deg, var(--sand) 0%, #f5f2eb 100%);
 }
 
 .hero-left {
-  padding: 6rem 4rem;
+  padding: 5rem 4rem 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-right: 0.5px solid var(--border);
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at top right, rgba(122, 170, 138, 0.16), transparent 28%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(244, 240, 233, 0.9));
+  border: 1px solid rgba(74, 124, 89, 0.08);
+  box-shadow: 0 20px 40px rgba(30, 30, 24, 0.05);
+}
+
+.hero-heading-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 190px;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-heading-copy {
+  min-width: 0;
 }
 
 .eyebrow {
@@ -426,8 +453,8 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   font-size: 15px;
   color: var(--quiet);
   line-height: 1.85;
-  max-width: 42ch;
-  margin-bottom: 2rem;
+  max-width: none;
+  margin-bottom: 0;
 }
 
 .hero-meta {
@@ -436,13 +463,26 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   text-transform: uppercase;
   color: var(--whisper);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
 }
 .hero-meta .sep { opacity: 0.4; }
 
+.hero-mark {
+  width: 100%;
+  max-width: 190px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  justify-self: end;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
 .hero-summary {
-  max-width: 58ch;
+  max-width: none;
   margin-top: 2rem;
 }
 
@@ -455,15 +495,26 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-  padding: 4rem;
-  background: linear-gradient(135deg, #f5f2eb 0%, #ede8e0 100%);
-  gap: 1.25rem;
+  padding: 0 4rem 3.5rem;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  background:
+    radial-gradient(circle at top right, rgba(122, 170, 138, 0.18), transparent 34%),
+    linear-gradient(145deg, #f6f2eb 0%, #ebe5dc 100%);
+  gap: 1.1rem;
+  border-top: 0.5px solid var(--border);
 }
 
 .hero-figure {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+  padding: 0.9rem;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(74, 124, 89, 0.08);
+  box-shadow: 0 20px 40px rgba(30, 30, 24, 0.08);
 }
 
 .hero-image-placeholder {
@@ -481,6 +532,17 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   font-size: 12px;
 }
 
+.hero-figure-image {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  min-height: 0;
+  display: block;
+  object-fit: cover;
+  border-radius: 28px;
+  border: 1px solid rgba(74, 124, 89, 0.16);
+  box-shadow: 0 14px 30px rgba(31, 31, 24, 0.12);
+}
+
 .hero-figure figcaption {
   font-size: 12px;
   color: var(--quiet);
@@ -492,6 +554,12 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
+  padding: 0.85rem 1rem;
+  width: fit-content;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(74, 124, 89, 0.12);
+  box-shadow: 0 10px 24px rgba(30, 30, 24, 0.06);
 }
 .badge-label {
   font-size: 10px;
@@ -1182,9 +1250,13 @@ a.chapter-link {
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 4rem 2rem; border-right: none; border-bottom: 0.5px solid var(--border); }
-  .hero-right { padding: 3rem 2rem; }
+  .hero-left { padding: 4rem 2rem 2.5rem; border-right: none; border-bottom: none; }
+  .hero-right { padding: 0 2rem 3rem; }
+  .hero-intro { padding: 1.25rem; }
+  .hero-heading-row { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero-mark { justify-self: start; max-width: 140px; }
   .hero-image-placeholder { min-height: 280px; }
+  .hero-figure-image { aspect-ratio: 4 / 3; }
   .hero-team { padding: 2.5rem 2rem 3rem; }
   .hero-team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .content-section { padding: 3.5rem 2rem; }
