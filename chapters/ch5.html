@@ -4,7 +4,6 @@
     <div class="ch-number-large">05</div>
     <div class="ch-title-block">
       <h2>Heating &amp; Melting Mechanisms</h2>
-      <p class="ch-lead">Barrel heating, heater selection, screw-induced heating, and temperature setpoint selection for PP extrusion.</p>
     </div>
   </div>
 
@@ -20,17 +19,18 @@
 
   <div id="ch5-1" class="subsection">
     <h3>5.1 Barrel Heating</h3>
-    <p>The thermal management of the extruder barrel is a critical determinant of both process stability and the final mechanical properties of rPP filament. Barrel heating conducts heat inward through the steel barrel wall (thermal conductivity ≈ 37.67 W/m·K [xx]) to establish a thermal gradient from the barrel inner surface into the polymer melt.</p>
+    <p> Using a generic extruder set-up as our baseline (Appendix D), we evaluated the Heating & Melting Mechanism. </p>
+    <p>The thermal management of the extruder barrel is a critical determinant of both process stability and the final mechanical properties of rPP filament. Barrel heating conducts heat inward through the steel barrel wall (thermal conductivity ≈ 37.67 W/m·K [60]) to establish a thermal gradient from the barrel inner surface into the polymer melt.</p>
   </div>
 
   <div id="ch5-1-1" class="subsection">
     <h4>5.1.1 Single-Zone vs Multi-Zone Heating</h4>
-    <p>While a single uniform heating zone may appear simpler for small-scale extruders, it presents significant operational risks. Most notably, if the entire barrel length is maintained at the peak melting temperature, PP pellets in the feed section can melt prematurely and melt together or adhere to the screw flights or barrel wall before they are properly conveyed - a phenomenon known as 'feed throat bridging'. This creates a blockage that jams the intake, halting the intake of new material. Pepelnjak et al. states that maintaining a cooler feed zone is essential for maximising mass flux and ensuring material is 'gripped' effectively by the screw's mechanical action.</p>
+    <p>While a single uniform heating zone may appear simpler for small-scale extruders, it presents significant operational risks. Most notably, if the entire barrel length is maintained at the peak melting temperature, PP pellets in the feed section can melt prematurely and melt together or adhere to the screw flights or barrel wall before they are properly conveyed - a phenomenon known as 'feed throat bridging'. This creates a blockage that jams the intake, halting the intake of new material. Pepelnjak et al. [61] states that maintaining a cooler feed zone is essential for maximising mass flux and ensuring material is 'gripped' effectively by the screw's mechanical action.</p>
     <figure class="figure-block">
       <img src="assets/photos/ch5/fig34.png" alt="Feed Throat Bridging" class="figure-image">
       <figcaption class="figure-caption">Fig 34: Feed Throat Bridging</figcaption>
     </figure>
-    <p>Multiple independently controlled heating zones, by contrast, provide a staggered energy input that aligns with the polymer's physical state changes as it transitions from solid pellets to a pressurised melt. A single barrel setpoint cannot supply sufficient energy ahead of this transition while simultaneously preventing overheating downstream; independently controlled zones resolve this by matching thermal input to the polymer's evolving state along the screw [xx].</p>
+    <p>Multiple independently controlled heating zones, by contrast, provide a staggered energy input that aligns with the polymer's physical state changes as it transitions from solid pellets to a pressurised melt. A single barrel setpoint cannot supply sufficient energy ahead of this transition while simultaneously preventing overheating downstream; independently controlled zones resolve this by matching thermal input to the polymer's evolving state along the screw [49].</p>
   </div>
 
   <div id="ch5-1-2" class="subsection">
@@ -43,14 +43,14 @@
     </ul>
     <figure class="figure-block">
       <img src="assets/photos/ch5/fig35.png" alt="Diagram of barrel heating zones" class="figure-image">
-      <figcaption class="figure-caption">Fig 35: Diagram of barrel heating zones [xx]</figcaption>
+      <figcaption class="figure-caption">Fig 35: Diagram of barrel heating zones [48]</figcaption>
     </figure>
   </div>
 
   <div id="ch5-1-3" class="subsection">
     <h4>5.1.3 Thermal Limitations of Barrel Conduction</h4>
-    <p>Effective heat transfer into the bulk of the melt is significantly limited by the inherently low thermal conductivity of polypropylene (0.11–0.22 W/m·K [xx][xx]), which makes the melt behave as a thermal insulator. As a result, heat supplied by the barrel does not penetrate efficiently into the screw root, leading to radial temperature stratification: the melt near the barrel wall reaches the process temperature readily, while material near the screw root remains comparatively cooler.</p>
-    <p>This non-uniform temperature distribution across the melt cross-section is a known challenge in single-screw extrusion of polyolefins [xx]. In the present system, where the barrel length is 0.40 m and screw diameter is 0.025 m (L:D = 17.6), the short residence time further constrains the opportunity for thermal equilibration across the melt cross-section.</p>
+    <p>Effective heat transfer into the bulk of the melt is significantly limited by the inherently low thermal conductivity of polypropylene (0.11–0.22 W/m·K [62][63]), which makes the melt behave as a thermal insulator. As a result, heat supplied by the barrel does not penetrate efficiently into the screw root, leading to radial temperature stratification: the melt near the barrel wall reaches the process temperature readily, while material near the screw root remains comparatively cooler.</p>
+    <p>This non-uniform temperature distribution across the melt cross-section is a known challenge in single-screw extrusion of polyolefins [64]. In the present system, where the barrel length is 0.40 m and screw diameter is 0.025 m (L:D = 17.6), the short residence time further constrains the opportunity for thermal equilibration across the melt cross-section.</p>
     </div>
 
   <div id="ch5-2" class="subsection">
@@ -60,18 +60,18 @@
   <div id="ch5-2-1" class="subsection">
     <h4>5.2.1 Overview of Heating Technologies</h4>
     <p>The extrusion process requires a stable, controllable thermal input to transition the polymer from a solid granule to a homogeneous melt. In barrel heating, energy can be transferred via conduction (resistance heating), convection (fluid media), or electromagnetic induction.</p>
-    <p>Our extruder’s heating system must provide enough thermal energy to reach the melting point of PP (160°C - 170°C) [xx] without overshooting, so as to prevent thermal degradation, which occurs at around 250°C [xx].</p>
+    <p>Our extruder’s heating system must provide enough thermal energy to reach the melting point of PP (160°C - 170°C) [65] without overshooting, so as to prevent thermal degradation, which occurs at around 250°C [66].</p>
   </div>
 
   <div id="ch5-2-2" class="subsection">
     <h4>5.2.2 Selection of Heating Method</h4>
     <p>Referring to the morphological chart in section 3.3, five heating methods are considered, which differ substantially in their heat transfer mechanisms, physical complexity, and, as a result, suitability for our compact extruder.</p>
-    <p>We selected electric resistance band heaters as our barrel heating technology on the following bases:</p>
+    <p>We selected <b><u>electric resistance band heaters</u></b> as our barrel heating technology on the following bases:</p>
     <ul class="paper-list">
-      <li>Multi-zone thermal profiling: As mentioned in 5.1.1, a single screw extruder requires distinct temperature setpoints across the feed, transition and metering zones. Band heaters can be stacked axially in discrete zones, each driven by a thermocouple and PID controller, enabling the graduated temperature ramp that PP requires. This zoned architecture is straightforwardly achievable with band heaters, unlike single-zone cartridge heaters, which require a complete barrel redesign.</li>
+      <li>Multi-zone thermal profiling: As mentioned in 5.1.1, a single screw extruder requires distinct temperature setpoints across the feed, transition and metering zones. Band heaters can be stacked axially in discrete zones, each driven by a thermocouple and PID controller (Fig 36), enabling the graduated temperature ramp that PP requires. This zoned architecture is straightforwardly achievable with band heaters, unlike single-zone cartridge heaters, which require a complete barrel redesign.</li>
       <li>Suitability for experiments: Band heaters clamp directly onto the barrel diameter and are secured with a fastener and screw. This is extremely useful for our experiment logistics when we disassemble the extruder for inspection of the screw during our Maddock experiments. The absence of fluid circuits (ruling out oil jackets) and high-voltage power electronics (ruling out induction inverters) substantially reduces integration risk.</li>
     </ul>
-    <p>While band heaters have limitations, namely their tendency to radiate heat to the surrounding environment, rockwool overwraps can be added around the bands to partially mitigate heat loss.</p>
+    <p>While band heaters have limitations, namely their tendency to radiate heat to the surrounding environment, rockwool overwraps can be added around the bands to partially mitigate heat loss (Fig 37).</p>
     <figure class="figure-block">
       <img src="assets/photos/ch5/fig36.jpg" alt="Heating bands with thermocouples and PID controllers" class="figure-image">
       <figcaption class="figure-caption">Fig 36: Heating bands with their respective thermocouples and PID controllers</figcaption>
@@ -91,19 +91,19 @@
     <h4>5.3.1 Viscous Dissipation (Shear Heating)</h4>
     <p>Viscous dissipation, also termed shear heating, arises from the conversion of mechanical energy into thermal energy as the polymer is sheared between the screw flights and the barrel wall. The rate of heat generated is proportional to the local shear rate and melt viscosity, and is therefore most significant in the compression zone where the screw channel depth decreases, and shear stresses are highest.</p>
     <p>The shear rate is calculated as:</p>
-    <p class="paper-formula">Shear rate = <span class="fraction"><span class="top">πdn</span><span class="bottom">60h</span></span> [xx]</p>
+    <p class="paper-formula">Shear rate = <span class="fraction"><span class="top">πdn</span><span class="bottom">60h</span></span> [67]</p>
     <p>where d is the screw diameter, n is the screw speed, and h is the channel depth. Using this equation, the shear rate at the feed zone (nearest the hopper) is calculated as 0.372 s⁻¹, and the shear rate at the metering zone (furthest from the hopper) is 1.54 s⁻¹.</p>
     <p>By applying the Carreau model to the calculated shear rates, it was determined that the polypropylene operates deep within the Newtonian plateau region, with apparent viscosities peaking at 10,988 Pa⋅s in the feed zone. Despite this high viscous resistance, the calculated Brinkman numbers (Br &lt; 0.02) confirm that the extrusion process is almost entirely conduction-dominated. This ensures exceptional thermal precision, as the contribution of internal viscous dissipation to the total energy balance is negligible at the low operational screw speed of 2 RPM. The calculations for shear rate, peripheral viscosity, apparent viscosity, and the Brinkman Number are presented in Appendix E.</p>
   </div>
 
   <div id="ch5-3-2" class="subsection">
     <h4>5.3.2 Solid-Bed Friction</h4>
-    <p>Solid-bed friction contributes during the earlier stages of melting, prior to full plasticisation, where solid polymer pellets or granules are dragged along the barrel wall and screw surfaces. The frictional contact between solid particles and metal surfaces generates heat directly at the solid-melt interface, accelerating the onset of melting in the feed and early compression zones [xx]. This mechanism diminishes as the solid bed breaks down and the material transitions fully into the melt phase.</p>
+    <p>Solid-bed friction contributes during the earlier stages of melting, prior to full plasticisation, where solid polymer pellets or granules are dragged along the barrel wall and screw surfaces. The frictional contact between solid particles and metal surfaces generates heat directly at the solid-melt interface, accelerating the onset of melting in the feed and early compression zones [68]. This mechanism diminishes as the solid bed breaks down and the material transitions fully into the melt phase.</p>
   </div>
 
   <div id="ch5-3-3" class="subsection">
     <h4>5.3.3 Combined Effect: Melt Film Formation and Radial Homogenisation</h4>
-    <p>Classical melting theory describes the combined outcome of viscous dissipation and solid-bed friction as the formation of a thin melt film at the barrel wall, which is continuously sheared, redistributed, and renewed by the screw [xx]. This circulatory melt flow enhances mixing and promotes more homogeneous heat distribution than barrel conduction alone could achieve, particularly in the radial direction, where PP's low thermal conductivity otherwise limits heat transfer.</p>
+    <p>Classical melting theory describes the combined outcome of viscous dissipation and solid-bed friction as the formation of a thin melt film at the barrel wall, which is continuously sheared, redistributed, and renewed by the screw [68]. This circulatory melt flow enhances mixing and promotes more homogeneous heat distribution than barrel conduction alone could achieve, particularly in the radial direction, where PP's low thermal conductivity otherwise limits heat transfer.</p>
   </div>
 
   <div id="ch5-4" class="subsection">
@@ -112,10 +112,10 @@
 
   <div id="ch5-4-1" class="subsection">
     <h4>5.4.1 Literature-Derived Starting Points</h4>
-    <p>The selection of initial barrel zone temperature setpoints was guided by established processing ranges for PP. PP is semi-crystalline, with melting temperature typically in the range of 160–170°C, while recommended processing temperatures generally lie between 180–230°C, depending on grade, shear conditions, and application [xx].</p>
-    <p>For the feed zone, it is recommended that the temperature be set to the melting temperature plus about 25°C [xx]. For our setup, this gives a target of approximately 160°C + 25°C = 185°C. This initiates softening of incoming pellets while preserving solid-bed integrity for effective solids conveying along the screw flights.</p>
-    <p>For the compression zone, the temperature is typically increased relative to the feed zone to promote progressive melting and homogenisation of the polymer. This stage continuously forms a thin melt film at the barrel wall, which is sheared and redistributed into the bulk material. As such, sufficient thermal input is required to sustain this melt film formation while avoiding excessive temperatures that may lead to thermal degradation. Crabtree et al. [xx] recommend a compression zone setpoint approximately 10°C above the feed zone as a starting point, yielding a target of approximately 195°C for EcoSpool's configuration.</p>
-    <p>The metering zone subjects the now largely molten polymer to continued shear and mixing to achieve thermal and compositional homogenisation before discharge [xx]. The metering zone setpoint is set at 200°C, marginally above the compression zone, to account for any residual unmelted material and to maintain melt fluidity at the die entrance.</p>
+    <p>The selection of initial barrel zone temperature setpoints was guided by established processing ranges for PP. PP is semi-crystalline, with melting temperature typically in the range of 160–170°C, while recommended processing temperatures generally lie between 180–230°C, depending on grade, shear conditions, and application [69].</p>
+    <p>For the feed zone, it is recommended that the temperature be set to the melting temperature plus about 25°C [70]. For our setup, this gives a target of approximately 160°C + 25°C = 185°C. This initiates softening of incoming pellets while preserving solid-bed integrity for effective solids conveying along the screw flights.</p>
+    <p>For the compression zone, the temperature is typically increased relative to the feed zone to promote progressive melting and homogenisation of the polymer. This stage continuously forms a thin melt film at the barrel wall, which is sheared and redistributed into the bulk material. As such, sufficient thermal input is required to sustain this melt film formation while avoiding excessive temperatures that may lead to thermal degradation. Crabtree et al. [70] recommend a compression zone setpoint approximately 10°C above the feed zone as a starting point, yielding a target of approximately 195°C for the compression zone.</p>
+    <p>The metering zone subjects the now largely molten polymer to continued shear and mixing to achieve thermal and compositional homogenisation before discharge [71]. The metering zone setpoint is set at 200°C, marginally above the compression zone, to account for any residual unmelted material and to maintain melt fluidity at the die entrance.</p>
     <p class="table-label table-label-top">Table 13: Selected initial barrel zone temperature setpoints</p>
     <div class="spec-table-wrapper">
       <table class="spec-table">
@@ -134,7 +134,7 @@
       </table>
     </div>
     <div class="table-divider" aria-hidden="true"></div>
-    <p>It is worth noting that the discharge temperature will be slightly below the metering zone setpoint, which is consistent with the well-documented lag between barrel wall temperature and bulk melt temperature in short, low-speed single-screw extruders [xx]. This offset has already been accounted for in the selection of temperature setpoints.</p>
+    <p>It is worth noting that the discharge temperature will be slightly below the metering zone setpoint, which is consistent with the well-documented lag between barrel wall temperature and bulk melt temperature in short, low-speed single-screw extruders [68]. This offset has already been accounted for in the selection of temperature setpoints.</p>
   </div>
 
   <div id="ch5-4-2" class="subsection">
@@ -142,7 +142,7 @@
     <p>The suitability of the selected temperature profile (185°C / 195°C / 200°C) was evaluated through a combination of qualitative melt assessment and quantitative filament dimensional analysis under controlled operating conditions.</p>
     <p>Melt quality was first assessed using the Maddock solidification experiment conducted in Section 4.5.1, using a screw speed of approximately 2 RPM and a compression screw ratio of 3.5:1 (determined to be optimal from Section 4.5.1). The uniform grey colouration observed along the screw channel (Fig 32) showed complete dispersion of the dye within the polymer melt. This is a result of distributive mixing of the dye into the PP mix can only occur once the polymer has transitioned from a solid bed to a homogeneous melt - solid-state mixing alone is insufficient to produce uniform colouration at this scale.</p>
     <p>Extruded filament was subsequently inspected for visual indicators of thermal imbalance. Signs of under-heating, such as unmelted particles, surface roughness, or air entrapment (bubbles), were not observed. Similarly, indicators of overheating, including material discolouration, degradation, or charring, were absent. These observations collectively suggest that the selected temperature profile lies within an appropriate thermal processing window for PP.</p>
-    <p>To quantitatively evaluate process stability, filament diameter consistency was measured during a 2-minute continuous extrusion run under steady-state conditions.</p>
+    <p>To quantitatively evaluate process stability, filament diameter consistency was measured during a <b>2-minute continuous</b> extrusion run under steady-state conditions.</p>
     <p>All experiments were conducted under the following fixed operating parameters: a compression ratio of 3.5:1 (as determined to be optimal), screw speed of 2 RPM and puller speed of 1.85 as controlled variables, and wind speed set to its highest setting of 5.2m/s, so as to achieve quickest cooling allowable with our configuration. Within each feedstock set, the temperature profile was varied systematically while all other parameters were held constant, isolating temperature as the independent variable.</p>
   </div>
 
@@ -201,7 +201,7 @@
         </table>
       </div>
       <div class="table-divider" aria-hidden="true"></div>
-      <p>Profile A produced the most consistent volumetric output, with the lowest cross-sectional area standard deviation of 0.33mm². Profiles B and C both exhibited greater diameter variability, characterised by more frequent surging events and under-extrusion periods. The superior performance of the shallower gradient suggests that rPP flakes plasticise adequately under a gradual, distributed thermal input, consistent with the low screw speed (2 RPM) providing sufficient residence time for conductive heating across all zones. The steeper gradients of Profiles B and C, while delivering equivalent total heat input, concentrate energy further downstream, leaving the feed zone insufficiently heated to initiate consistent melt film formation at the barrel wall [xx] [xx]).</p>
+      <p>Profile A produced the most consistent volumetric output, with the lowest cross-sectional area standard deviation of 0.33mm². Profiles B and C both exhibited greater diameter variability, characterised by more frequent surging events and under-extrusion periods. The superior performance of the shallower gradient suggests that rPP flakes plasticise adequately under a gradual, distributed thermal input, consistent with the low screw speed (2 RPM) providing sufficient residence time for conductive heating across all zones. The steeper gradients of Profiles B and C, while delivering equivalent total heat input, concentrate energy further downstream, leaving the feed zone insufficiently heated to initiate consistent melt film formation at the barrel wall [49] [72].</p>
     </div>
     <p><strong>Effect of Absolute Temperature:</strong></p>
     <div class="indented-block">
@@ -246,13 +246,11 @@
         </table>
       </div>
       <div class="table-divider" aria-hidden="true"></div>
-      <p>From the experiment, the Mid profile produced the most consistent volumetric output, with the lowest cross-sectional area standard deviation of 0.33mm². Profile Low yielded a higher standard deviation of 0.39mm², suggesting incomplete plasticisation in the upstream zones. Profile High produced an intermediate value of 0.36mm², indicating that elevated temperatures introduced modest additional variability, consistent with the steep viscosity-temperature dependence of PP melt above its melting point. Taken together, these results indicate a narrow optimal processing window centred on 185–195–200°C, bounded below by the minimum temperature for melt homogenisation and above by the onset of thermally-induced flow instability [xx].</p>
+      <p>From the experiment, the Mid profile produced the most consistent volumetric output, with the lowest cross-sectional area standard deviation of 0.33mm². Profile Low yielded a higher standard deviation of 0.39mm², suggesting incomplete plasticisation in the upstream zones. Profile High produced an intermediate value of 0.36mm², indicating that elevated temperatures introduced modest additional variability, consistent with the steep viscosity-temperature dependence of PP melt above its melting point. Taken together, these results indicate a narrow optimal processing window centred on 185–195–200°C, bounded below by the minimum temperature for melt homogenisation and above by the onset of thermally-induced flow instability [73].</p>
     </div>
     <p class="subsection-emphasis">PCW-PP flakes:</p>
-    <p>PCW-PP flakes represent the target feedstock of this project — post-consumer PP recovered from NUS laboratory waste streams. Unlike the rPP flakes, PCW-PP likely contains residual additives, contaminants, and a broader molecular weight distribution arising from prior thermal histories, all of which can substantially alter melt rheology relative to virgin PP [xx].</p>
-    <p>When processed at 185–195–200°C (the optimal profile established for rPP flakes), the PCW-PP melt exhibited markedly lower viscosity than anticipated, producing a highly fluid extrudate that sags immediately upon exiting the die and could not be properly threaded through the cooling tunnel or spooler without eventually slipping off. This behaviour is consistent with viscosity reduction from either processing additives or the presence of contaminants [xx].PCW-PP flakes</p>
-    <p>PCW-PP flakes represent the target feedstock of this project — post-consumer PP recovered from NUS laboratory waste streams. Unlike the rPP flakes, PCW-PP likely contains residual additives, contaminants, and a broader molecular weight distribution arising from prior thermal histories, all of which can substantially alter melt rheology relative to virgin PP [xx].</p>
-    <p>When processed at 185–195–200°C (the optimal profile established for rPP flakes), the PCW-PP melt exhibited markedly lower viscosity than anticipated, producing a highly fluid extrudate that sags immediately upon exiting the die and could not be properly threaded through the cooling tunnel or spooler without eventually slipping off. This behaviour is consistent with viscosity reduction from either processing additives or the presence of contaminants [xx].</p>
+    <p>PCW-PP flakes represent the target feedstock of this project — post-consumer PP recovered from NUS laboratory waste streams. Unlike the rPP flakes, PCW-PP likely contains residual additives, contaminants, and a broader molecular weight distribution arising from prior thermal histories, all of which can substantially alter melt rheology relative to virgin PP [74].</p>
+    <p>When processed at 185–195–200°C (the optimal profile established for rPP flakes), the PCW-PP melt exhibited markedly lower viscosity than anticipated, producing a highly fluid extrudate that sags immediately upon exiting the die and could not be properly threaded through the cooling tunnel or spooler without eventually slipping off. This behaviour is consistent with viscosity reduction from either processing additives or the presence of contaminants [74]. </p>
     <figure class="figure-block">
       <img src="assets/photos/ch5/fig41.png" alt="Lower viscosity PCW-PP sagging and higher viscosity rPP staying upright" class="figure-image">
       <figcaption class="figure-caption">Fig 41: Lower viscosity PCW-RR sagging (Top); Higher viscosity rPP staying upright (Below)</figcaption>
@@ -301,7 +299,7 @@
 
   <div id="ch5-4-4" class="subsection">
     <h4>5.4.4 Final Setpoint Selection</h4>
-    <p>Based on the experimental results, the temperature profile of 155–165–170°C is selected as the operating setpoint to be carried forward into integration testing. This profile demonstrated superior dimensional consistency for PCW-PP flakes, producing lower diameter standard deviation relative to 145–155–160°C, indicating more stable melt flow and reduced surging. The higher absolute temperatures in this profile are sufficient to fully plasticise the PCW-PP feedstock while maintaining a melt viscosity high enough to draw the extrudate through the cooling tunnel and spooler without sagging.</p>
+    <p>Based on the experimental results, the temperature profile of <b><u>155–165–170°C</u></b> is selected as the operating setpoint to be carried forward into integration testing. This profile demonstrated superior dimensional consistency for PCW-PP flakes, producing lower diameter standard deviation relative to 145–155–160°C, indicating more stable melt flow and reduced surging. The higher absolute temperatures in this profile are sufficient to fully plasticise the PCW-PP feedstock while maintaining a melt viscosity high enough to draw the extrudate through the cooling tunnel and spooler without sagging.</p>
   </div>
 
   <div id="ch5-5" class="subsection">
@@ -311,19 +309,19 @@
 
   <div id="ch5-5-1" class="subsection">
     <h4>5.5.1 Viscosity Sensitivity to Temperature</h4>
-    <p>In the event of a systemic fluctuation, such as an unintended temperature drop in the metering section caused by ambient heat loss through the nozzle, the impact on material properties is immediate. As the temperature falls below the setpoint, the thermal energy available to polymer molecules decreases, restricting their mobility and increasing the material’s viscosity [xx].</p>
+    <p>In the event of a systemic fluctuation, such as an unintended temperature drop in the metering section caused by ambient heat loss through the nozzle, the impact on material properties is immediate. As the temperature falls below the setpoint, the thermal energy available to polymer molecules decreases, restricting their mobility and increasing the material’s viscosity [75].</p>
     <p>This increase in viscosity has two primary consequences:</p>
     <ul class="paper-list">
       <li>Increased drag flow resistance - more mechanical force is required to extrude the material</li>
-      <li>Increased pressure flow [xx] - more pressure is required for material to flow through the die, creating a 'surging' effect</li>
+      <li>Increased pressure flow [76] - more pressure is required for material to flow through the die, creating a 'surging' effect</li>
     </ul>
   </div>
 
   <div id="ch5-5-2" class="subsection">
     <h4>5.5.2 Pressure Variation and Filament Diameter Impact</h4>
     <p>To quantify the temperature stability required, the Arrhenius relationship for polymer melt viscosity is applied:</p>
-    <p class="paper-formula">η = K · e^(Ea / RT)</p>
-    <p>The thermal stability of the metering zone is critical, given the PP output's high sensitivity to pressure fluctuations. For a material like PP, variations in die pressure are particularly disruptive: pressure variations can result in up to 3 times as much variation in total output [xx].</p>
+    <p class="paper-formula"><b>η = K · e^(Ea / RT)</b></p>
+    <p>The thermal stability of the metering zone is critical, given the PP output's high sensitivity to pressure fluctuations. For a material like PP, variations in die pressure are particularly disruptive: pressure variations can result in up to 3 times as much variation in total output [76].</p>
     <p>At the operating temperature of 200°C (473.15 K), the Arrhenius relationship for recycled PP (Eₐ = 55 kJ/mol) indicates that a temperature deviation of 1.25°C produces a 3.61% change in melt viscosity. Since melt viscosity governs resistance to flow at fixed die geometry, this viscosity change is treated as an equivalent pressure variation. Referring to Dynisco’s sensitivity table, a 3.61% effective pressure variation corresponds to approximately 10.7% variation in volumetric output.</p>
     <p>The acceptable output variation limit is derived from the filament diameter specification of 1.75 ± 0.10mm. The minimum acceptable cross-sectional area relative to the target is (1.65²/1.75²) × 100 = 88.9%, corresponding to a maximum allowable volumetric output variation of 11.1%. Since the calculated output variation of 10.7% from a 1.25°C deviation falls within this 11.1% limit, the PID control system must maintain the zone temperatures within ±1.25°C of their setpoints to ensure consistent extrusion of filament.</p>
   </div>
@@ -333,7 +331,7 @@
     <p>Consequently, the heating system must be tuned to a stability limit of ±1.25°C. Without multiple independent heating zones to isolate the metering section from the high-load transition zone, the PID controller would be unable to maintain this precision. The result would be decreased maximum output and inconsistent filament diameter beyond acceptable limits. Temperature gradients along the barrel are therefore a functional necessity for achieving dimensional accuracy in rPP filament production.</p>
     <figure class="figure-block">
       <img src="assets/photos/ch5/fig43.jpeg" alt="Target temperatures" class="figure-image">
-      <figcaption class="figure-caption">Fig 43: Target temperatures</figcaption>
+      <figcaption class="figure-caption">Fig 43: Measured Temperatures (PV) were close to Set Temperatures (SV)</figcaption>
     </figure>
     <p>This requirement is reflected in the experimental performance of the system. During operation, the multi-zone PID temperature controller maintained each barrel zone within a narrow fluctuation band around its setpoint, as observed in real-time controller readings. The stability of the thermal profile is consistent with the measured filament diameter results in Section 5.4.3, where most of the extrudate displayed low standard deviation in cross-sectional area across the length of the filament, suggesting minimal surging and underextrusion. This demonstrates that the selected PID tuning parameters and multi-zone heating configuration are sufficient to achieve both thermal stability and dimensional consistency in practice.</p>
   </div>
