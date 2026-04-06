@@ -1,20 +1,35 @@
 <section id="ch8" class="content-section chapter-section">
-    <div class="section-label">Chapter 8</div>
-    <div class="chapter-header">
-      <div class="ch-number-large">08</div>
-      <div class="ch-title-block">
-        <h2>Integrated Prototype Validation</h2>
-        <p class="ch-lead">End-to-end filament quality assessment, commercial comparison, and pilot user testing.</p>
-      </div>
+  <div class="section-label">Chapter 8</div>
+  <div class="chapter-header">
+    <div class="ch-number-large">08</div>
+    <div class="ch-title-block">
+      <h2>Limitations &amp; Future Work</h2>
+      <p class="ch-lead">Current system limitations and the next technical steps needed for reliable spool-scale deployment.</p>
     </div>
-    <div id="ch8-1" class="subsection"><h3>8.1 End-to-End Filament Quality Assessment</h3></div>
-    <div id="ch8-1-1" class="subsection subsection-2"><h4>8.1.1 Physical and Dimensional Metrics</h4><p>Diameter, ovality, and surface roughness assessed at 100 mm intervals over a 2 m spool length. Visual inspection for surface defects (melt fracture, voids, discolouration).</p></div>
-    <div id="ch8-1-2" class="subsection subsection-2"><h4>8.1.2 System Parameters for Assessment</h4><p>Screw speed: 4 rpm. Zone setpoints: 185/195/200 °C. Fan speed: setting 1. Spooling tension: 200 g counterweight.</p></div>
-    <div id="ch8-1-3" class="subsection subsection-2"><h4>8.1.3 Results and Discussion</h4><p>Mean diameter: 1.77 mm. σ: 0.183 mm. Ovality: 0.08 mm. All metrics within or approaching the ±0.1 mm criterion. Remaining variance attributed to feedstock contamination and intermittent hopper bridging.</p></div>
-    <div id="ch8-1-4" class="subsection subsection-2"><h4>8.1.4 Printability Testing</h4><p>rPP filament successfully printed on a Bambu Lab P1S (PP profile). Benchmark prints (tensile dog-bone ASTM D638, calibration cube) exhibited acceptable layer adhesion and dimensional accuracy within ±0.3 mm.</p></div>
-    <div id="ch8-2" class="subsection"><h3>8.2 Comparison with Commercial Filament</h3>
-      <div id="ch8-2-1" class="subsection subsection-2"><h4>8.2.1 Dimensional Stability</h4><p>Commercial PP filament (Polymaker PolyPropylene): σ = 0.04 mm. EcoSpool rPP: σ = 0.183 mm. Gap is primarily feedstock-driven; control rPP runs achieved σ = 0.09 mm.</p></div>
-      <div id="ch8-2-2" class="subsection subsection-2"><h4>8.2.2 Thermal Performance and Warping Tendency</h4><p>PP exhibits high thermal warping tendency. Both commercial and rPP filament required enclosure printing with PEI-coated bed. No significant difference in warping rate was observed between commercial and EcoSpool filament.</p></div>
-    </div>
-    <div id="ch8-3" class="subsection"><h3>8.3 Pilot Tests &amp; Reviews</h3><p>rPP filament samples were provided to Robomaster and Bumblebee student teams. Feedback: acceptable for non-structural brackets and housings; dimensional variance flagged for tight-tolerance parts. Validated the EcoSpool use case for low-criticality prototyping.</p></div>
-  </section>
+  </div>
+
+  <div id="ch8-1" class="subsection">
+    <h3>8.1 Spool-Level Diameter Uniformity</h3>
+    <p>The most pressing limitation is diameter inconsistency over long extrusion runs. As shown in Section 8.1.2, localised diameter variations are sufficient to cause mid-print jams, limiting the usable filament length. Continued parameter optimisation for PCW-PP and closed-loop diameter feedback control will enable spool-level uniformity.</p>
+  </div>
+
+  <div id="ch8-2" class="subsection">
+    <h3>8.2 Feedstock Contamination</h3>
+    <p>Solid contaminants in the PCW-PP feedstock caused intermittent surging during extrusion, producing periodic diameter spikes in the extrudate (Fig 72).</p>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/ch8/fig72.png" alt="Fig 72: Underextrusion and Surging due to contaminants">
+      <figcaption class="figure-caption">Fig 72: Underextrusion and Surging due to contaminants</figcaption>
+    </figure>
+    <p>Upstream sieving, a finer breaker plate and screen pack at the die entry, and a standardised washing and drying protocol for NUS laboratory waste would collectively reduce contamination-driven variability.</p>
+  </div>
+
+  <div id="ch8-3" class="subsection">
+    <h3>8.3 Scaling Throughput</h3>
+    <p>The prototype produces filament at a rate sufficient for validation but not for maintaining a standing stock. If it were to supply filament to NUS fabrication workflows on an ongoing basis, higher screw speeds, larger-scale cooling configuration and motorised spooling with tension feedback would be necessary to support continuous operation.</p>
+  </div>
+
+  <div id="ch8-4" class="subsection">
+    <h3>8.4 Advanced Screw and Mixing Designs</h3>
+    <p>The single-screw configuration provides limited dispersive mixing - a drawback when processing heterogeneous waste batches. Retrofitting a Maddock mixing section or barrier screw would improve melt homogeneity, thereby reducing localised viscosity variations that manifest as diameter fluctuations in the extrudate. Given that the Maddock solidification experiment was already conducted as part of this project, the groundwork for evaluating such designs is already in place.</p>
+  </div>
+</section>
