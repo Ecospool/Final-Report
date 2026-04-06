@@ -10,6 +10,7 @@
   const nextButton = document.getElementById('next-chapter');
   const toggle = document.getElementById('nav-toggle');
   const chapterList = document.getElementById('nav-chapters');
+  const navInner = chapterList.parentElement;
 
   if (!chapterStage || !viewerHeading || !viewerPosition || !prevButton || !nextButton || !toggle || !chapterList) {
     return;
@@ -56,9 +57,101 @@
   let suppressHashChange = false;
   let currentChapterId = null;
   let currentTargetId = null;
+  let navScrollbar = null;
+  let navScrollbarTrack = null;
+  let navScrollbarThumb = null;
+  const dropdownCloseTimers = new WeakMap();
 
   function isMobileNav() {
     return window.getComputedStyle(toggle).display !== 'none';
+  }
+
+  function ensureNavScrollbar() {
+    if (navScrollbar) return;
+
+    navScrollbar = document.createElement('div');
+    navScrollbar.className = 'nav-scrollbar';
+    navScrollbar.hidden = true;
+    navScrollbar.innerHTML = `
+      <div class="nav-scrollbar-track">
+        <button class="nav-scrollbar-thumb" type="button" aria-label="Scroll chapters"></button>
+      </div>
+    `;
+
+    navInner.appendChild(navScrollbar);
+    navScrollbarTrack = navScrollbar.querySelector('.nav-scrollbar-track');
+    navScrollbarThumb = navScrollbar.querySelector('.nav-scrollbar-thumb');
+
+    const startDrag = (startClientX) => {
+      if (!navScrollbarTrack || !navScrollbarThumb) return;
+
+      const trackRect = navScrollbarTrack.getBoundingClientRect();
+      const thumbRect = navScrollbarThumb.getBoundingClientRect();
+      const offsetX = startClientX - thumbRect.left;
+
+      const onMove = (clientX) => {
+        const maxThumbTravel = trackRect.width - thumbRect.width;
+        const nextLeft = Math.max(0, Math.min(clientX - trackRect.left - offsetX, maxThumbTravel));
+        const maxScroll = chapterList.scrollWidth - chapterList.clientWidth;
+        chapterList.scrollLeft = maxThumbTravel > 0 ? (nextLeft / maxThumbTravel) * maxScroll : 0;
+      };
+
+      const handleMouseMove = (event) => onMove(event.clientX);
+      const handleTouchMove = (event) => {
+        if (event.touches[0]) {
+          onMove(event.touches[0].clientX);
+          event.preventDefault();
+        }
+      };
+      const stopDrag = () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', stopDrag);
+        document.removeEventListener('touchmove', handleTouchMove);
+        document.removeEventListener('touchend', stopDrag);
+      };
+
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', stopDrag);
+      document.addEventListener('touchmove', handleTouchMove, { passive: false });
+      document.addEventListener('touchend', stopDrag);
+    };
+
+    navScrollbarThumb.addEventListener('mousedown', (event) => {
+      event.preventDefault();
+      startDrag(event.clientX);
+    });
+
+    navScrollbarThumb.addEventListener('touchstart', (event) => {
+      if (!event.touches[0]) return;
+      startDrag(event.touches[0].clientX);
+    }, { passive: true });
+  }
+
+  function updateNavScrollbar() {
+    ensureNavScrollbar();
+
+    if (!navScrollbar || !navScrollbarTrack || !navScrollbarThumb) return;
+
+    if (isMobileNav()) {
+      navScrollbar.hidden = true;
+      return;
+    }
+
+    const maxScroll = chapterList.scrollWidth - chapterList.clientWidth;
+    if (maxScroll <= 0) {
+      navScrollbar.hidden = true;
+      return;
+    }
+
+    navScrollbar.hidden = false;
+
+    const trackWidth = navScrollbarTrack.clientWidth;
+    const thumbWidth = Math.max(16, ((chapterList.clientWidth / chapterList.scrollWidth) * trackWidth) * 0.6);
+    const maxThumbTravel = Math.max(0, trackWidth - thumbWidth);
+    const left = maxScroll > 0 ? (chapterList.scrollLeft / maxScroll) * maxThumbTravel : 0;
+
+    navScrollbarThumb.style.width = `${thumbWidth}px`;
+    navScrollbarThumb.style.left = `${left}px`;
   }
 
   function closeMobileNav() {
@@ -69,8 +162,30 @@
 
   function closeAllDropdowns(exceptItem = null) {
     document.querySelectorAll('.chapter-item.open').forEach((item) => {
+      const pendingTimer = dropdownCloseTimers.get(item);
+      if (pendingTimer) {
+        clearTimeout(pendingTimer);
+        dropdownCloseTimers.delete(item);
+      }
       if (item !== exceptItem) item.classList.remove('open');
     });
+  }
+
+  function cancelDropdownClose(item) {
+    const pendingTimer = dropdownCloseTimers.get(item);
+    if (pendingTimer) {
+      clearTimeout(pendingTimer);
+      dropdownCloseTimers.delete(item);
+    }
+  }
+
+  function scheduleDropdownClose(item) {
+    cancelDropdownClose(item);
+    const timer = window.setTimeout(() => {
+      item.classList.remove('open');
+      dropdownCloseTimers.delete(item);
+    }, 180);
+    dropdownCloseTimers.set(item, timer);
   }
 
   function positionDropdown(item) {
@@ -85,7 +200,7 @@
     const left = Math.max(8, Math.min(linkRect.left, window.innerWidth - width - 8));
 
     dropdown.style.left = `${left}px`;
-    dropdown.style.top = `${navRect.bottom - 1}px`;
+    dropdown.style.top = `${navRect.bottom + 2}px`;
   }
 
   function buildNavMaps() {
@@ -308,12 +423,14 @@
 
     document.querySelectorAll('.chapter-item').forEach((item) => {
       const topLink = item.querySelector(':scope > .chapter-link');
+      const dropdown = item.querySelector(':scope > .dropdown');
       if (!topLink) return;
 
       topLink.addEventListener('click', (event) => handleTopLinkClick(topLink, item, event));
 
       item.addEventListener('mouseenter', () => {
-        if (isMobileNav() || !item.querySelector(':scope > .dropdown')) return;
+        if (isMobileNav() || !dropdown) return;
+        cancelDropdownClose(item);
         closeAllDropdowns(item);
         item.classList.add('open');
         requestAnimationFrame(() => positionDropdown(item));
@@ -321,11 +438,12 @@
 
       item.addEventListener('mouseleave', () => {
         if (isMobileNav()) return;
-        item.classList.remove('open');
+        scheduleDropdownClose(item);
       });
 
       item.addEventListener('focusin', () => {
-        if (isMobileNav() || !item.querySelector(':scope > .dropdown')) return;
+        if (isMobileNav() || !dropdown) return;
+        cancelDropdownClose(item);
         closeAllDropdowns(item);
         item.classList.add('open');
         requestAnimationFrame(() => positionDropdown(item));
@@ -339,6 +457,21 @@
           }
         });
       });
+
+      if (dropdown) {
+        dropdown.addEventListener('mouseenter', () => {
+          if (isMobileNav()) return;
+          cancelDropdownClose(item);
+          closeAllDropdowns(item);
+          item.classList.add('open');
+          requestAnimationFrame(() => positionDropdown(item));
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+          if (isMobileNav()) return;
+          scheduleDropdownClose(item);
+        });
+      }
 
       item.querySelectorAll('.dropdown a').forEach((subLink) => {
         subLink.addEventListener('click', (event) => {
@@ -361,10 +494,12 @@
 
     window.addEventListener('resize', () => {
       document.querySelectorAll('.chapter-item.open').forEach((item) => positionDropdown(item));
+      updateNavScrollbar();
     });
 
     chapterList.addEventListener('scroll', () => {
       document.querySelectorAll('.chapter-item.open').forEach((item) => positionDropdown(item));
+      updateNavScrollbar();
     }, { passive: true });
 
     prevButton.addEventListener('click', () => navigateRelative(-1));
@@ -393,6 +528,8 @@
   }
 
   buildNavMaps();
+  ensureNavScrollbar();
   bindNavigation();
   renderChapter(window.location.hash.slice(1) || 'hero', { updateHash: false, behavior: 'auto' });
+  updateNavScrollbar();
 })();
