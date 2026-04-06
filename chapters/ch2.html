@@ -40,28 +40,28 @@
               <td>Dimensional</td>
               <td>Filament Diameter</td>
               <td>Controls volumetric flow rate through the nozzle by determining extruder grip and cross-sectional area of deposited material</td>
-              <td><ul>Conforming:</ul> Consistent filament feeding and uniform extrusion<hr class="table-cell-divider" /><ul>Non-conforming:</ul> Over/under-extrusion, layer width variation, extruder jams</td>
+              <td><u>Conforming:</u> Consistent filament feeding and uniform extrusion<hr class="table-cell-divider" /><u>Non-conforming:</u> Over/under-extrusion, layer width variation, extruder jams</td>
               <td>[3][4]</td>
             </tr>
             <tr>
               <td>Material</td>
               <td>Moisture Content</td>
               <td>Absorbed moisture undergoes phase change to steam during melt processing, causing plasticization, bubble formation, hydrolysis, and increased porosity within the extrudate</td>
-              <td><ul>Conforming:</ul> Homogeneous melt and consistent extrusion<hr class="table-cell-divider" /><ul>Non-conforming:</ul> Popping / crackling during extrusion, surface blistering, filament embrittlement, and increased porosity</td>
+              <td><u>Conforming:</u> Homogeneous melt and consistent extrusion<hr class="table-cell-divider" /><u>Non-conforming:</u> Popping / crackling during extrusion, surface blistering, filament embrittlement, and increased porosity</td>
               <td>[5]</td>
             </tr>
             <tr>
               <td>Material</td>
               <td>Melt Flow Index (MFI)</td>
               <td>Governs melt viscosity and flow behaviour at processing temperature; excessively high MFI (eg, from moisture degradation) leads to poor flow control, while too low MFI restricts extrusion</td>
-              <td><ul>Conforming:</ul> Consistent inter-layer bonding and uniform material deposition<hr class="table-cell-divider" /><ul>Non-conforming:</ul> Poor inter-layer adhesion, excessive stringing, oozing, or nozzle clogging</td>
+              <td><u>Conforming:</u> Consistent inter-layer bonding and uniform material deposition<hr class="table-cell-divider" /><u>Non-conforming:</u> Poor inter-layer adhesion, excessive stringing, oozing, or nozzle clogging</td>
               <td>[6]</td>
             </tr>
             <tr>
               <td>Aesthetic</td>
               <td>Surface Finish</td>
               <td>Affects frictional resistance within the guide tube; surface irregularities increase drag and cause inconsistent feed rates, while also determining the final tactile and visual quality of the print</td>
-              <td><ul>Conforming:</ul> Uniform, smooth surface texture and consistent print aesthetics<hr class="table-cell-divider" /><ul>Non-conforming:</ul> Rough surface texture, inconsistent layer deposition, and poor dimensional fidelity</td>
+              <td><u>Conforming:</u> Uniform, smooth surface texture and consistent print aesthetics<hr class="table-cell-divider" /><u>Non-conforming:</u> Rough surface texture, inconsistent layer deposition, and poor dimensional fidelity</td>
               <td>[7][8]</td>
             </tr>
           </tbody>
@@ -104,13 +104,13 @@
           <tbody>
             <tr>
               <td>Diameter Variation<br /><i>(Longitudinal Variance)</i></td>
-              <td>Fluctuation in diameter <ul>along the length</ul> of the filament</td>
+              <td>Fluctuation in diameter <u>along the length</u> of the filament</td>
               <td>± 0.10mm</td>
               <td>[10]</td>
             </tr>
             <tr>
               <td>Ovality<br />(Cross-Sectional Variance)</td>
-              <td>Deviation of the filament’s cross-section from a perfect circle <ul>at any given point</ul></td>
+              <td>Deviation of the filament’s cross-section from a perfect circle <u>at any given point</u></td>
               <td>± 0.08mm<br />(≈ &lt;5%)</td>
               <td>[12]</td>
             </tr>
@@ -124,25 +124,25 @@
       <ul class="paper-list">
         <li>
           Diameter &gt; 1.85mm: Too thick
-          <ul>
+          <u>
             <li>Filament may jam the extruder nozzle, or</li>
             <li>increase back-pressure, disrupting the print.</li>
-          </ul>
+          </u>
         </li>
         <li>
           Diameter &lt; 1.65mm: Too thin
-          <ul>
+          <u>
             <li>Drive gears may fail to grip the filament consistently, leading to under-extrusion, or</li>
             <li>Filament may snap during feeding and disrupt the print</li>
-          </ul>
+          </u>
         </li>
-      </ul>
+      </u>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig4.jpeg" alt="Filament of inconsistent diameter" />
         <figcaption class="figure-caption">Fig 4: Filament of Inconsistent Diameter</figcaption>
       </figure>
       <p>
-        Throughout our project, <b>Diameter Variation</b> and <b>Ovality</b> will serve as the <ul>primary metrics of filament consistency</ul>, guiding our experimental approach and design decisions across all stages of development.
+        Throughout our project, <b>Diameter Variation</b> and <b>Ovality</b> will serve as the <u>primary metrics of filament consistency</u>, guiding our experimental approach and design decisions across all stages of development.
       </p>
     </div>
 
@@ -221,7 +221,7 @@
         <figcaption class="figure-caption">Fig 8: Filament of inconsistent diameter</figcaption>
       </figure>
       <p>
-        These deviations occur at the point of extrusion, and are attributed to the inherent mechanical and chemical properties of post-consumer PP waste — <ul>melt flow instability</ul> and <ul>high complex viscosity</ul> of PP when using flakes (Fig 9) [24][25][26].
+        These deviations occur at the point of extrusion, and are attributed to the inherent mechanical and chemical properties of post-consumer PP waste — <u>melt flow instability</u> and <u>high complex viscosity</u> of PP when using flakes (Fig 9) [24][25][26].
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig9.jpeg" alt="Root causes of inconsistent rate of extrusion" />
@@ -296,7 +296,7 @@
     <div id="ch2-4-2" class="subsection">
       <h4>2.4.2 Issue 2: Anisotropic Volumetric Shrinkage</h4>
       <p>
-        Anisotropic volumetric shrinkage of plastic can occur during cooling, which leads to a differential in internal tensional forces that distorts the circular cross-section of the filament into an oval. This is extremely prevalent in the filamentation of PP, owing to its <ul>high crystallinity</ul> and <ul>low thermal conductivity</ul> (Fig 11).
+        Anisotropic volumetric shrinkage of plastic can occur during cooling, which leads to a differential in internal tensional forces that distorts the circular cross-section of the filament into an oval. This is extremely prevalent in the filamentation of PP, owing to its <u>high crystallinity</u> and <u>low thermal conductivity</u> (Fig 11).
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig11.jpeg" alt="Anisotropic volumetric shrinkage during cooling" />
@@ -462,19 +462,19 @@
         1. Screw Compression Ratio
       </p>
       <p>
-        Among the systems reviewed, 3Devo’s screw has the highest compression ratio at 2.25:1. However, this remains below the typical optimal value of approximately 2.8:1 for standard pelletised feedstock [47]. For flake feedstocks with irregular geometry and lower bulk density, an even higher compression ratio is generally required to achieve sufficient compaction into a continuous, pressurised melt [48]. As such, the compression ratios of all three systems are likely insufficient to address the <ul>melt-flow instability</ul> of PCW-PP flakes.
+        Among the systems reviewed, 3Devo’s screw has the highest compression ratio at 2.25:1. However, this remains below the typical optimal value of approximately 2.8:1 for standard pelletised feedstock [47]. For flake feedstocks with irregular geometry and lower bulk density, an even higher compression ratio is generally required to achieve sufficient compaction into a continuous, pressurised melt [48]. As such, the compression ratios of all three systems are likely insufficient to address the <u>melt-flow instability</u> of PCW-PP flakes.
       </p>
       <p>
         2. Heating Zones
       </p>
       <p>
-        3Devo and Filabot extruders utilise multiple heating zones (typically four) to establish a gradual thermal gradient, which is better suited to managing PP’s sensitivity to temperature arising from its <ul>high complex viscosity</ul> [49]. In contrast, Felfil’s extruder employs a single heating band, resulting in more abrupt temperature changes. This can induce sudden drops in viscosity, leading to unstable melt flow and extrusion surging.
+        3Devo and Filabot extruders utilise multiple heating zones (typically four) to establish a gradual thermal gradient, which is better suited to managing PP’s sensitivity to temperature arising from its <u>high complex viscosity</u> [49]. In contrast, Felfil’s extruder employs a single heating band, resulting in more abrupt temperature changes. This can induce sudden drops in viscosity, leading to unstable melt flow and extrusion surging.
       </p>
       <p>
         3. Cooling Arrangement
       </p>
       <p>
-        Filabot and Felfil extruders employ single-direction (axial) cooling, while 3Devo incorporates a dual-fan configuration to improve airflow distribution. Despite this, cooling remains asymmetric, and 3Devo reports that issues such as ovality—arising from <ul>anisotropic shrinkage</ul>—still persist [50]. For a polymer such as PP with a significantly higher crystallinity, the asymmetric cooling will definitely result in high ovality.
+        Filabot and Felfil extruders employ single-direction (axial) cooling, while 3Devo incorporates a dual-fan configuration to improve airflow distribution. Despite this, cooling remains asymmetric, and 3Devo reports that issues such as ovality—arising from <u>anisotropic shrinkage</u>—still persist [50]. For a polymer such as PP with a significantly higher crystallinity, the asymmetric cooling will definitely result in high ovality.
       </p>
       <p>
         Overall, existing small-scale extrusion systems do not adequately address the root causes of dimensional instability in PP filament. Limited thermal control leads to viscosity fluctuations and consequent melt flow instability, while insufficient screw compression fails to maintain a stable flow under PP’s high complex viscosity. In addition, non-uniform cooling allows anisotropic shrinkage—driven by PP’s high crystallinity—to persist, resulting in ovality.
