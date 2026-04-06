@@ -10,7 +10,7 @@
 
     <div class="subsection">
       <p>
-        This chapter examines the inherent challenges of processing polypropylene (PP) into filament, a material known for its complex thermal and crystallization behaviour. To systematically uncover the underlying causes of inconsistent filament quality, we will (1) identify the fundamental factors that influence filament formation, (2) define clear and measurable quality metrics, and (3) highlight the key issues within the filamentation process that hinder their attainment. By tracing these issues back to their originating mechanisms, the chapter ultimately converges on the root causes, providing a logical and evidence-based foundation to inform the design approach in the subsequent section.
+        This chapter examines the inherent challenges of processing polypropylene (PP) into filament, a material known for its complex thermal and crystallization behaviour. To systematically uncover the underlying causes of inconsistent filament quality, we will (1) identify the fundamental factors that influence filament formation, (2) define clear and measurable quality metrics, and (3) highlight the key issues within the filamentation process that hinder their attainment (Fig 3). By tracing these issues back to their originating mechanisms, the chapter ultimately converges on the root causes, providing a logical and evidence-based foundation to inform the design approach in the subsequent section.
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig3.jpeg" alt="Overview of Chapter 2" />
@@ -40,28 +40,28 @@
               <td>Dimensional</td>
               <td>Filament Diameter</td>
               <td>Controls volumetric flow rate through the nozzle by determining extruder grip and cross-sectional area of deposited material</td>
-              <td>Conforming: Consistent filament feeding and uniform extrusion<hr class="table-cell-divider" />Non-conforming: Over/under-extrusion, layer width variation, extruder jams</td>
+              <td><ul>Conforming:</ul> Consistent filament feeding and uniform extrusion<hr class="table-cell-divider" /><ul>Non-conforming:</ul> Over/under-extrusion, layer width variation, extruder jams</td>
               <td>[3][4]</td>
             </tr>
             <tr>
               <td>Material</td>
               <td>Moisture Content</td>
               <td>Absorbed moisture undergoes phase change to steam during melt processing, causing plasticization, bubble formation, hydrolysis, and increased porosity within the extrudate</td>
-              <td>Conforming: Homogeneous melt and consistent extrusion<hr class="table-cell-divider" />Non-conforming: Popping / crackling during extrusion, surface blistering, filament embrittlement, and increased porosity</td>
+              <td><ul>Conforming:</ul> Homogeneous melt and consistent extrusion<hr class="table-cell-divider" /><ul>Non-conforming:</ul> Popping / crackling during extrusion, surface blistering, filament embrittlement, and increased porosity</td>
               <td>[5]</td>
             </tr>
             <tr>
               <td>Material</td>
               <td>Melt Flow Index (MFI)</td>
               <td>Governs melt viscosity and flow behaviour at processing temperature; excessively high MFI (eg, from moisture degradation) leads to poor flow control, while too low MFI restricts extrusion</td>
-              <td>Conforming: Consistent inter-layer bonding and uniform material deposition<hr class="table-cell-divider" />Non-conforming: Poor inter-layer adhesion, excessive stringing, oozing, or nozzle clogging</td>
+              <td><ul>Conforming:</ul> Consistent inter-layer bonding and uniform material deposition<hr class="table-cell-divider" /><ul>Non-conforming:</ul> Poor inter-layer adhesion, excessive stringing, oozing, or nozzle clogging</td>
               <td>[6]</td>
             </tr>
             <tr>
               <td>Aesthetic</td>
               <td>Surface Finish</td>
               <td>Affects frictional resistance within the guide tube; surface irregularities increase drag and cause inconsistent feed rates, while also determining the final tactile and visual quality of the print</td>
-              <td>Conforming: Uniform, smooth surface texture and consistent print aesthetics<hr class="table-cell-divider" />Non-conforming: Rough surface texture, inconsistent layer deposition, and poor dimensional fidelity</td>
+              <td><ul>Conforming:</ul> Uniform, smooth surface texture and consistent print aesthetics<hr class="table-cell-divider" /><ul>Non-conforming:</ul> Rough surface texture, inconsistent layer deposition, and poor dimensional fidelity</td>
               <td>[7][8]</td>
             </tr>
           </tbody>
@@ -72,20 +72,20 @@
         In developing our system, these metrics are not treated with equal priority, but rather evaluated based on their direct impact on print reliability and process stability.
       </p>
       <p>
-        Filament diameter governs the volumetric consistency of material fed into the printer [3]. Sanchez et al. stated diameter is the most important quality parameters for the characterization of the filament produced, where even minor fluctuations in diameter translate directly into over- or under-extrusion, leading to defects such as clogging, poor layer adhesion, or dimensional inaccuracies in printed parts [8].
+        Filament diameter governs the volumetric consistency of material fed into the printer [3]. Sanchez et al. stated <b><i>diameter</i> is the most important quality parameter</b> for the characterization of the filament produced, where even minor fluctuations in diameter translate directly into over- or under-extrusion, leading to defects such as clogging, poor layer adhesion, or dimensional inaccuracies in printed parts [8].
       </p>
       <p>
-        In contrast, while moisture content and melt flow index influence material behaviour and are important for process optimisation, their effects are secondary and can be difficult to measure and address at the early stages of prototyping. Surface finish, although relevant for end-use aesthetics, does not critically affect the fundamental functionality of the printing process.
+        In contrast, while moisture content and melt flow index influence material behaviour and are important for process optimisation, their effects are secondary and can be difficult to measure and address at the early stages of prototyping. Surface finish, although relevant for end-use aesthetics, does not critically affect the fundamental functionality of the printing process [9].
       </p>
       <p>
-        Therefore, we established Filament Diameter as our primary focus; to ensure stable and consistent extrusion as a baseline requirement before addressing material refinement and aesthetic quality.
+        Therefore, we established <b>Filament Diameter</b> as our primary focus; to ensure stable and consistent extrusion as a baseline requirement before addressing material refinement and aesthetic quality.
       </p>
     </div>
 
     <div id="ch2-2" class="subsection">
       <h3>2.2 Metrics of Filament Diameter</h3>
       <p>
-        Ideal filament diameter is defined by two parameters; a nominal diameter of 1.75mm and a perfectly circular cross-section. These specifications are standardised across commercial 3D printers to ensure smooth feeding into the extruder and consistent, predictable flow through the nozzle.
+        Ideal filament diameter is defined by two parameters; a nominal diameter of <b>1.75mm</b> and a <b>perfectly circular cross-section</b> [9]. These specifications are standardised across commercial 3D printers to ensure smooth feeding into the extruder and consistent, predictable flow through the nozzle [10][11].
       </p>
       <p>
         In practice, filament does not adhere perfectly to these ideal specifications, and a certain degree of deviation is acceptable within defined tolerances. To quantify this deviation, two key industry metrics are used:
@@ -103,23 +103,23 @@
           </thead>
           <tbody>
             <tr>
-              <td>Diameter Variation<br />(Longitudinal Variance)</td>
-              <td>Fluctuation in diameter along the length of the filament</td>
+              <td>Diameter Variation<br /><i>(Longitudinal Variance)</i></td>
+              <td>Fluctuation in diameter <ul>along the length</ul> of the filament</td>
               <td>± 0.10mm</td>
-              <td></td>
+              <td>[10]</td>
             </tr>
             <tr>
               <td>Ovality<br />(Cross-Sectional Variance)</td>
-              <td>Deviation of the filament’s cross-section from a perfect circle at any given point</td>
+              <td>Deviation of the filament’s cross-section from a perfect circle <ul>at any given point</ul></td>
               <td>± 0.08mm<br />(≈ &lt;5%)</td>
-              <td></td>
+              <td>[12]</td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="table-divider" aria-hidden="true"></div>
       <p>
-        Issues arise when the filament deviates in diameter or ovality beyond the tolerable limit:
+        Issues arise when the filament deviates in diameter or ovality beyond the tolerable limit (Fig 4):
       </p>
       <ul class="paper-list">
         <li>
@@ -142,7 +142,7 @@
         <figcaption class="figure-caption">Fig 4: Filament of Inconsistent Diameter</figcaption>
       </figure>
       <p>
-        Throughout our project, Diameter Variation and Ovality will serve as the primary metrics of filament consistency, guiding our experimental approach and design decisions across all stages of development.
+        Throughout our project, <b>Diameter Variation</b> and <b>Ovality</b> will serve as the <ul>primary metrics of filament consistency</ul>, guiding our experimental approach and design decisions across all stages of development.
       </p>
     </div>
 
@@ -152,7 +152,7 @@
     <div id="ch2-3-1" class="subsection">
       <h4>2.3.1 Post-Consumer Waste PP Flakes</h4>
       <p>
-        Our target PP material is sourced primarily from pipette boxes used in NUS laboratories. For the purposes of this report, it will be referred to as post-consumer waste PP (PCW-PP).
+        Our target PP material is sourced primarily from pipette boxes used in NUS laboratories (Fig 5). For the purposes of this report, it will be referred to as post-consumer waste PP (PCW-PP).
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig5.jpeg" alt="Pipette box and shredded PCW-PP flakes from pipette box" />
@@ -162,28 +162,28 @@
         Compared to conventional virgin PP used for filamentation, PCW-PP differs in one key aspect: purity.
       </p>
       <p>
-        The PCW-PP boxes are manufactured via injection moulding, which typically incorporates additives such as pigments, stabilisers, and fillers to modify the properties of the base polymer. As such, the PCW-PP feedstock is not chemically pure PP but a composite material containing various additives. However, polypropylene still constitutes the bulk of the material, which is why such products are generally referred to simply as PP.
+        The PCW-PP boxes are manufactured via injection moulding, which typically incorporates additives such as pigments, stabilisers, and fillers to modify the properties of the base polymer [13]. As such, the PCW-PP feedstock is not chemically pure PP but a composite material containing various additives. However, polypropylene still constitutes the bulk of the material, which is why such products are generally referred to simply as PP.
       </p>
       <p>
-        These additives introduce variability in the material’s behaviour during extrusion, like melt viscosity and flow characteristics, leading to inconsistencies in melt flow and pressure along the barrel. This can disrupt melt-flow stability, contribute to fluctuations in extrusion rate, and ultimately lead to defects such as diameter inconsistency in the produced filament. The specific effects of additives will be further elaborated on in section 2.4.
+        These additives introduce variability in the material’s behaviour during extrusion, like melt viscosity and flow characteristics, leading to inconsistencies in melt flow and pressure along the barrel [14]. This can disrupt melt-flow stability, contribute to fluctuations in extrusion rate, and ultimately lead to defects such as diameter inconsistency in the produced filament. The specific effects of additives will be further elaborated on in section 2.4.
       </p>
     </div>
     <div id="ch2-3-2" class="subsection">
       <h4>2.3.2 Control Material: rPP Flakes</h4>
       <p>
-        These impurities in the PCW-PP feedstock introduce additional complexity to the filamentation process beyond the inherent challenges of processing PP and handling irregular flake geometry. The variability in additive composition introduces a high degree of unpredictability in material behaviour, making it difficult to achieve process stability or to draw reliable conclusions on the effectiveness of individual mechanisms if experiments were conducted directly on composite PCW-PP flakes.
+        These impurities in the PCW-PP feedstock introduce additional complexity to the filamentation process beyond the inherent challenges of processing PP and handling irregular flake geometry. The variability in additive composition introduces a high degree of unpredictability in material behaviour [15][16], making it difficult to achieve process stability or to draw reliable conclusions on the effectiveness of individual mechanisms if experiments were conducted directly on composite PCW-PP flakes.
       </p>
       <p>
         Rather than serving as a direct proxy for PCW-PP, this controlled material provides an idealised baseline that enables repeatable experimentation and isolates the fundamental challenges associated with (1) processing PP and (2) handling irregular flake feedstock. This allows the system to be developed and validated under well-defined conditions, establishing a proof of capability in addressing these two key design considerations. By optimising our system for pure PP as the dominant material, it is expected that the system will be sufficiently robust to accommodate the variability present in composite PCW-PP feedstocks..
       </p>
       <p>
-        This feedstock was produced by extruding filament from virgin PP pellets and flattening the extrudate between rollers before it fully cooled. The resulting material, when cut into individual pieces, forms pure rPP flakes that closely mimic the geometry and bulk density of the PCW-PP flake feedstock. After our rPP flake was produced, we tabulated the bulk densities to ensure similarity to our PCW-PP flake feedstock (Appendix XX).
+        This feedstock was produced by extruding filament from virgin PP pellets and flattening the extrudate between rollers before it fully cooled. The resulting material, when cut into individual pieces, forms pure rPP flakes that closely mimic the geometry and bulk density of the PCW-PP flake feedstock (Fig 6). After our rPP flake was produced, we tabulated the bulk densities to ensure similarity to our PCW-PP flake feedstock (Appendix B).
       </p>
       <p>
         The bulk density of PCW-PP flake is 0.445 g/cm3 while the rPP flake is 0.459 g/cm3, verifying that the feedstocks are similar in geometry and bulk density.
       </p>
       <p>
-        This approach is acceptable because a single thermal cycle does not significantly affect the integrity of the polymer; as such, the resulting rPP flakes retain properties comparable to virgin PP and can serve as a reliable proxy for evaluating and comparing the behaviour of composite PCW-PP flakes.
+        This approach is acceptable because a single thermal cycle does not significantly affect the integrity of the polymer [17][18][19]; as such, the resulting rPP flakes retain properties comparable to virgin PP and can serve as a reliable proxy for evaluating and comparing the behaviour of composite PCW-PP flakes.
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig6.jpeg" alt="Flattened rPP filament, rPP flakes, and comparison between PP pellets, PCW-PP flakes and rPP flakes" />
@@ -194,14 +194,14 @@
     <div id="ch2-4" class="subsection">
       <h3>2.4 Key Issues</h3>
       <p>
-        Achieving consistent filament diameter and minimising ovality presents significant control challenges, as any dimensional deviation is a symptom of underlying inconsistencies within the extrusion process. While most literature focuses on identifying key process controls to manage in the extrusion process, it is undeniable that these solutions are driven by the polymer’s inherent material properties [xx][xx][xx].
+        Achieving consistent filament diameter and minimising ovality presents significant control challenges, as any dimensional deviation is a symptom of underlying inconsistencies within the extrusion process. While most literature focuses on identifying key process controls to manage in the extrusion process, it is undeniable that these solutions are driven by the polymer’s inherent material properties [20][21][22].
       </p>
       <p>
-        Therefore, following a review of relevant literature, we identified the primary issues that affect the consistency of filament:
+        Therefore, we narrowed down the priary issues (Fig 7) that affect the consistency of filament to:
       </p>
       <ol class="paper-list paper-list-numbered">
-        <li>Diameter Variance arises from an Inconsistent Rate of Extrusion [xx], and</li>
-        <li>Ovality arises from Anisotropic Volumetric Shrinkage during cooling [xx].</li>
+        <li>Diameter Variance arises from an <b>Inconsistent Rate of Extrusion</b> [19], and</li>
+        <li>Ovality arises from <b>Anisotropic Volumetric Shrinkage</b> during cooling [23].</li>
       </ol>
       <p>
         This section expands on these issues and systematically traces them back to their underlying root causes.
@@ -214,14 +214,14 @@
     <div id="ch2-4-1" class="subsection">
       <h4>2.4.1 Issue 1: Inconsistent Rate of Extrusion</h4>
       <p>
-        Inconsistent extrusion of filament results in portions of filament thickening and thinning above or below the ideal diameter, respectively. Since the filament is continuously drawn at a relatively constant puller speed, any fluctuation in the volumetric flow rate directly translates into a mismatch between material supply and take-up rate. When the extrusion rate increases, excess material accumulates, and the filament diameter increases; conversely, a reduced extrusion rate leads to insufficient material, causing the filament to stretch and thin.
+        Inconsistent extrusion of filament results in portions of filament thickening and thinning above or below the ideal diameter, respectively. Since the filament is continuously drawn at a relatively constant puller speed, any fluctuation in the volumetric flow rate directly translates into a mismatch between material supply and take-up rate. When the extrusion rate increases, excess material accumulates, and the filament diameter increases; conversely, a reduced extrusion rate leads to insufficient material, causing the filament to stretch and thin (Fig 8).
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig8.jpeg" alt="Filament of inconsistent diameter" />
         <figcaption class="figure-caption">Fig 8: Filament of inconsistent diameter</figcaption>
       </figure>
       <p>
-        These deviations occur at the point of extrusion, and are attributed to the inherent mechanical and chemical properties of post-consumer PP waste — high complex viscosity and melt flow instability of PP when using flakes [xx][xx][xx].
+        These deviations occur at the point of extrusion, and are attributed to the inherent mechanical and chemical properties of post-consumer PP waste — <ul>melt flow instability</ul> and <ul>high complex viscosity</ul> of PP when using flakes (Fig 9) [24][25][26].
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig9.jpeg" alt="Root causes of inconsistent rate of extrusion" />
@@ -229,36 +229,36 @@
       </figure>
       <h4>Root Problem 1-A: Melt Flow Instability</h4>
       <p>
-        As discussed in Chapter 1.3, shredded PP flakes were selected as the feedstock to avoid the additional thermal cycle associated with pelletization, thereby minimising further thermal degradation and preserving the material’s properties and usable lifespan.
+        As discussed in Chapter 1.3, shredded PP flakes were selected as the feedstock to avoid the additional thermal cycle associated with pelletization, thereby minimising further thermal degradation and preserving the material’s properties and usable lifespan [27].
       </p>
       <p>
-        However, unlike pellets—which are manufactured with consistent size, shape, and density—flakes exhibit substantial variability in geometry and packing behaviour. This inconsistency leads to irregular feeding and compaction within the extruder, which in turn disrupts melt homogeneity and compromises flow stability during extrusion.
+        However, unlike pellets—which are manufactured with consistent size, shape, and density—flakes exhibit substantial variability in geometry and packing behaviour (Fig 10). This inconsistency leads to irregular feeding and compaction within the extruder at low temperature and pressure, which in turn disrupts melt homogeneity and compromises flow stability during extrusion [28][29].
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig10.jpeg" alt="Bulk density and packing behaviour of flake feedstock" />
         <figcaption class="figure-caption">Fig 10: Difference in bulk density of virgin PP Pellet (left) and PCW-PP flakes (right)</figcaption>
       </figure>
       <p>
-        Based on our feedstock samples (Appendix XX), the bulk density of Virgin PP Pellet is 0.615 g/cm3 while that of PCW-PP flakes is 0.445 g/cm3.
+        Based on our feedstock samples (Appendix B), the bulk density of Virgin PP Pellet is 0.615 g/cm3 while that of PCW-PP flakes is 0.445 g/cm3.
       </p>
       <p>
-        The irregular geometry of flakes results in non-uniform bulk packing within the extruder feed zone, producing bulk density variation characterised by regions of dense packing interspersed with entrapped air and gas inclusions.
+        The irregular geometry of flakes results in non-uniform bulk packing within the extruder feed zone, producing bulk density variation characterised by regions of dense packing interspersed with entrapped air and gas inclusions [30][31].
       </p>
       <p>
-        Irregular geometries lead to uneven heat transfer because variations in surface area and inter-particle contact disrupt consistent thermal conduction between flakes. As a result, the polymer does not melt uniformly along the barrel, producing regions that are either over- or under-heated. This creates localised differences in viscosity: lower-viscosity regions flow more readily, while higher-viscosity regions resist flow, leading to non-uniform flow velocities within the melt.
+        Irregular geometries lead to uneven heat transfer because variations in surface area and inter-particle contact disrupt consistent thermal conduction between flakes. As a result, the polymer does not melt uniformly along the barrel, producing regions that are either over- or under-heated [32]. This creates localised differences in viscosity: lower-viscosity regions flow more readily, while higher-viscosity regions resist flow, leading to non-uniform flow velocities within the melt.
       </p>
       <p>
         These inconsistencies give rise to melt flow instability, characterised by fluctuations in density and flow rate throughout the extruder. Instead of a steady, homogeneous melt stream, the extrusion process becomes unsteady, leading to alternating periods of over- and under-extrusion. This ultimately manifests as variations in filament diameter.
       </p>
       <p>
-        When processing injection-moulded PCW-PP flakes, additives such as fillers (eg, talc, glass fibres) increase particle stiffness and reduce compressibility, making it more difficult for the screw to compact the material uniformly. This aggravates bulk density variation, as loosely packed regions with trapped air coexist with highly compacted zones. Consequently, different regions of the melt will have varying thermal conductivities. This results in persistent pockets of uneven melting, where some regions are fully molten while others remain partially solid or highly viscous, further exacerbating melt flow instability.
+        When processing injection-moulded PCW-PP flakes, additives such as fillers (eg, talc, glass fibres) increase particle stiffness and reduce compressibility, making it more difficult for the screw to compact the material uniformly [33]. This aggravates bulk density variation, as loosely packed regions with trapped air coexist with highly compacted zones. Consequently, different regions of the melt will have varying thermal conductivities. This results in persistent pockets of uneven melting, where some regions are fully molten while others remain partially solid or highly viscous, further exacerbating melt flow instability.
       </p>
       <p>
         Therefore, the irregular nature of the flake feedstock necessitates a heating and compression mechanism capable of consistently compacting, uniformly melting, and steadily conveying the material through the barrel to maintain a stable and controlled extrusion rate.
       </p>
       <h4>Root Problem 1-B: High Complex Viscosity</h4>
       <p>
-        Complex viscosity refers to the effective resistance of a polymer melt to flow under dynamic deformation, accounting for both its viscous and elastic behaviour. As this property is highly temperature-dependent, even small thermal variations can result in significant changes in viscosity, thereby strongly influencing melt flow behaviour during extrusion.
+        Complex viscosity refers to the effective resistance of a polymer melt to flow under dynamic deformation, accounting for both its viscous and elastic behaviour [34]. As this property is highly temperature-dependent, even small thermal variations can result in significant changes in viscosity, thereby strongly influencing melt flow behaviour during extrusion [35].
       </p>
       <p class="table-label table-label-top">Table 4: Material Properties of PP, PET, and PLA</p>
       <div class="spec-table-wrapper">
@@ -287,7 +287,7 @@
       </div>
       <div class="table-divider" aria-hidden="true"></div>
       <p>
-        From Table 8, it can be seen that PP’s complex viscosity is about 5 and 60 times more sensitive to temperature changes than PET's and PLA's, respectively. Owing to its comparatively high complex viscosity, PP exhibits pronounced sensitivity to even minor thermal fluctuations during melting [xx]. Consequently, small deviations in temperature can induce disproportionately large changes in viscosity. A minute increase in temperature can lead to a sudden decrease in viscosity, leading to increased flow rate and hence a surge in material being extruded. Conversely, a decrease in temperature can lead to underextrusion. The instability and unpredictability of melt flow behaviour necessitate tight temperature control during melting to prevent fluctuations in filament diameter.
+        From Table 4, it can be seen that PP’s complex viscosity is about 5 and 60 times more sensitive to temperature changes than PET's and PLA's, respectively. Owing to its comparatively high complex viscosity, PP exhibits pronounced sensitivity to even minor thermal fluctuations during melting [36]. Consequently, small deviations in temperature can induce disproportionately large changes in viscosity. A minute increase in temperature can lead to a sudden decrease in viscosity, leading to increased flow rate and hence a surge in material being extruded. Conversely, a decrease in temperature can lead to underextrusion. The instability and unpredictability of melt flow behaviour necessitate tight temperature control during melting to prevent fluctuations in filament diameter.
       </p>
       <p>
         This issue is further exacerbated when processing injection-moulded PCW-PP flakes that contain additives. The presence of additives transforms the material from a relatively well-defined polymer into a more complex composite system. Each additive influences the melt behaviour in different ways; for example, a filler like talc would increase the overall complex viscosity and make the melt disproportionately more viscous at lower temperatures while causing a sharp drop in viscosity at higher temperatures. Consequently, even under controlled processing conditions, small perturbations can produce irregular changes in flow behaviour, making the extrusion rate more difficult to regulate reliably.
@@ -296,7 +296,7 @@
     <div id="ch2-4-2" class="subsection">
       <h4>2.4.2 Issue 2: Anisotropic Volumetric Shrinkage</h4>
       <p>
-        Anisotropic volumetric shrinkage of plastic can occur during cooling, which leads to a differential in internal tensional forces that distorts the circular cross-section of the filament into an oval. This is extremely prevalent in the filamentation of PP, owing to its low thermal conductivity and high crystallinity.
+        Anisotropic volumetric shrinkage of plastic can occur during cooling, which leads to a differential in internal tensional forces that distorts the circular cross-section of the filament into an oval. This is extremely prevalent in the filamentation of PP, owing to its <ul>high crystallinity</ul> and <ul>low thermal conductivity</ul> (Fig 11).
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig11.jpeg" alt="Anisotropic volumetric shrinkage during cooling" />
@@ -304,7 +304,7 @@
       </figure>
       <h4>Root Problem 2-A: High Crystallinity</h4>
       <p>
-        Typically, plastics with low crystallinity (e.g., PET and PLA) comprise mostly amorphous regions where molecules are irregularly arranged [xx]. These regions will have minimal shrinkage during cooling, resulting in minimal distortion to the filament’s shape. Therefore, these polymers are preferred choices for 3D printing applications — PLA is the most common 3D printing material, and PET is widely used for recycled filaments.
+        Typically, plastics with low crystallinity (e.g., PET and PLA) comprise mostly amorphous regions where molecules are irregularly arranged [37]. These regions will have minimal shrinkage during cooling, resulting in minimal distortion to the filament’s shape. Therefore, these polymers are preferred choices for 3D printing applications — PLA is the most common 3D printing material, and PET is widely used for recycled filaments.
       </p>
       <p class="table-label table-label-top">Table 5: Material Properties of PP, PET, and PLA</p>
       <div class="spec-table-wrapper">
@@ -317,26 +317,26 @@
             <tr>
               <th>Structure</th>
               <th>Crystallinity</th>
-              <th>Volumetric Shrinkage [xx]</th>
+              <th>Volumetric Shrinkage [38]</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>rPP/PP*<br />(injection molded)</td>
               <td>Semi-crystalline</td>
-              <td>30-80% [xx]</td>
+              <td>30-80% [39]</td>
               <td>1-3%</td>
             </tr>
             <tr>
               <td>PET (bottles)</td>
               <td>Semi-crystalline</td>
-              <td>20-45% [xx]</td>
+              <td>20-45% [40]</td>
               <td>0.2-3%</td>
             </tr>
             <tr>
               <td>PLA</td>
               <td>Semi-amorphous</td>
-              <td>&lt;10% [xx]</td>
+              <td>&lt;10% [41]</td>
               <td>0.3-0.5%</td>
             </tr>
           </tbody>
@@ -347,14 +347,14 @@
       </p>
       <div class="table-divider" aria-hidden="true"></div>
       <p>
-        In comparison, PP is a semi-crystalline polymer with molecular chains that are relatively regular and symmetrical. As the filament cools from its molten state after extrusion, these chains progressively organise into ordered crystalline regions while the remaining material solidifies in an amorphous form, giving rise to a high degree of crystallinity (30–80%) [xx]. Regions with higher crystallinity are more densely packed and therefore undergo greater volumetric shrinkage (1–3%)  [xx], while more amorphous regions shrink less. PP’s semi-crystalline nature inherently gives rise to differential shrinkage between crystalline and amorphous regions, making it naturally susceptible to anisotropic shrinkage.
+        In comparison, PP is a semi-crystalline polymer with molecular chains that are relatively regular and symmetrical. As the filament cools from its molten state after extrusion, these chains progressively organise into ordered crystalline regions while the remaining material solidifies in an amorphous form, giving rise to a high degree of crystallinity (30–80%) [39]. Regions with higher crystallinity are more densely packed and therefore undergo greater volumetric shrinkage (1–3%)  [38], while more amorphous regions shrink less (Fig 12). PP’s semi-crystalline nature inherently gives rise to differential shrinkage between crystalline and amorphous regions, making it naturally susceptible to anisotropic shrinkage.
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig12.jpeg" alt="Crystallinity and anisotropic shrinkage in polypropylene" />
-        <figcaption class="figure-caption">Fig 12: Crystalline vs Amorphous Regions</figcaption>
+        <figcaption class="figure-caption">Fig 12: Crystalline vs Amorphous Regions [42]</figcaption>
       </figure>
       <p>
-        This effect is further intensified under asymmetric cooling conditions. The windward side cools and solidifies earlier, forming a rigid shell, while the leeward side continues to cool and contract [xx]. As this subsequent shrinkage is constrained by the already-hardened windward side, unbalanced residual stresses develop, amplifying the anisotropic shrinkage and distorting the initially circular filament into an oval cross-section.
+        This effect is further intensified under asymmetric cooling conditions. The windward side cools and solidifies earlier, forming a rigid shell, while the leeward side continues to cool and contract [43]. As this subsequent shrinkage is constrained by the already-hardened windward side, unbalanced residual stresses develop, amplifying the anisotropic shrinkage and distorting the initially circular filament into an oval cross-section.
       </p>
       <p>
         Due to PP’s relatively high degree of crystallinity and associated volumetric shrinkage compared to polymers such as PLA and PET, these differential shrinkage effects are more pronounced. As a result, PP is more susceptible to anisotropic shrinkage and ovality, making precise and uniform cooling control critical for maintaining filament dimensional accuracy.
@@ -367,14 +367,14 @@
       </p>
       <h4>Root Problem 2-B: Low Thermal Conductivity</h4>
       <p>
-        PP, like most polymers, exhibits low thermal conductivity (~0.11 W/m·K), which limits the rate at which heat can be dissipated from the material during cooling. As a result, heat is removed much more rapidly from the filament surface than from its interior, establishing a pronounced radial cooling gradient between the outer skin and inner core [xx].
+        PP, like most polymers, exhibits low thermal conductivity (~0.11 W/m·K), which limits the rate at which heat can be dissipated from the material during cooling. As a result, heat is removed much more rapidly from the filament surface than from its interior, establishing a pronounced radial cooling gradient between the outer skin and inner core [43].
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig13.jpeg" alt="Visual of uniform vs non-uniform radial cooling" />
         <figcaption class="figure-caption">Fig 13: Visual of uniform vs. non–uniform radial cooling</figcaption>
       </figure>
       <p>
-        This non-uniform cooling leads to a temporal lag in solidification: the outer skin solidifies and begins to shrink earlier, while the core remains molten or semi-molten for a longer duration. As the core subsequently cools, crystallises, and undergoes volumetric shrinkage, it contracts against an already rigid outer shell. This mismatch in the timing and magnitude of shrinkage generates internal tensile stresses, producing anisotropic volumetric contraction that manifests as distortion of the filament cross-section, such as ovality.
+        This non-uniform cooling leads to a temporal lag in solidification: the outer skin solidifies and begins to shrink earlier, while the core remains molten or semi-molten for a longer duration. As the core subsequently cools, crystallises, and undergoes volumetric shrinkage, it contracts against an already rigid outer shell. This mismatch in the timing and magnitude of shrinkage generates internal tensile stresses (Fig 13; seen as white arrows), producing anisotropic volumetric contraction that manifests as distortion of the filament cross-section, such as ovality.
       </p>
       <p>
         The presence of additives in PCW-PP such as talc or glass fibres can modify the bulk thermal conductivity of PP. By increasing the overall ability of the material to conduct heat, these fillers accelerate heat dissipation from the filament during cooling. This can reduce the time available for the polymer chains in the core to relax and crystallise uniformly, potentially shifting the balance of contraction between the filament’s core and outer skin. As a result, the internal stresses that arise from differential shrinkage can be amplified, making the filament more prone to ovality.
@@ -394,7 +394,7 @@
         <figcaption class="figure-caption">Fig 14: System Architecture</figcaption>
       </figure>
       <p>
-        As illustrated in Fig 9, the production of recycled plastic filament goes through three main processes: Melting, Cooling and Pulling.
+        As illustrated in Fig 14, the production of recycled plastic filament goes through three main processes: Melting, Cooling and Pulling.
       </p>
       <p>
         Process 1: Melting<br />
@@ -415,7 +415,7 @@
         Despite the growing availability of desktop and laboratory-scale extrusion solutions, PP remains a less preferred feedstock for recycling due to the difficulty of reliably producing high-quality rPP filament.
       </p>
       <p>
-        To better understand these limitations, three small-scale filament extruders that publicly advertise their ability to process PP—3Devo’s Filament Maker TWO, Filabot’s EX6, and Felfil’s Evo—were examined to evaluate why their mechanisms struggle to consistently produce quality PP filament.
+        To better understand these limitations, three small-scale filament extruders that publicly advertise their ability to process PP—3Devo’s Filament Maker TWO, Filabot’s EX6, and Felfil’s Evo (Fig 15)—were examined to evaluate why their mechanisms struggle to consistently produce quality PP filament.
       </p>
       <figure class="figure-block">
         <img class="figure-image" src="assets/photos/ch2/fig15.png" alt="Images of competitors: 3Devo, Filabot and Felfil" />
@@ -427,9 +427,9 @@
           <thead>
             <tr>
               <th>Key Features</th>
-              <th>3Devo</th>
-              <th>Filabot</th>
-              <th>Felfil</th>
+              <th>3Devo [44]</th>
+              <th>Filabot [45]</th>
+              <th>Felfil [46]</th>
             </tr>
           </thead>
           <tbody>
@@ -462,19 +462,19 @@
         1. Screw Compression Ratio
       </p>
       <p>
-        Among the systems reviewed, 3Devo’s screw has the highest compression ratio at 2.25:1. However, this remains below the typical optimal value of approximately 2.8:1 for standard pelletised feedstock [xx]. For flake feedstocks with irregular geometry and lower bulk density, an even higher compression ratio is generally required to achieve sufficient compaction into a continuous, pressurised melt [xx]. As such, the compression ratios of all three systems are likely insufficient to address the melt-flow instability of PCW-PP flakes.
+        Among the systems reviewed, 3Devo’s screw has the highest compression ratio at 2.25:1. However, this remains below the typical optimal value of approximately 2.8:1 for standard pelletised feedstock [47]. For flake feedstocks with irregular geometry and lower bulk density, an even higher compression ratio is generally required to achieve sufficient compaction into a continuous, pressurised melt [48]. As such, the compression ratios of all three systems are likely insufficient to address the <ul>melt-flow instability</ul> of PCW-PP flakes.
       </p>
       <p>
         2. Heating Zones
       </p>
       <p>
-        3Devo and Filabot extruders utilise multiple heating zones (typically four) to establish a gradual thermal gradient, which is better suited to managing PP’s sensitivity to temperature arising from its high complex viscosity. In contrast, Felfil’s extruder employs a single heating band, resulting in more abrupt temperature changes. This can induce sudden drops in viscosity, leading to unstable melt flow and extrusion surging.
+        3Devo and Filabot extruders utilise multiple heating zones (typically four) to establish a gradual thermal gradient, which is better suited to managing PP’s sensitivity to temperature arising from its <ul>high complex viscosity</ul> [49]. In contrast, Felfil’s extruder employs a single heating band, resulting in more abrupt temperature changes. This can induce sudden drops in viscosity, leading to unstable melt flow and extrusion surging.
       </p>
       <p>
         3. Cooling Arrangement
       </p>
       <p>
-        Filabot and Felfil extruders employ single-direction (axial) cooling, while 3Devo incorporates a dual-fan configuration to improve airflow distribution. Despite this, cooling remains asymmetric, and 3Devo reports that issues such as ovality—arising from anisotropic shrinkage—still persist [xx]. For a polymer such as PP with a significantly higher crystallinity, the asymmetric cooling will definitely result in high ovality.
+        Filabot and Felfil extruders employ single-direction (axial) cooling, while 3Devo incorporates a dual-fan configuration to improve airflow distribution. Despite this, cooling remains asymmetric, and 3Devo reports that issues such as ovality—arising from <ul>anisotropic shrinkage</ul>—still persist [50]. For a polymer such as PP with a significantly higher crystallinity, the asymmetric cooling will definitely result in high ovality.
       </p>
       <p>
         Overall, existing small-scale extrusion systems do not adequately address the root causes of dimensional instability in PP filament. Limited thermal control leads to viscosity fluctuations and consequent melt flow instability, while insufficient screw compression fails to maintain a stable flow under PP’s high complex viscosity. In addition, non-uniform cooling allows anisotropic shrinkage—driven by PP’s high crystallinity—to persist, resulting in ovality.
