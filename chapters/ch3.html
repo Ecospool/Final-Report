@@ -10,48 +10,287 @@
 
     <div id="ch3-1" class="subsection">
       <h3>3.1 Design Approach</h3>
-      <p>Two root issues (§2.4) drove four solution streams evaluated via a morphological chart spanning 20 functional subsystems.</p>
+      <p>
+        From Chapter 2, we have identified the two key metrics of filament consistency — diameter variance and ovality— along with their corresponding key issues and root causes: High Complex Viscosity, Melt Flow Instability, High Crystallinity and Low Thermal Conductivity. To address these 4 root causes, we proposed 4 conceptual solutions (Fig 16).
+      </p>
+      <figure class="figure-block">
+        <img class="figure-image" src="assets/photos/ch3/fig16.png" alt="Conceptual solutions to address the root causes of key issues" />
+        <figcaption class="figure-caption">Fig 16: Conceptual solutions to address the root causes of key issues</figcaption>
+      </figure>
     </div>
-    <div id="ch3-1-1" class="subsection subsection-2"><h4>3.1.1 Solution 1-A: Even Material Compression &amp; Mixing</h4><p>Compression screws eliminate feed-zone air voids and increase bulk density before melting, stabilising throughput rate.</p></div>
-    <div id="ch3-1-2" class="subsection subsection-2"><h4>3.1.2 Solution 1-B: Uniform Heating Gradient</h4><p>Multi-zone barrel heating with calibrated setpoints ensures complete and consistent plastication along the screw length.</p></div>
-    <div id="ch3-1-3" class="subsection subsection-2"><h4>3.1.3 Solution 2-A: Uniform Cooling Coverage (Circumferential)</h4><p>Radially symmetric airflow prevents one-sided quenching that causes ovality in the solidifying filament.</p></div>
-    <div id="ch3-1-4" class="subsection subsection-2"><h4>3.1.4 Solution 2-B: Even Cross-Sectional Cooling Gradient</h4><p>Parallel airstreams from multiple axes ensure the core and skin of the filament cool at compatible rates.</p></div>
+    <div id="ch3-1-1" class="subsection"><h4>3.1.1 Solution 1-A: Even Material Compression &amp; Mixing</h4><p>A solution of even material compression and effective mixing addresses the non-uniform viscosity and flow characteristics of PP flakes.</p><p>With more uniform compaction, the flakes are consolidated into a more consistent bulk density before and during melting. This eliminates voids and reduces air entrapment, ensuring that the material experiences a uniform pressure and thermal environment along the barrel. The enhanced mixing also helps homogenise temperature and viscosity throughout the melt.</p><p>With consistent melt density and viscosity, the screw can deliver material at a steady volumetric rate rather than in pulses. This ultimately improves consistency of extrusion rate and reduces fluctuations in filament diameter.</p></div>
+    <div id="ch3-1-2" class="subsection"><h4>3.1.2 Solution 1-B: Uniform Heating Gradient</h4><p>A uniform and well-controlled temperature gradient directly addresses PP’s high viscosity sensitivity by eliminating abrupt thermal variations along the melt path.</p><p>When the material is heated gradually, it transitions from solid to melt in a controlled manner, allowing its viscosity to decrease smoothly rather than abruptly. This prevents regions of thermal inconsistency, which would otherwise produce viscosity gradients along the melt path, manifesting as fluctuations in extrusion output.</p><p>A uniform temperature gradient along the barrel allows the polymer to reach a consistent melt state before extrusion, ensuring a steady extrusion flow rate. This consistent flow eliminates pulsations or surges in material output, which are the primary causes of diameter fluctuations.</p></div>
+    <div id="ch3-1-3" class="subsection"><h4>3.1.3 Solution 2-A: Uniform Cooling Coverage (Circumferential)</h4><p>Uniform cooling coverage around the circumference of the filament is essential to ensure spatially consistent heat removal. If cooling is applied from a single direction or is unevenly distributed, one side of the filament will cool and solidify faster than the opposite side. This creates an asymmetric temperature distribution around the filament, leading to non-uniform shrinkage during solidification. This will cause the filament to deform, resulting in high ovality.</p><p>By implementing circumferential cooling, the filament is exposed to a uniform cooling environment from all directions. This ensures that heat is removed evenly across the entire outer surface, promoting symmetrical solidification and shrinkage. As a result, the filament maintains a more consistent circular cross-section and improved dimensional accuracy, which is critical for reliable downstream processes such as spooling and 3D printing.</p></div>
+    <div id="ch3-1-4" class="subsection"><h4>3.1.4 Solution 2-B: Even Cross-Sectional Cooling Gradient (Cross-sectional)</h4><p>PP has relatively low thermal conductivity, which means heat does not dissipate quickly from the interior of the filament to its surface. As a result, during cooling, the outer skin layer loses heat much faster than the inner core, naturally creating a temperature gradient across the cross-section.</p><p>A gradual cooling approach is needed to ensure an even cross-sectional cooling gradient. This means controlling the cooling process such that the temperature difference between the skin and core is minimised at any given time. Instead of forcing the outer layer to cool much faster than the core, the entire cross-section is allowed to cool more synchronously.</p><p>This synchronised cooling minimises differential shrinkage between the skin and core, reducing the likelihood of internal residual stresses that would otherwise distort the final filament geometry.</p></div>
 
     <div id="ch3-2" class="subsection">
       <h3>3.2 Design Statement</h3>
+      <p>
+        Based on the conceptual solutions discussed in section 3.1, it is clear that uniform heating, mixing, and cooling are crucial to minimising fluctuations in filament diameter and ovality. Hence, our design statement reflects these key principles/design objectives and our desired outcome.
+      </p>
       <p class="callout-text">
-        "To modify the Felfil single-screw extruder with a compression screw, multi-zone barrel heating,
-        and an omni-directional cooling assembly to produce 1.75 ± 0.1 mm filament from post-consumer
-        PP flake feedstock at steady-state throughput."
+        Our project aims to design a system that can<br />
+        uniformly melt, extrude and cool PP to produce consistent rPP filament.
       </p>
     </div>
 
     <div id="ch3-3" class="subsection">
       <h3>3.3 System Overview</h3>
-      <p>The integrated EcoSpool system comprises four primary subsystems: (1) feed hopper with agitator, (2) modified compression-screw barrel with three-zone heating, (3) Omni-Flow annular cooling duct, and (4) dual-axis dial-gauge quality monitoring with take-up spool.</p>
+      <p>
+        With reference to the mechanisms in a typical extrusion system (2.5.1), our conceptual solutions can be achieved by focusing our design modifications on 3 specific mechanisms:<br />
+        1. Heating Mechanism — Uniform Heating Gradient<br />
+        2. Extrusion Mechanism — Even Material Compression &amp; Mixing<br />
+        3. Cooling Mechanism — Uniform Circumferential Cooling and Even Cross-Sectional Cooling Gradient
+      </p>
+      <p>
+        Hence, we will refer to these 3 mechanisms as our Key Mechanisms, upon which we will focus our design process.
+      </p>
+      <figure class="figure-block">
+        <img class="figure-image" src="assets/photos/ch3/fig17.png" alt="Functional Block Diagram" />
+        <figcaption class="figure-caption">Fig 17: Functional Block Diagram</figcaption>
+      </figure>
+      <p>
+        Our Functional Block Diagram demonstrates how we have decomposed the overall function of rPP filamentation into 3 subfunctions: Melting, Cooling, and Pulling. Between subfunctions, several mechanisms work in tandem throughout the process of converting PP flakes into rPP filament.
+      </p>
+      <p>
+        Apart from the 3 Key Mechanisms, the two remaining mechanisms — Pulling and Spooling — are our means of performance verification and filament storage. They allow us to measure the filament's diameter and ovality in real time and make the necessary adjustments to meet our target specifications. The set-up for these two mechanisms will be discussed in section 3.5.1.
+      </p>
+      <figure class="figure-block">
+        <img class="figure-image" src="assets/photos/ch3/fig18.png" alt="Functional Decomposition Chart of System" />
+        <figcaption class="figure-caption">Fig 18: Functional Decomposition Chart of System</figcaption>
+      </figure>
+      <p>
+        Based on the functional decomposition chart, we created a morphological chart that comprises the three key mechanisms as well as several non-critical mechanisms.
+      </p>
+      <p class="table-label table-label-top">Table 7: Morphological Chart with Concept Selection (highlighted in green)</p>
+      <div class="spec-table-wrapper">
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Function / Subsystem</th>
+              <th>Components</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="5"><strong>Key Mechanisms</strong></td>
+            </tr>
+            <tr>
+              <td>Feeding Mechanism</td>
+              <td class="cell-highlight-yellow">Single compression screw</td>
+              <td class="cell-highlight-yellow">Barrier screw with mixing sections</td>
+              <td class="cell-highlight-yellow">Twin-screw co-rotating (high shear)</td>
+              <td class="cell-highlight-yellow">Twin-screw counter-rotating (pressure-stable)</td>
+            </tr>
+            <tr>
+              <td>Heating Mechanism</td>
+              <td class="cell-highlight-yellow">Single zone cartridge heaters in barrel</td>
+              <td class="cell-highlight-yellow">Multi-zone Resistance band heaters</td>
+              <td class="cell-highlight-yellow">Induction heating</td>
+              <td class="cell-highlight-yellow">Infrared heating</td>
+            </tr>
+            <tr>
+              <td>Cooling Mechanism</td>
+              <td class="cell-highlight-yellow">Single axial fan with open airflow path</td>
+              <td class="cell-highlight-yellow">Bladeless fan ring</td>
+              <td class="cell-highlight-yellow">Wind Tunnel</td>
+              <td class="cell-highlight-yellow">Water Bath</td>
+            </tr>
+            <tr>
+              <td colspan="5"><strong>Non-critical Mechanisms</strong></td>
+            </tr>
+            <tr>
+              <td>Feed Assister</td>
+              <td class="cell-highlight-green">Manual agitation</td>
+              <td>Vibratory agitator</td>
+              <td>Automatic Stirrer</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Temperature Control</td>
+              <td class="cell-highlight-green">Single PID Controller</td>
+              <td>AI-based predictive control</td>
+              <td>Multi-zone independent PID control</td>
+              <td>Proportional + feed-forward hybrid control</td>
+            </tr>
+            <tr>
+              <td>Cooling Treatment</td>
+              <td class="cell-highlight-green">-</td>
+              <td>Water Quench</td>
+              <td>Air Quench</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Pulling Mechanism</td>
+              <td class="cell-highlight-green">Soft rollers</td>
+              <td>Gravity</td>
+              <td>Caterpillar Tracks</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Diameter Control</td>
+              <td class="cell-highlight-green">Single-axis Diameter sensor + PID puller control</td>
+              <td>Ultrasonic gauge</td>
+              <td>Capacitive sensor arrow (dielectric sensing)</td>
+              <td>Vision system monitoring (AI edge detection)</td>
+            </tr>
+            <tr>
+              <td>Spooling Mechanism</td>
+              <td class="cell-highlight-green">Single Spool</td>
+              <td>Multiple Spools</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Tension control</td>
+              <td class="cell-highlight-green">Motorised spooler with tension control</td>
+              <td>Dancer arm</td>
+              <td>Gravity tension (hanging loop)</td>
+              <td>Load cell feedback</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-divider" aria-hidden="true"></div>
+      <p>
+        The concept selection of Key Mechanisms will be discussed in depth in later sections (see Chapters 4, 5, 6).
+      </p>
+      <p>
+        The remaining non-critical components were selected based on simplicity, reliability, and proven industry practices to ensure ease of implementation.
+      </p>
+      <p class="table-label table-label-top">Table 8: Selection justification for non-critical components</p>
+      <div class="spec-table-wrapper">
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>System Component</th>
+              <th>Selected Solution</th>
+              <th>Justification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Feed Assister</td>
+              <td>Manual Agitation</td>
+              <td>Simple; requires no additional control systems; sufficient to prevent bridging in basic extrusion setups</td>
+            </tr>
+            <tr>
+              <td>Temperature Control</td>
+              <td>PID Controller</td>
+              <td>Provides reliable and stable temperature regulation with minimal system complexity</td>
+            </tr>
+            <tr>
+              <td>Cooling Treatment</td>
+              <td>No Quench (gradual cooling)</td>
+              <td>Avoids thermal shock, steep temperature gradients, high crystallisation, and shrinkage; promotes uniform cooling; no drying needed, reducing system footprint</td>
+            </tr>
+            <tr>
+              <td>Pulling Mechanism</td>
+              <td>Soft Rollers</td>
+              <td>Simple and effective; minimises surface damage to the filament</td>
+            </tr>
+            <tr>
+              <td>Diameter Control</td>
+              <td>Single-axis Diameter Sensor + PID Puller Control</td>
+              <td>Industry-standard solution; provides adequate feedback control while maintaining filament diameter without excessive complexity</td>
+            </tr>
+            <tr>
+              <td>Spooling Mechanism</td>
+              <td>Single Spool</td>
+              <td>Most straightforward approach; sufficient for lab-scale production rate</td>
+            </tr>
+            <tr>
+              <td>Tension Control</td>
+              <td>Motorised Spooler with Tension Control</td>
+              <td>Ensures consistent winding tension for stable and reliable spooling; prevents filament damage</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-divider" aria-hidden="true"></div>
     </div>
 
     <div id="ch3-4" class="subsection">
       <h3>3.4 System Specifications</h3>
+      <p>
+        From our analysis of user needs and comparison of specifications with current market products (Appendix C), the target specifications for our product were derived (Table 9)
+      </p>
+      <p class="table-label table-label-top">Table 9. System Specifications</p>
       <div class="spec-table-wrapper">
         <table class="spec-table">
-          <thead><tr><th>Parameter</th><th>Value</th><th>Notes</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Requirements</th>
+              <th>Specifications</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td>Barrel length L</td><td>0.40 m</td><td>Felfil platform</td></tr>
-            <tr><td>Barrel diameter D</td><td>25 mm</td><td>Felfil platform</td></tr>
-            <tr><td>L:D ratio</td><td>17.6</td><td>—</td></tr>
-            <tr><td>Screw speed</td><td>2–6.7 rpm</td><td>Operating range</td></tr>
-            <tr><td>Zone 1 setpoint</td><td>185 °C</td><td>Feed / preheat</td></tr>
-            <tr><td>Zone 2 setpoint</td><td>195 °C</td><td>Compression / melt</td></tr>
-            <tr><td>Zone 3 setpoint</td><td>200 °C</td><td>Metering / die</td></tr>
-            <tr><td>Target diameter</td><td>1.75 mm</td><td>±0.1 mm tolerance</td></tr>
-            <tr><td>Zero-shear viscosity η₀</td><td>4,400 Pa·s</td><td>NETZSCH DSC data, PP</td></tr>
+            <tr>
+              <td>Functionality<br />The machine can recycle PP plastic</td>
+              <td>&gt; 95% conversion by mass of PP plastic waste into filament</td>
+            </tr>
+            <tr>
+              <td>Machine can make sufficient 3D printing filament</td>
+              <td>250g - 1kg of continuous filament per spool</td>
+            </tr>
+            <tr>
+              <td>Reliability (in filament production)<br />Machine produces standard sized filaments</td>
+              <td>Diameter: 1.75mm</td>
+            </tr>
+            <tr>
+              <td>Machine ensures consistent diameter of filament produced</td>
+              <td>Tolerance: ± 0.1mm<br />Ovality: &lt;5%, ± 0.08mm</td>
+            </tr>
+            <tr>
+              <td>Performance<br />Machine produces filament quickly</td>
+              <td>&gt; 100g/hr</td>
+            </tr>
+            <tr>
+              <td>Footprint<br />Machine is energy efficient</td>
+              <td>2200W (220V, 10A)</td>
+            </tr>
+            <tr>
+              <td>Machine is “space efficient”</td>
+              <td>80cm x 250cm x 30cm (W x L x H)</td>
+            </tr>
           </tbody>
         </table>
       </div>
+      <div class="table-divider" aria-hidden="true"></div>
     </div>
 
     <div id="ch3-5" class="subsection"><h3>3.5 Experimentation Methodology</h3></div>
-    <div id="ch3-5-1" class="subsection subsection-2"><h4>3.5.1 Data Measurement</h4><p>Dual-axis digital dial gauges positioned 200 mm downstream of the die. Readings logged via RS-232 at 1 Hz, supplemented by video-based OCR for redundancy.</p></div>
-    <div id="ch3-5-2" class="subsection subsection-2"><h4>3.5.2 Data Processing</h4><p>Diameter readings processed in Python/Jupyter. Metrics: rolling mean (window = 60 s), σ, and ovality. Steady-state defined as the interval after the first 10 minutes of extrusion.</p></div>
-  </section>
+    <div id="ch3-5-1" class="subsection"><h4>3.5.1 Data Measurement</h4><p>The standard filament spooling system (Fig 19) we obtained used a single-axis diameter sensor that cannot capture asymmetric deformation (ovality), which is one of the key performance metrics we have targeted.</p><figure class="figure-block"><img class="figure-image" src="assets/photos/ch3/fig19.png" alt="Standard Filament Puller and Spooler" /><figcaption class="figure-caption">Fig 19: Standard Filament Puller and Spooler</figcaption></figure><p>Ovality is calculated by measuring the filament’s diameter twice at one point, along perpendicular axes, and then finding the difference between the two readings.</p><p>Ovality = Maximum Diameter - Minimum Diameter (at one cross-section)</p><p>Hence, to accurately quantify the ovality of the extruded rPP filament, we obtained 2 diameter dial gauges and mounted them perpendicular to each other to simultaneously record inline filament diameter measurements along two perpendicular axes (Figure 20 and 21).</p><figure class="figure-block"><img class="figure-image" src="assets/photos/ch3/fig20.png" alt="Zoomed-in Cross-sectional area of Oval Filament - Dual Axis Measurement" /><figcaption class="figure-caption">Fig 20: Zoomed-in Cross-sectional area of Oval Filament - Dual Axis Measurement</figcaption></figure><figure class="figure-block"><img class="figure-image" src="assets/photos/ch3/fig21.jpg" alt="Dual Axis Diameter Dial Gauge setup" /><figcaption class="figure-caption">Fig 21: Dual Axis Diameter Dial Gauge setup</figcaption></figure><p>To ensure consistent and objective data extraction, the measurements were captured on video and subsequently processed using a computer vision tracking pipeline. The system was developed to automatically identify and extract the numerical readings from each gauge at defined intervals, eliminating manual transcription errors. The extracted values were then compiled and plotted as a continuous diameter profile across the 3-metre sample length, from which the mean diameter, standard deviation, and ovality were calculated.</p><p>To improve reliability and account for run-to-run variation, experiments were conducted in triplets to ensure consistent, reproducible results. This allowed us to detect and minimise errors, assess data variability, and confirm that the observed effects were due to our parameter modifications rather than random chance or external noise.</p><p>The average of these three runs was then treated as the ground truth for that cooling configuration and used as the primary basis for comparison across all experiments.</p></div>
+<div id="ch3-5-2" class="subsection">
+  <h4>3.5.2 Data Processing</h4>
+  <p>For the raw values we collected from each experimental run, we computed the following metrics:</p>
+  
+  <ul class="paper-list">
+    <li>Average diameter: calculated as <span class="formula-inline">D<sub>i</sub> = <span class="fraction"><span class="top">d<sub>1</sub> + d<sub>2</sub></span><span class="bottom">2</span></span></span> for each measurement point</li>
+    <li>Standard deviation of diameter: using the sample standard deviation formula</li>
+  </ul>
+  
+  <p class="paper-formula">
+    <span class="formula-inline">
+      S = 
+      <span class="radical">&radic;<span class="radicand">
+        <span class="fraction">
+          <span class="top">&sum;(D<sub>i</sub> - D&#772;)<sup>2</sup></span>
+          <span class="bottom">n - 1</span>
+        </span>
+      </span></span>
+    </span>
+    <br />
+    where D<sub>i</sub> is the average diameter at point i, D&#772; is the overall mean diameter across all points, and n is the number of data points (20).
+  </p>
+  
+  <p>To quantify filament ovality, we computed:</p>
+  <ul class="paper-list">
+    <li>Pointwise ovality: |d<sub>1</sub> - d<sub>2</sub>| for each point</li>
+    <li>Mean ovality: average of all pointwise ovality values</li>
+    <li>Maximum ovality: the largest ovality value observed across the filament</li>
+  </ul>
+</div>  </section>

@@ -682,6 +682,47 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   padding-left: 1.5rem;
 }
 
+.paper-formula {
+  max-width: 72ch;
+  margin: 0 auto 1.1rem;
+  padding-left: 1.25rem;
+}
+
+.formula-inline {
+  white-space: nowrap;
+}
+
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 1.1;
+}
+
+.fraction .top {
+  display: block;
+  padding: 0 0.25rem 0.08rem;
+  border-bottom: 1px solid currentColor;
+}
+
+.fraction .bottom {
+  display: block;
+  padding-top: 0.08rem;
+}
+
+.radical {
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+.radicand {
+  display: inline-block;
+  border-top: 1px solid currentColor;
+  padding-left: 0.18rem;
+  margin-left: 0.08rem;
+}
+
 .figure-block {
   margin-top: 1.5rem;
 }
@@ -813,17 +854,18 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
 /* Callout text */
 .callout-text {
   font-family: var(--serif);
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
   font-style: italic;
   color: var(--ink);
-  line-height: 1.6;
-  border-left: 3px solid var(--green);
-  padding-left: 1.5rem;
-  margin: 1.5rem 0;
+  line-height: 1.7;
+  text-align: center;
+  border-left: none;
+  margin: 1.75rem auto;
   max-width: 64ch;
-  background: linear-gradient(90deg, rgba(74, 124, 89, 0.05) 0%, transparent 100%);
-  padding: 1rem 1rem 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(74, 124, 89, 0.06), rgba(255, 255, 255, 0.72));
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
 }
 
 /* Spec table */
@@ -864,6 +906,14 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   border: 0;
   border-top: 0.5px solid rgba(212, 207, 196, 0.9);
   margin: 0.55rem 0;
+}
+
+.cell-highlight-green {
+  background: rgba(130, 182, 108, 0.28);
+}
+
+.cell-highlight-yellow {
+  background: rgba(236, 214, 120, 0.34);
 }
 
 .spec-table tr:last-child td { border-bottom: none; }
