@@ -1,20 +1,310 @@
 <section id="ch6" class="content-section chapter-section">
-    <div class="section-label">Chapter 6</div>
-    <div class="chapter-header">
-      <div class="ch-number-large">06</div>
-      <div class="ch-title-block">
-        <h2>Cooling Systems</h2>
-        <p class="ch-lead">Concept selection, wind flow simulation, prototyping, and the Omni-Flow annular cooling design.</p>
-      </div>
+  <div class="section-label">Chapter 6</div>
+  <div class="chapter-header">
+    <div class="ch-number-large">06</div>
+    <div class="ch-title-block">
+      <h2>Cooling Systems</h2>
+      <p class="ch-lead">Concept selection, simulation, prototyping, and the Omni-Flow cooling design.</p>
     </div>
-    <div id="ch6-1" class="subsection"><h3>6.1 Concept Selection</h3></div>
-    <div id="ch6-1-2" class="subsection subsection-2"><h4>6.1.2 Water vs Air Cooling</h4><p>Water cooling offers higher heat extraction rates but introduces slip, surface contamination risk, and drying requirements. Air cooling was selected for simplicity and compatibility with the lab setting.</p></div>
-    <div id="ch6-1-3" class="subsection subsection-2"><h4>6.1.3 Fan Choice and Configuration</h4><p>Brushless 40 mm × 40 mm DC fans (12 V) were selected for low vibration and controllable speed via PWM. Multiple fans arranged radially provide symmetric airflow.</p></div>
-    <div id="ch6-2" class="subsection"><h3>6.2 Simulation of Wind Flow (Multi-axis Cooling, Parallel Airstream)</h3></div>
-    <div id="ch6-2-1" class="subsection subsection-2"><h4>6.2.1 Evenness of Cooling</h4><p>CFD-informed airflow modelling showed that a single fan produces a cooling asymmetry of up to 18 °C across the filament cross-section, driving ovality. Four-fan symmetric arrangement reduced asymmetry to under 3 °C.</p></div>
-    <div id="ch6-2-2" class="subsection subsection-2"><h4>6.2.2 Effectiveness of Cooling</h4><p>Filament surface temperature drops from ~200 °C at the die exit to below PP's crystallisation onset (~130 °C) within 120 mm of the die with fan speed setting 1 — within the available cooling duct length.</p></div>
-    <div id="ch6-2-3" class="subsection subsection-2"><h4>6.2.3 Thermal Analysis</h4><p>Heat balance confirms forced convection with four 40 mm fans provides sufficient cooling capacity to solidify the filament before the take-up spool under all operating screw speeds (2–6.7 rpm).</p></div>
-    <div id="ch6-3" class="subsection"><h3>6.3 Preliminary Prototyping</h3><p>Initial prototypes tested two-, four-, and six-fan configurations. Four-fan configuration achieved the best balance of symmetry and compactness. Six-fan introduced turbulent interactions that degraded uniformity.</p></div>
-    <div id="ch6-4" class="subsection"><h3>6.4 Omni-Flow</h3><p>The Omni-Flow is a 3D-printed annular duct surrounding the filament at 40 mm from the die exit. Internal baffles channel airflow from four radial fans into a co-axial laminar stream, ensuring circumferential symmetry and eliminating one-sided quenching. Best result: σ = 0.183 mm with fan speed 1 + spooling.</p></div>
-    <div id="ch6-5" class="subsection"><h3>6.5 Results &amp; Conclusion</h3><p>The Omni-Flow assembly reduced filament ovality by 62% compared to single-fan lateral cooling. It was adopted as the final cooling configuration for the integrated prototype.</p></div>
-  </section>
+  </div>
+
+  <div id="ch6-1" class="subsection">
+    <h3>6.1 Concept Selection</h3>
+  </div>
+
+  <div id="ch6-1-1" class="subsection">
+    <h4>6.1.1 Criteria</h4>
+    <p>Following Section 3’s Design Approach and Specifications, the Cooling Mechanism must ensure</p>
+    <ul class="paper-list">
+      <li>uniform circumferential cooling of the PP filament along its circumference, and</li>
+      <li>an appropriate cooling rate to minimise cross-sectional temperature gradient,</li>
+    </ul>
+    <p>while producing at least 100 g/hr of PCW-PP filament and ensuring the system remains benchtop-sized.</p>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig44.png" alt="Overview of Design Methodology for Cooling Mechanism" class="figure-image">
+      <figcaption class="figure-caption">Fig 44: Overview of Design Methodology for Cooling Mechanism</figcaption>
+    </figure>
+  </div>
+
+  <div id="ch6-1-2" class="subsection">
+    <h4>6.1.2 Water vs Air</h4>
+    <p>Based on initial literature research, we have narrowed our options to two methods commonly used in filament production: water and air cooling. Considering PP’s low thermal conductivity (0.11 W/m.K) [xx], rapid cooling will cause the skin to cool and crystallise much earlier than the core. As explained in Section 2.4.2, the subsequent crystallisation and shrinkage of the core would deform the filament’s cross-section into an oval. Additionally, slower cooling promotes crystallisation, thereby enhancing the filament's stiffness and preventing buckling during FFF/3D printing [xx][xx].</p>
+    <p>The maximum rate of cooling allowed is quantified by the Biot Number Bi. It is the ratio of internal thermal resistance to external convective thermal resistance:</p>
+    <p class="paper-formula">Bi = <span class="fraction"><span class="top">H<sub>c</sub>L<sub>c</sub></span><span class="bottom">k<sub>PP</sub></span></span></p>
+    <p>Where Lc is the characteristic length of the material, Hc is the fluid’s convective heat transfer coefficient, and kpp is the thermal conductivity of PP taken as a constant at 0.11 W/m.K [xx][xx]. When Bi &lt; 1 the temperature gradient is sufficiently gradual such that differences in the skin and core’s crystallisation and shrinkage are small and will not cause ovaling.</p>
+    <p>Using data from literature research (Table 22), we calculated and compared the expected parameters required when using air and water to achieve the same cooling rates:</p>
+    <p class="table-label table-label-top">Table 22: Properties of air and water at 300K, and calculation of heat transfer coefficient using 1.75mm diameter filament</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Properties</th>
+            <th>Air (forced convection) [xx]</th>
+            <th>Water (stagnant / water bath)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Thermal Conductivity of fluid, k<sub>fluid</sub>, @300K</td><td>0.02624 W/m.K</td><td>0.6067 W/m.K [xx]</td></tr>
+          <tr><td>Prandlt Number, Pr @300K</td><td>0.71</td><td>5.82 [xx]</td></tr>
+          <tr><td>Density, 𝑞</td><td>1.177 kg/m³</td><td>996 kg/m³ [xx]</td></tr>
+          <tr><td>Dynamic Viscosity, μ</td><td>1.8458 x 10<sup>-5</sup> Pa.s</td><td>86 x 10<sup>-5</sup> Pa.s [xx][xx]</td></tr>
+          <tr><td>Kinematic Viscosity, 𝑉 = μ / 𝑞</td><td>1.56822 x 10<sup>-5</sup> m²/s</td><td>0.0863454 x 10<sup>-5</sup> m²/s</td></tr>
+          <tr><td colspan="3" style="text-align: center;">When Bi &lt; 1,</td></tr>
+          <tr><td colspan="3" style="text-align: center;">*Hc &lt; 251 W/m².K</td></tr>
+          <tr><td>*Local Nusselt Number, Nu</td><td>&lt; 16.7</td><td>&lt; 4.14 [xx]</td></tr>
+          <tr><td>*Local Reynold’s Number, Re</td><td>&lt; 61900 [xx]</td><td>&lt; 7.27 [xx]</td></tr>
+          <tr><td>*Maximum Allowable Wind Speed / Pull speed in water bath</td><td>555 m/s</td><td>0.00126 m/s (&lt; 0.0128 m/s, which is equivalent to a production rate of ~100 g/hr)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>*Calculations found in Appendix E</p>
+    <div class="table-divider" aria-hidden="true"></div>
+    <p>From Table 22, an extremely large range of air speeds can achieve our desired cooling rate without causing significant crystallisation and ovality. However, for the water bath to be feasible, the pull speed of the filament needs to be very slow, significantly slower than the specified production rate of 100 g/hr.</p>
+    <p>Therefore, we chose to use air for cooling, as it supports gradual cooling. In contrast, for the water bath, any modifications to ensure gradual cooling would be impractical or too complex, as they would involve longer water baths at high temperatures.</p>
+  </div>
+
+  <div id="ch6-1-3" class="subsection">
+    <h4>6.1.3 Fan Choice and Configuration</h4>
+    <p>We explored various fan types and configurations to achieve our cooling criteria.</p>
+    <p class="table-label table-label-top">Table 23: Description of fan types</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <tbody>
+          <tr>
+            <td>
+              <figure class="figure-block">
+                <img src="assets/photos/ch6/fig_axialfan_table23.png" alt="Axial fan" class="figure-image">
+                <figcaption class="figure-caption">Figure xx. Axial Fan</figcaption>
+              </figure>
+            </td>
+            <td>
+              <figure class="figure-block">
+                <img src="assets/photos/ch6/fig_centrifugalfan_table23.png" alt="Centrifugal fan" class="figure-image">
+                <figcaption class="figure-caption">Figure xx. Centrifugal Fan</figcaption>
+              </figure>
+            </td>
+          </tr>
+          <tr>
+            <td>Axial Fan: Has higher air flow volume, but the air flow pattern swirls a lot. Causes undesirable fluttering of the filament as it stretches and thins the filament uncontrollably [xx].</td>
+            <td>Centrifugal Fan: Has lower air flow volume, but air flow is direct with no swirls. Promotes a more stable airflow pattern around the filament, thereby minimising fluttering.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-divider" aria-hidden="true"></div>
+    <p class="table-label table-label-top">Table 24: Design of fan configuration</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <tbody>
+          <tr>
+            <td><img src="assets/photos/ch6/fig_singleaxiscooling_table24.png" alt="Single-axis cooling perpendicular airstream" class="figure-image"><div class="table-image-caption">Single-axis Cooling, Perpendicular Airstream</div></td>
+            <td>Fans blow perpendicular to filament from one side. Not chosen due to the high likelihood of ovality caused by highly asymmetric cooling.</td>
+          </tr>
+          <tr>
+            <td><img src="assets/photos/ch6/fig_multiaxiscoolingperpendicular_table24.png" alt="Multi-axis cooling perpendicular airstream" class="figure-image"><div class="table-image-caption">Multi-axis Cooling, Perpendicular Airstream</div></td>
+            <td>Fans blow perpendicular to the filament from more than two sides. Direct blowing allows for faster cooling. However, strong cross-winds cause the filament to flutter and stretch uncontrollably. Cooling length is also likely insufficient and would require more fans installed along the filament’s length, increasing the system's footprint.</td>
+          </tr>
+          <tr>
+            <td><img src="assets/photos/ch6/fig_multiaxiscoolingparallel_table24.png" alt="Multi-axis cooling parallel airstream" class="figure-image"><div class="table-image-caption">Multi-axis Cooling, Parallel Airstream</div></td>
+            <td>Fans blow parallel to the filament from more than two sides. The cooling rate is lower than with a perpendicular airstream, but fluttering is less likely to occur. Moreover, the cooling length is the longest for airflow parallel to the filament, reducing the need for additional fans.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-divider" aria-hidden="true"></div>
+    <p>We decided to go with Multi-axis Cooling and a Parallel Airstream to achieve the most stable and uniform circumferential cooling of the filament.</p>
+  </div>
+
+  <div id="ch6-2" class="subsection">
+    <h3>6.2 Simulation of Wind Flow (Multi-axis Cooling, Parallel Airstream)</h3>
+    <p>To assess and optimise the uniformity of the airflow around the filament, a Computational Fluid Dynamics (CFD) analysis was conducted using SolidWorks’ Flow Simulation to evaluate various parameters.</p>
+  </div>
+
+  <div id="ch6-2-1" class="subsection">
+    <h4>6.2.1 Evenness of Cooling</h4>
+    <p>The minimum number of fans required to achieve the most uniform circumferential cooling was first analysed by comparing the perpendicular wind-velocity profile with 2, 4, and 6 centrifugal fans blowing ambient air parallel to the filament during cooling. The parameters for simulation are in Appendix F.</p>
+    <p class="table-label table-label-top">Table 25: CAD Models for simulation of 2-, 4-, and 6-axis air cooling</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <tbody>
+          <tr>
+            <td><img src="assets/photos/ch6/fig_2axis_table25.png" alt="CAD model for 2-axis cooling" class="figure-image"><div class="table-image-caption">CAD model for 2-axis cooling</div></td>
+            <td><img src="assets/photos/ch6/fig_4axis_table25.png" alt="CAD model for 4-axis cooling" class="figure-image"><div class="table-image-caption">CAD model for 4-axis cooling</div></td>
+            <td><img src="assets/photos/ch6/fig_6axis_table25.png" alt="CAD model for 6-axis cooling" class="figure-image"><div class="table-image-caption">CAD model for 6-axis cooling</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-divider" aria-hidden="true"></div>
+    <p class="table-label table-label-top">Table 26: Results for simulation of 2-, 4-, and 6-axis air cooling</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <tbody>
+          <tr>
+            <td><img src="assets/photos/ch6/fig_2axis_26.png" alt="Cut plot of wind velocity for 2-axis cooling" class="figure-image"><div class="table-image-caption">Cut Plot of wind velocity for 2-axis cooling</div></td>
+            <td><img src="assets/photos/ch6/fig_4axis_table26.png" alt="Cut plot of wind velocity for 4-axis cooling" class="figure-image"><div class="table-image-caption">Cut Plot of wind velocity for 4-axis cooling</div></td>
+            <td><img src="assets/photos/ch6/fig_6axis_table26.png" alt="Cut plot of wind velocity for 6-axis cooling" class="figure-image"><div class="table-image-caption">Cut Plot of wind velocity for 6-axis cooling</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-divider" aria-hidden="true"></div>
+    <p>From Table 26, 4-axis cooling was shown to have the most even and round wind-velocity profile around the filament; hence, it was chosen as the preferred configuration.</p>
+  </div>
+
+  <div id="ch6-2-2" class="subsection">
+    <h4>6.2.2 Effectiveness of Cooling</h4>
+    <p>Subsequently, we analysed the cooling efficiency of the fans by setting the initial volumetric temperature of the PP filament at 180°C and running the same simulation for 30s, which is equivalent to ~40cm of filament length when pulled at 0.013 m/s.</p>
+    <p>The final average surface temperature of the filament was then measured at regular intervals along the filament (Fig 45). From which, we identified two issues:</p>
+    <ul class="paper-list">
+      <li>The filament was still too soft as its temperature was still high, more than 85°C, and would likely deform between the rollers [xx].</li>
+      <li>The temperature significantly increases down the filament (left to right) to a maximum of 161°C from 99°C (Fig 45).</li>
+    </ul>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig45.png" alt="Simulation results for average surface temperature of the PP filament" class="figure-image">
+      <figcaption class="figure-caption">Fig 45: Simulation results for the average surface temperature of the PP filament</figcaption>
+    </figure>
+    <p>To understand the two identified issues, we applied the Continuity Equation [xx] to the fans:</p>
+    <p class="paper-formula">ṁ<sub>inlet</sub> = 𝑝AV = ṁ<sub>outlet</sub></p>
+    <p>where ṁ is the mass flow rate of air, 𝑝 is the air density, A is the cross-sectional area (perpendicular to the air flow’s direction), and V is the air velocity. From the equation, the blown air will quickly disperse after exiting the centrifugal fan’s outlet (small A) into the environment (infinite A), causing its velocity and hence cooling effectiveness to drop significantly further down the filament’s length. Our simulations also agreed with this theory (Fig 46).</p>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig46.png" alt="General flow trajectory for cooling" class="figure-image">
+      <figcaption class="figure-caption">Fig 46: General Flow Trajectory for cooling. Taken from 4-axis cooling</figcaption>
+    </figure>
+    <p>Therefore, to minimise the dispersion of air as it blows along the filament, a round wind tunnel was designed to contain and guide the air along the filament’s longitudinal axis, thereby extending the effective cooling zone (Fig 47).</p>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig47.png" alt="Cross-sectional view of wind tunnel" class="figure-image">
+      <figcaption class="figure-caption">Fig 47: Cross-Sectional View - Wind Tunnel</figcaption>
+    </figure>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig48.png" alt="Front and isometric view of wind tunnel" class="figure-image">
+      <figcaption class="figure-caption">Fig 48: Front and Isometric View of Wind Tunnel</figcaption>
+    </figure>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig49.png" alt="Side view projectile trajectory for velocity in wind tunnel" class="figure-image">
+      <figcaption class="figure-caption">Fig 49: Side View - Projectile Trajectory for velocity in Wind Tunnel</figcaption>
+    </figure>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig50.png" alt="Simulation results for average surface temperature of the PP filament in wind tunnel" class="figure-image">
+      <figcaption class="figure-caption">Fig 50: Simulation results for the average surface temperature of the PP filament</figcaption>
+    </figure>
+    <p>From Fig 49 & 50, the Wind Tunnel is shown to both improve air flow velocity around the filament and significantly reduce the surface temperature of the PP filament down to a maximum of 81°C.</p>
+  </div>
+
+  <div id="ch6-2-3" class="subsection">
+    <h4>6.2.3 Thermal Analysis</h4>
+    <p>To further optimise the Wind Tunnel’s 4-axis air cooling setup, we decided to study the correlation of the Wind Tunnel’s diameter with the filament’s final temperature. The simulation was run using diameters ranging from 50mm to 110mm. The results are shown in Table 27 and Fig 51.</p>
+    <p class="table-label table-label-top">Table 27: Simulation results for the average (surface) temperature of the PP filament in a wind tunnel with a diameter varied from 50mm to 110mm</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Diameter of Wind Tunnel</th>
+            <th>50mm</th>
+            <th>57.5mm</th>
+            <th>65mm</th>
+            <th>80mm</th>
+            <th>95mm</th>
+            <th>102.5mm</th>
+            <th>110mm</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Average Temperature 1 (°C)</td><td>71</td><td>66</td><td>70</td><td>71</td><td>73</td><td>72</td><td>71</td></tr>
+          <tr><td>Average Temperature 2 (°C)</td><td>70</td><td>69</td><td>73</td><td>76</td><td>78</td><td>75</td><td>76</td></tr>
+          <tr><td>Average Temperature 3 (°C)</td><td>71</td><td>69</td><td>75</td><td>79</td><td>91</td><td>92</td><td>89</td></tr>
+          <tr><td>Average Temperature 4 (°C)</td><td>72</td><td>70</td><td>76</td><td>81</td><td>97</td><td>95</td><td>95</td></tr>
+          <tr><td>Average Temperature 1-4 (°C)</td><td>71</td><td>68.5</td><td>73.5</td><td>76.75</td><td>84.75</td><td>83.5</td><td>82.75</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-divider" aria-hidden="true"></div>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig51.png" alt="Average surface temperature of the PP filament versus wind tunnel diameter" class="figure-image">
+      <figcaption class="figure-caption">Fig 51: Simulated Results of the Average (surface) Temperature of the PP filament vs Wind Tunnel Diameter</figcaption>
+    </figure>
+    <p>From Fig 51, a general trend was observed: the filament’s average surface temperature decreased as the diameter decreased. This was in agreement with the Continuity Equation, where at constant ṁ, the air’s velocity would increase and cool the filament down faster. The best cooling efficiency occurs at a diameter of 57.5mm with the lowest average surface temperature of 68.5°C.</p>
+    <p>However, an increase in temperature was observed from 57.5mm to 50mm in diameter. This is likely caused by a transition from a turbulent to a more laminar flow as the gap between the filament and the Wind Tunnel’s inner wall decreases, which reduces Hc [xx]. Additionally, a drop in temperature occurred from 95mm to 110mm diameter, likely due to a transition to a more turbulent flow, which increases Hc. However, it is unlikely that increasing the diameter further would improve cooling, as the air would eventually lose too much speed and disperse as A increases.</p>
+  </div>
+
+  <div id="ch6-3" class="subsection">
+    <h3>6.3 Preliminary Prototyping</h3>
+    <p>From previous experiments conducted using PP pellet feedstock, a shorter wind tunnel (20cm), and at a slower pull speed (0.0062 m/s) (Fig 52), we learned that wind speeds above 2.65 m/s or below 1 m/s can achieve the desired filament ovality of &lt; 0.08mm (Fig 53). Additionally, wind speeds between 1.6 m/s and 3.7 m/s can achieve our desired diameter fluctuations of &lt; 0.1mm (Fig 54). However, it was observed that at lower rates of cooling, the filament does not harden quickly enough and tends to sag under its own weight, causing uncontrolled stretching and thinning of the diameter, which was not captured in the graphs below.</p>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig52.png" alt="Extruder setup with 20 cm long wind tunnel" class="figure-image">
+      <figcaption class="figure-caption">Fig 52: Extruder Set Up with 20 cm long Wind Tunnel</figcaption>
+    </figure>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig53.png" alt="Mean ovality versus wind speed for 20 cm long wind tunnel" class="figure-image">
+      <figcaption class="figure-caption">Fig 53: Mean Ovality vs Wind Speed for 20 cm long Wind Tunnel</figcaption>
+    </figure>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig54.png" alt="Standard deviation versus wind speed for 20 cm long wind tunnel" class="figure-image">
+      <figcaption class="figure-caption">Fig 54: Standard Deviation vs Wind Speed for 20 cm long Wind Tunnel</figcaption>
+    </figure>
+    <p>Referencing the benchmarked cooling rate, we increased the filament pulling speed to 0.0128 m/s, to achieve our target PCW-PP filament production rate of 100 g/hr. Concurrently, due to the reduced time spent in cooling, we calculated a new wind speed of at least 4.6 m/s and a need to double the cooling length to achieve the same degree of cooling. (Appendix G).</p>
+  </div>
+
+  <div id="ch6-4" class="subsection">
+    <h3>6.4 Omni-Flow</h3>
+    <p>Following our simulation and iteration, we designed Omni-Flow, a Wind Tunnel equipped with a 4-axis Parallel Airstream, to efficiently and evenly cool PCW-PP filament and achieve the best cross-sectional circularity. It also features a ball-bearing roller to support the weight of the molten filament.</p>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig55.png" alt="CAD side view of Omni-Flow" class="figure-image">
+      <figcaption class="figure-caption">Fig 55: CAD - Side View of Omni-Flow</figcaption>
+    </figure>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig56.png" alt="Side view of Omni-Flow" class="figure-image">
+      <figcaption class="figure-caption">Fig 56: Side View of Omni-Flow</figcaption>
+    </figure>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig57.png" alt="Back view of Omni-Flow" class="figure-image">
+      <figcaption class="figure-caption">Fig 57: Back View of Omni-Flow</figcaption>
+    </figure>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig58.png" alt="Isometric view of Omni-Flow" class="figure-image">
+      <figcaption class="figure-caption">Fig 58: Isometric View of Omni-Flow</figcaption>
+    </figure>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig59.png" alt="CAD cross-sectional side view of Omni-Flow" class="figure-image">
+      <figcaption class="figure-caption">Fig 59: CAD - Cross-sectional Side View of Omni-Flow</figcaption>
+    </figure>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig60.png" alt="Back view of Omni-Flow alternate" class="figure-image">
+      <figcaption class="figure-caption">Fig 60: Back View of Omni-Flow</figcaption>
+    </figure>
+    <figure class="figure-block">
+      <img src="assets/photos/ch6/fig61.png" alt="Removal of the top cover for easier filament laying" class="figure-image">
+      <figcaption class="figure-caption">Fig 61: Removal of the top cover for easier filament laying</figcaption>
+    </figure>
+  </div>
+
+  <div id="ch6-5" class="subsection">
+    <h3>6.5 Results &amp; Conclusion</h3>
+    <p>In summary, it was identified that, amongst the evaluated components, the wind tunnel with the 4-axis Parallel Airstream produces the best cooling outcomes; hence, it was chosen as our key component for the Cooling Mechanism, and Omni-Flow was developed.</p>
+    <p class="table-label table-label-top">Table 28: Recap of the Morphological Chart for the Cooling Mechanism</p>
+    <div class="spec-table-wrapper">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Function / Subsystem</th>
+            <th>Components</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5"><strong>Key Mechanisms</strong></td></tr>
+          <tr>
+            <td>Cooling Mechanism</td>
+            <td>Single axial fan with open airflow path</td>
+            <td>Bladeless fan ring</td>
+            <td class="cell-highlight-green">Wind Tunnel</td>
+            <td>Water Bath</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-divider" aria-hidden="true"></div>
+  </div>
+</section>
