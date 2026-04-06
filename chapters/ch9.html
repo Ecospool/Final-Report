@@ -1,14 +1,46 @@
 <section id="ch9" class="content-section chapter-section">
-    <div class="section-label">Chapter 9</div>
-    <div class="chapter-header">
-      <div class="ch-number-large">09</div>
-      <div class="ch-title-block">
-        <h2>Limitations &amp; Future Work</h2>
-        <p class="ch-lead">Identified constraints and the roadmap for EcoSpool v2 and beyond.</p>
-      </div>
+  <div class="section-label">Chapter 9</div>
+  <div class="chapter-header">
+    <div class="ch-number-large">09</div>
+    <div class="ch-title-block">
+      <h2>Conclusion</h2>
+      <p class="ch-lead">A summary of the system, its implemented solutions, and the broader outlook for closed-loop PP recovery.</p>
     </div>
-    <div id="ch9-1" class="subsection"><h3>9.1 Achieving Spool-Level Diameter Uniformity</h3><p>The primary remaining challenge is sustaining diameter uniformity across a full 500 g spool. Longer extrusion runs showed drift correlated with hopper level, suggesting a level-controlled feed mechanism as the priority next step.</p></div>
-    <div id="ch9-2" class="subsection"><h3>9.2 Feedstock Contamination</h3><p>Post-consumer PP flakes require pre-sorting and washing to remove paper, glue, and reagent residues. An inline contamination detection step (NIR or density sorting) would significantly improve output consistency.</p></div>
-    <div id="ch9-3" class="subsection"><h3>9.3 Scaling Throughput</h3><p>The current system produces approximately 50–80 g/hr. Increasing L:D ratio (to 24:1) and screw speed range would improve throughput to the 200 g/hr target for meaningful lab-scale recycling volume.</p></div>
-    <div id="ch9-4" class="subsection"><h3>9.4 Advanced Screw and Mixing Designs</h3><p>Barrier screws and Maddock mixing elements would improve melt homogeneity for high-contamination feedstocks. Computational screw design optimisation using PP rheological data (NETZSCH) is recommended for v2.</p></div>
-  </section>
+  </div>
+
+  <div id="ch9-1" class="subsection">
+    <h3>9. Conclusion</h3>
+    <p>Our project set out to address a practical and pressing sustainability challenge posed by the NUS Sustainability Strategy Unit: the conversion of polypropylene (PP) waste into functional FFF filament, without intermediate pelletisation. What began as a material recovery problem evolved into a systematic engineering investigation, during which we designed, modified, and validated an extrusion system capable of producing printable PCW-PP filament directly from shredded PP flakes.</p>
+  </div>
+
+  <div id="ch9-2" class="subsection">
+    <h3>Revisiting the Objectives</h3>
+    <p>The project's core objectives were to investigate and optimise the key parameters affecting filament quality, implement custom modifications to the extrusion system, and demonstrate the technical feasibility of the proposed approach.</p>
+    <p>All three objectives were addressed. Through independent subsystem investigations, the compression ratio, heating configuration, and cooling arrangement were systematically evaluated and optimised based on the specific material characteristics of the PP flake feedstock. The findings from each subsystem were consolidated into a final integrated prototype, the performance of which was validated through an end-to-end extrusion trial producing a continuous filament sample, which was assessed against predefined dimensional and functional quality thresholds.</p>
+  </div>
+
+  <div id="ch9-3" class="subsection">
+    <h3>Addressing the Key Issues</h3>
+    <p>Two key issues of filament inconsistency were identified, and we proposed and implemented targeted solutions to address them (Fig 73).</p>
+    <figure class="figure-block">
+      <img class="figure-image" src="assets/photos/ch9/fig73.png" alt="Fig 73: Overview of our Key Issues and Implemented Solutions">
+      <figcaption class="figure-caption">Fig 73: Overview of our Key Issues and Implemented Solutions</figcaption>
+    </figure>
+    <p>A compression ratio of 3.5:1 was established as optimal for PP flake feedstock, providing sufficient mechanical compression to remove air bubbles and achieve melt seal without inducing the plugged feed zone conditions associated with excessive compression.</p>
+    <p>Multi-zone resistance-band heating enabled a controlled, graduated thermal profile along the barrel, eliminating the localised temperature gradients and thermal stratification that arise from single-zone configurations.</p>
+    <p>Our OmniFlow wind tunnel cooling addresses the anisotropic shrinkage problem by ensuring symmetric heat extraction around the filament cross-section, directly minimising ovality.</p>
+    <p>Together, these solutions reduced the two dominant sources of dimensional variation and produced a filament sufficiently consistent to be processed by a standard FDM 3D printer — validating our system's functional viability.</p>
+  </div>
+
+  <div id="ch9-4" class="subsection">
+    <h3>Where Our Innovation Lies</h3>
+    <p>Existing small-scale extrusion systems treat recycled feedstock as an afterthought — adapting pellet-centric architectures to accommodate irregular flake material, inevitably at the expense of filament consistency. Our system is designed around the material characteristics and processing demands of post-consumer PP in flake form; the resulting configuration is not a compromise but a purpose-built solution.</p>
+    <p>The decision to bypass pelletisation entirely is not merely a process simplification but a deliberate choice that reduces thermal degradation, lowers equipment cost, and lengthens the material’s useful cycle. In doing so, this project demonstrates that consistent, printable filament can be produced from waste PP without the typical infrastructure required. This positions us as a viable model for closed-loop plastic recovery in educational and institutional settings.</p>
+  </div>
+
+  <div id="ch9-5" class="subsection">
+    <h3>Outlook</h3>
+    <p>While the integrated trial confirmed the system's technical feasibility, there are still opportunities for future development. Quantitative characterisation of the produced filament — including tensile strength, elongation at break, and crystallinity — would provide a more complete mechanical profile for comparison against commercial benchmarks. Broader feedstock trials across varying PP waste streams would assess the system's robustness to the variability in other post-consumer materials. In the longer term, the deployment of this system within an active campus makerspace, as initiated through early-stage collaboration with the NUS Innovation and Design Hub, presents an opportunity to validate its real-world utility and refine the workflow for non-specialist users.</p>
+    <p>Ultimately, this project demonstrates that PP waste need not be an end-of-life problem. And with the right system design, it becomes an abundant resource with value.</p>
+  </div>
+</section>
