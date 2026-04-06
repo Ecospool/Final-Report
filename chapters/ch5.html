@@ -1,0 +1,33 @@
+<section id="ch5" class="content-section chapter-section">
+    <div class="section-label">Chapter 5</div>
+    <div class="chapter-header">
+      <div class="ch-number-large">05</div>
+      <div class="ch-title-block">
+        <h2>Heating &amp; Melting Mechanisms</h2>
+        <p class="ch-lead">Barrel heating architecture, heater technology selection, screw-induced heating, and temperature zone setpoint derivation.</p>
+      </div>
+    </div>
+    <div id="ch5-1" class="subsection"><h3>5.1 Barrel Heating</h3></div>
+    <div id="ch5-1-1" class="subsection subsection-2"><h4>5.1.1 Single-Zone vs Multi-Zone Heating</h4><p>Single-zone control cannot accommodate the distinct thermal requirements of the feed (preheat), compression (melt), and metering (die-approach) regions. Three independent PID zones were implemented to provide granular setpoint control.</p></div>
+    <div id="ch5-1-2" class="subsection subsection-2"><h4>5.1.2 Functional Roles of Each Heating Zone</h4><p>Zone 1 (185 °C) preheats and begins softening; Zone 2 (195 °C) drives full plastication across the compression section; Zone 3 (200 °C) maintains melt fluidity and homogenises temperature before the die.</p></div>
+    <div id="ch5-1-3" class="subsection subsection-2"><h4>5.1.3 Thermal Limitations of Barrel Conduction</h4><p>Barrel wall conductivity limits the radial heat penetration rate. At low screw speeds (2 rpm), residence time is sufficient for full plastication. At 6.7 rpm, screw-induced mixing supplements conduction.</p></div>
+    <div id="ch5-2" class="subsection">
+      <h3>5.2 Barrel Heater Concept Selection</h3>
+      <div id="ch5-2-1" class="subsection subsection-2"><h4>5.2.1 Overview of Heating Technologies</h4><p>Candidates evaluated: band heaters (resistive), ceramic heaters, cartridge heaters, and induction heating. Assessment criteria: thermal uniformity, controllability, cost, and retrofitability to the Felfil barrel.</p></div>
+      <div id="ch5-2-2" class="subsection subsection-2"><h4>5.2.2 Selection of Heating Method</h4><p>Mica band heaters were selected: highest contact uniformity over the cylindrical barrel, compatible with standard SSR/PID control, and lowest cost. Induction heating was excluded due to barrel material incompatibility.</p></div>
+    </div>
+    <div id="ch5-3" class="subsection"><h3>5.3 Screw-Induced Heating</h3></div>
+    <div id="ch5-3-1" class="subsection subsection-2"><h4>5.3.1 Viscous Dissipation (Shear Heating)</h4><p>Shear rates: 0.372 s⁻¹ (feed zone), 1.54 s⁻¹ (metering zone). With η₀ = 4,400 Pa·s, viscous dissipation contributes less than 1 °C at 6.7 rpm — confirming barrel heating dominates throughout the operating range.</p></div>
+    <div id="ch5-3-2" class="subsection subsection-2"><h4>5.3.2 Solid-Bed Friction</h4><p>Before the melt front, frictional heat from solid-bed compaction contributes a secondary heating mechanism that accelerates onset of plastication near Zone 2.</p></div>
+    <div id="ch5-4" class="subsection"><h3>5.4 Temperature Zone Setpoint Selection</h3></div>
+    <div id="ch5-4-1" class="subsection subsection-2"><h4>5.4.1 Literature-Derived Starting Points</h4><p>PP melting onset occurs at 165–170 °C; processing temperatures in the range 190–220 °C are reported for extrusion-grade PP. Initial setpoints were derived from these bounds and refined experimentally.</p></div>
+    <div id="ch5-4-2" class="subsection subsection-2"><h4>5.4.2 Experimental Methodology</h4><p>Systematic variation of Zone 1–3 setpoints across 185–200 °C range. Each configuration run for 20 minutes at steady state; diameter metrics recorded at 1 Hz. The Tadmor melting model informed the zone boundary locations.</p></div>
+    <div id="ch5-4-3" class="subsection subsection-2"><h4>5.4.3 Experiment Results &amp; Discussion</h4><p>Configurations below 185 °C at Zone 1 showed incomplete melting (melt fracture, rough surface). Configurations above 205 °C at Zone 3 caused die drool and diameter sag. The 185/195/200 °C profile produced the lowest σ across all test runs.</p></div>
+    <div id="ch5-4-4" class="subsection subsection-2"><h4>5.4.4 Final Setpoint Selection</h4><p>Zone 1: 185 °C · Zone 2: 195 °C · Zone 3: 200 °C. Validated by Maddock sectioning (§4.5.1) confirming complete plastication by Zone 3 entry at this profile.</p></div>
+    <div id="ch5-5" class="subsection"><h3>5.5 Thermal Precision Requirements and Dimensional Accuracy</h3>
+      <div id="ch5-5-1" class="subsection subsection-2"><h4>5.5.1 Viscosity Sensitivity to Temperature</h4><p>PP melt viscosity is highly temperature-sensitive: a 5 °C increase reduces η by ~20%, directly affecting die throughput and filament diameter. PID control with ±1 °C band is necessary for diameter stability.</p></div>
+      <div id="ch5-5-2" class="subsection subsection-2"><h4>5.5.2 Pressure Variation and Filament Diameter Impact</h4><p>Die pressure oscillations of ±5 kPa produce diameter swings of approximately ±0.08 mm — just within the acceptance criterion. Stable temperature is the primary lever for pressure stability.</p></div>
+      <div id="ch5-5-3" class="subsection subsection-2"><h4>5.5.3 Implications for Zonal Heating Control</h4><p>Each zone requires independent SSR-based PID control with type-K thermocouples. Cross-zone thermal crosstalk was measured and found to be negligible at the 160 mm zone spacing on the Felfil barrel.</p></div>
+    </div>
+    <div id="ch5-6" class="subsection"><h3>5.6 Results &amp; Conclusion</h3><p>The three-zone 185/195/200 °C heating profile with mica band heaters and PID control achieved sustained ±1 °C thermal stability. This was sufficient to maintain filament diameter within the ±0.1 mm acceptance criterion under steady-state conditions.</p></div>
+  </section>

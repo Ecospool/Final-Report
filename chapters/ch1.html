@@ -1,0 +1,265 @@
+<section id="ch1" class="content-section chapter-section">
+    <div class="section-label">Chapter 1</div>
+    <div class="chapter-header">
+      <div class="ch-number-large">01</div>
+      <div class="ch-title-block">
+        <h2>Introduction</h2>
+        <p class="ch-lead">Motivation, objectives, scope and the broader context of polypropylene waste in Singapore and beyond.</p>
+      </div>
+    </div>
+
+    <div id="ch1-1" class="subsection">
+      <h3>1.1 Problem Statement</h3>
+      <p>
+        Our industry partner, NUS Sustainability Strategy Unit (NUS SSU), presented us with our
+        initial problem statement: "What can we do with the current polypropylene (PP) waste in NUS
+        instead of disposing of it for incineration?"
+      </p>
+      <p>
+        PP waste on campus is currently disposed of through incineration. SSU recognised that this
+        is not an effective end-of-life solution and is seeking alternatives that could unlock
+        value, reduce post-consumer PP waste on campus, and better utilise the abundant PP material.
+      </p>
+      <figure class="figure-block">
+        <img class="figure-image" src="assets/photos/ch1/fig1.jpg" alt="Portion of PP waste collected from NUS SSU" />
+        <figcaption class="figure-caption">Fig 1: Portion of PP waste collected from NUS SSU</figcaption>
+      </figure>
+    </div>
+
+    <div id="ch1-1-2" class="subsection">
+      <p>
+        Based on our interim, we established recycling as the most sustainable and value-generating
+        approach for managing PP waste on campus. The next step was to identify which specific
+        recycling pathway was best suited to the constraints and objectives of this project. Three
+        candidate directions were evaluated: plastic sheets, pelletisation, and 3D printing
+        filament production.
+      </p>
+      <p>
+        The solution must be operable at campus scale without requiring industrial-grade
+        infrastructure. It must generate sufficient material value to justify the investment in
+        recovery. It must be capable of retaining the recovered material within the campus
+        ecosystem as required by NUS SSU, supporting a closed-loop system. And it should align
+        with the demands of the NUS community, maximising the adoption of the recovered output.
+      </p>
+      <p>
+        When evaluated against the specific requirements of the problem statement, Fused Filament
+        Fabrication (FFF) / 3D printing filament is the only pathway that simultaneously satisfies
+        all four criteria: campus-scale operability, high material value-add, institutional
+        closed-loop potential, and direct alignment with existing campus workflows. A more detailed
+        breakdown of our thought process can be found in Appendix A.
+      </p>
+      <p>
+        The remainder of this report therefore focuses on the development of a system capable of
+        producing rPP filament directly from post-consumer PP waste generated within NUS.
+      </p>
+    </div>
+
+    <div id="ch1-2" class="subsection">
+      <h3>1.2 Project Objective</h3>
+      <p>
+        Our project aims to design and develop a modified extrusion system capable of producing
+        usable post-consumer recycled polypropylene (PCW-PP) filament directly from shredded PP
+        feedstock. The proposed approach eliminates the need for intermediate pelletisation,
+        thereby reducing the thermal cycle and minimising material degradation for sustained
+        recycling.
+      </p>
+      <p>
+        The work focuses on investigating and optimising key processing parameters, including screw
+        compression ratio, heating, and cooling, through systematic experimentation and analysis.
+        In addition, the project involves modifications to the extrusion system to achieve stable
+        processing conditions and consistent filament quality.
+      </p>
+      <p>
+        The quality of the produced filament will be evaluated based on dimensional consistency,
+        mechanical properties, and suitability for additive manufacturing applications.
+      </p>
+      <p>
+        Ultimately, this project directly addresses the challenge posed by NUS SSU by demonstrating
+        the technical feasibility of converting post-consumer PP waste into filament for Fused
+        Filament Fabrication (FFF). Rather than disposing of PP through incineration, the proposed
+        system unlocks material value by transforming waste into a functional, directly usable
+        filament that can be loaded into a 3D printer. It can be immediately applied to
+        prototyping, design, and fabrication activities within NUS makerspaces and design spaces.
+        In doing so, it reduces the volume of PP directed towards incineration and retains
+        recovered material within the campus, moving PP waste management at NUS towards a
+        closed-loop system.
+      </p>
+    </div>
+
+    <div id="ch1-3" class="subsection">
+      <h3>1.3 Enabling a Circular Plastic Economy</h3>
+      <figure class="figure-block">
+        <img class="figure-image" src="assets/photos/ch1/fig2.png" alt="Flowchart of proposed value chain" />
+        <figcaption class="figure-caption">Fig 2: Flowchart of proposed value chain</figcaption>
+      </figure>
+      <p>
+        Our proposed system is designed to reintegrate PP waste back into the production cycle as
+        functional filament for FFF, directly challenging the conventional linear end-of-life
+        pathway of collection and incineration. Rather than treating recycling as a downstream
+        disposal option, this approach allows material recovery to be integrated directly into the
+        institution's operational workflow.
+      </p>
+      <p>
+        The system operates on two levels of circularity. At the primary level, PP waste generated
+        through ongoing campus activities can be continuously collected, shredded, and reprocessed
+        into filament for immediate use within the same institution, closing the material loop
+        locally without external recycling methods. At the secondary level, the accumulated PP waste
+        without a recovery pathway can be processed through the system.
+      </p>
+      <p>
+        Together, these position the system as a scalable model for institutional plastic
+        recovery, aligned with broader circular economy principles and NUS's sustainability
+        objectives.
+      </p>
+    </div>
+
+    <div id="ch1-4" class="subsection">
+      <h3>1.4 Scope &amp; Constraints</h3>
+      <p>
+        With the project objective established, it is necessary to define the scope and
+        constraints within which our system is designed and evaluated. These steer our design
+        decisions made throughout the project. To ensure the system is fit for purpose across all
+        relevant considerations, the scope is assessed across three dimensions: technical,
+        economic, and operational.
+      </p>
+      <h4>Technical</h4>
+      <p>
+        Material consistency: Our system is focused purely on recovering waste PP. This allows for
+        targeted optimisation of processing parameters, including heating profiles, screw
+        compression, and cooling rates, specific to its thermal behaviour, enabling us to tightly
+        control and reproduce experimentation.
+      </p>
+      <p>
+        Direct flake processing: Shredded flakes represent the most accessible feedstock format
+        for this system, as they are the direct output of the PP waste stream requiring no further
+        preparation before entering the extrusion stage. While pelletisation would produce a more
+        geometrically uniform feedstock, it introduces an additional processing step that requires
+        dedicated industrial equipment. By accepting flakes directly, the system eliminates this
+        stage entirely, reducing the barrier to adoption and making the recovery process actionable
+        within the constraints of the institution.
+      </p>
+      <p>
+        Elimination of an additional thermal cycle: By accepting flakes directly, the system
+        avoids reheating the material a second time before extrusion, halving the thermal cycle
+        required for reprocessing. Accepting flakes directly preserves the material in its
+        least-degraded recoverable state, avoiding the molecular chain scission associated with an
+        additional melt-processing cycle [1]. This is advantageous as it keeps
+        the plastic in the recycling loop for twice as long.
+      </p>
+      <h4>Economic</h4>
+      <p>
+        Cost reduction: Eliminating pelletising equipment significantly lowers the upfront
+        investment, thus reducing the cost of upcycling PP waste. Reduced investment in external
+        processes makes the system easier to adopt within the institutional setting.
+      </p>
+      <p>
+        Operational cost efficiency: Removing one thermal cycle reduces energy consumption per
+        kilogram of output, thereby lowering running costs in resource-limited environments.
+      </p>
+      <p>
+        Feedstock availability: PP is abundantly available as post-consumer waste in educational
+        settings, commonly found in one-time laboratory packaging and consumable supplies,
+        providing a readily accessible material source without external procurement.
+      </p>
+      <h4>Operational</h4>
+      <p>
+        Realistic preparation workflow: Shredding equipment is widely available in makerspaces and
+        educational workshops, whereas pelletisers are more uncommon. Designing the system around
+        flake feedstock aligns with the realistic material preparation of our intended user base.
+      </p>
+      <p>
+        Safety and manageability: Operating at laboratory scale with PP alone reduces operational
+        risk and training requirements. This makes the system appropriate for supervised
+        institutional use without the need for specialised technical operators.
+      </p>
+      <p>
+        Intra-institutional closed-loop operation: The system is designed to operate entirely
+        within NUS to collect, process, and recover material without reliance on external supply
+        chains or resources. PP waste generated on campus is shredded, extruded into filament, and
+        consumed within the same institution, creating a self-contained material loop that is both
+        operationally and logistically coherent. Nothing is brought in from outside, and nothing
+        leaves the system as waste. The output is directly absorbed by the existing demand for 3D
+        printing filament identified within the campus community.
+      </p>
+    </div>
+
+    <div id="ch1-5" class="subsection">
+      <h3>1.5 Plastic Demand</h3>
+      <p>
+        To establish the practical demand of the proposed system, a three-part validation was
+        conducted to assess the supply of PP waste available for recovery, the existing demand for
+        3D printing filament within the NUS community, and user acceptance to adopt PP as a
+        printing material.
+      </p>
+      <h4>1.5.1 Supply of PP Waste</h4>
+      <p>
+        PP waste generated on campus through laboratory consumables, packaging, and disposable
+        supplies represents a substantial and recurring feedstock source.
+      </p>
+      <p>
+        Preliminary figures from NUS SSU indicated that an average laboratory disposes of roughly
+        20 pipette tip boxes per week. Assuming approximately 300 laboratories across the
+        institution and a weight of 107 grams per PP pipette box, the total amount of PP discarded
+        reaches an estimated 33,384 kilograms per year.
+      </p>
+      <p>
+        It is also confirmed that these materials are currently directed towards incineration with
+        no existing recovery pathway, establishing both the availability and accessibility of the
+        feedstock required to supply the proposed system.
+      </p>
+      <h4>1.5.2 Filament Demand Within NUS</h4>
+      <p>
+        To quantify the potential addressable demand, key student teams and design communities
+        within NUS were consulted. The data gathered is summarised in Table 1.
+      </p>
+      <p class="table-label table-label-top">Table 1: Volume &amp; spending on spools across target end users</p>
+      <div class="spec-table-wrapper">
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Group</th>
+              <th>Consumption</th>
+              <th>Estimated Annual Spend (~$25/spool)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Robomasters</td>
+              <td>200 spools/year</td>
+              <td>~$5,000/year</td>
+            </tr>
+            <tr>
+              <td>Architecture</td>
+              <td>1-5 spools/student (across a cohort of ~650 students)</td>
+              <td>~$16,250 to $81,250/year</td>
+            </tr>
+            <tr>
+              <td>Innovation &amp; Design Hub</td>
+              <td>70 spools/year</td>
+              <td>$1,750/year</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-divider" aria-hidden="true"></div>
+      <p>
+        Across these groups alone, the filament demand represents a substantial and recurring
+        volume. If the filament produced by our system meets the quality standards required for its
+        respective applications, it presents an opportunity to serve as a viable, sustainable
+        alternative to commercially sourced filament.
+      </p>
+      <p>
+        Rather than replacing existing supply chains, our produced filament seeks to offer
+        institutions a locally produced, circular option that reduces reliance on virgin plastic
+        and contributes to a circular plastic economy.
+      </p>
+      <h4>1.5.3 User Acceptance of PP as a Printing Material</h4>
+      <p>
+        Beyond quantifying demand, early-stage acceptance validation was initiated with architecture students, who have begun pre-testing virgin PP filament as a material option for their 3D printing activities. This first stage serves to establish user familiarity with PP as a printing material and identify any baseline compatibility considerations specific to their workflows. In subsequent stages, filament produced through our system will be introduced, enabling a comparison of print quality, usability, and dimensional consistency between virgin and recycled PP under the same real-world conditions. Feedback gathered across both stages will inform us on further refinements and serve as a proof-of-concept for the viability of rPP filament within NUS.
+      </p>
+      <p>
+        Taken together, these three validation streams confirm that there is available feedstock,
+        demonstrated demand, and growing user acceptance.
+      </p>
+    </div>
+  </section>

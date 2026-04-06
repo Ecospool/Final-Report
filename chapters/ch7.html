@@ -1,0 +1,27 @@
+<section id="ch7" class="content-section chapter-section">
+    <div class="section-label">Chapter 7</div>
+    <div class="chapter-header">
+      <div class="ch-number-large">07</div>
+      <div class="ch-title-block">
+        <h2>Final Prototype &amp; Test Configuration</h2>
+        <p class="ch-lead">Integrated prototype overview, electrical architecture, and power budgeting.</p>
+      </div>
+    </div>
+    <div id="ch7-1" class="subsection"><h3>7.1 Final Prototype Overview</h3><p>The EcoSpool final prototype integrates: (1) Felfil base extruder with CR 3.5 compression screw, (2) three mica band heaters with SSR/PID control, (3) Omni-Flow annular cooling assembly, and (4) dual-axis dial-gauge monitoring station. All subsystems are mounted on a 600 × 400 mm aluminium base plate.</p></div>
+    <div id="ch7-2" class="subsection"><h3>7.2 Electrical System</h3></div>
+    <div id="ch7-2-1" class="subsection subsection-2"><h4>7.2.1 Heating Mechanism Electrical Architecture</h4><p>Three independent SSR-PID channels control Zone 1–3 band heaters. Type-K thermocouples provide feedback. A 4-channel PID controller (230 V AC mains) interfaces with the Felfil motor controller via a shared 24 V DC bus.</p></div>
+    <div id="ch7-2-2" class="subsection subsection-2"><h4>7.2.2 Power Budgeting</h4>
+      <div class="spec-table-wrapper">
+        <table class="spec-table">
+          <thead><tr><th>Component</th><th>Power</th><th>Qty</th><th>Total</th></tr></thead>
+          <tbody>
+            <tr><td>Band heater (Zone 1–3)</td><td>100 W</td><td>3</td><td>300 W</td></tr>
+            <tr><td>Felfil drive motor</td><td>50 W</td><td>1</td><td>50 W</td></tr>
+            <tr><td>Cooling fans (40 mm)</td><td>2.4 W</td><td>4</td><td>9.6 W</td></tr>
+            <tr><td>Control electronics</td><td>10 W</td><td>1</td><td>10 W</td></tr>
+            <tr><td colspan="3"><strong>Total</strong></td><td><strong>~370 W</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>

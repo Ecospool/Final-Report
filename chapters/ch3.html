@@ -1,0 +1,57 @@
+<section id="ch3" class="content-section chapter-section">
+    <div class="section-label">Chapter 3</div>
+    <div class="chapter-header">
+      <div class="ch-number-large">03</div>
+      <div class="ch-title-block">
+        <h2>Design Methodology</h2>
+        <p class="ch-lead">Systematic approach from problem decomposition through concept generation to a validated design statement.</p>
+      </div>
+    </div>
+
+    <div id="ch3-1" class="subsection">
+      <h3>3.1 Design Approach</h3>
+      <p>Two root issues (§2.4) drove four solution streams evaluated via a morphological chart spanning 20 functional subsystems.</p>
+    </div>
+    <div id="ch3-1-1" class="subsection subsection-2"><h4>3.1.1 Solution 1-A: Even Material Compression &amp; Mixing</h4><p>Compression screws eliminate feed-zone air voids and increase bulk density before melting, stabilising throughput rate.</p></div>
+    <div id="ch3-1-2" class="subsection subsection-2"><h4>3.1.2 Solution 1-B: Uniform Heating Gradient</h4><p>Multi-zone barrel heating with calibrated setpoints ensures complete and consistent plastication along the screw length.</p></div>
+    <div id="ch3-1-3" class="subsection subsection-2"><h4>3.1.3 Solution 2-A: Uniform Cooling Coverage (Circumferential)</h4><p>Radially symmetric airflow prevents one-sided quenching that causes ovality in the solidifying filament.</p></div>
+    <div id="ch3-1-4" class="subsection subsection-2"><h4>3.1.4 Solution 2-B: Even Cross-Sectional Cooling Gradient</h4><p>Parallel airstreams from multiple axes ensure the core and skin of the filament cool at compatible rates.</p></div>
+
+    <div id="ch3-2" class="subsection">
+      <h3>3.2 Design Statement</h3>
+      <p class="callout-text">
+        "To modify the Felfil single-screw extruder with a compression screw, multi-zone barrel heating,
+        and an omni-directional cooling assembly to produce 1.75 ± 0.1 mm filament from post-consumer
+        PP flake feedstock at steady-state throughput."
+      </p>
+    </div>
+
+    <div id="ch3-3" class="subsection">
+      <h3>3.3 System Overview</h3>
+      <p>The integrated EcoSpool system comprises four primary subsystems: (1) feed hopper with agitator, (2) modified compression-screw barrel with three-zone heating, (3) Omni-Flow annular cooling duct, and (4) dual-axis dial-gauge quality monitoring with take-up spool.</p>
+    </div>
+
+    <div id="ch3-4" class="subsection">
+      <h3>3.4 System Specifications</h3>
+      <div class="spec-table-wrapper">
+        <table class="spec-table">
+          <thead><tr><th>Parameter</th><th>Value</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Barrel length L</td><td>0.40 m</td><td>Felfil platform</td></tr>
+            <tr><td>Barrel diameter D</td><td>25 mm</td><td>Felfil platform</td></tr>
+            <tr><td>L:D ratio</td><td>17.6</td><td>—</td></tr>
+            <tr><td>Screw speed</td><td>2–6.7 rpm</td><td>Operating range</td></tr>
+            <tr><td>Zone 1 setpoint</td><td>185 °C</td><td>Feed / preheat</td></tr>
+            <tr><td>Zone 2 setpoint</td><td>195 °C</td><td>Compression / melt</td></tr>
+            <tr><td>Zone 3 setpoint</td><td>200 °C</td><td>Metering / die</td></tr>
+            <tr><td>Target diameter</td><td>1.75 mm</td><td>±0.1 mm tolerance</td></tr>
+            <tr><td>Zero-shear viscosity η₀</td><td>4,400 Pa·s</td><td>NETZSCH DSC data, PP</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="ch3-5" class="subsection"><h3>3.5 Experimentation Methodology</h3></div>
+    <div id="ch3-5-1" class="subsection subsection-2"><h4>3.5.1 Data Measurement</h4><p>Dual-axis digital dial gauges positioned 200 mm downstream of the die. Readings logged via RS-232 at 1 Hz, supplemented by video-based OCR for redundancy.</p></div>
+    <div id="ch3-5-2" class="subsection subsection-2"><h4>3.5.2 Data Processing</h4><p>Diameter readings processed in Python/Jupyter. Metrics: rolling mean (window = 60 s), σ, and ovality. Steady-state defined as the interval after the first 10 minutes of extrusion.</p></div>
+  </section>
