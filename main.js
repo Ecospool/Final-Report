@@ -67,6 +67,27 @@
     document.querySelectorAll('.chapter-item.open').forEach((item) => item.classList.remove('open'));
   }
 
+  function closeAllDropdowns(exceptItem = null) {
+    document.querySelectorAll('.chapter-item.open').forEach((item) => {
+      if (item !== exceptItem) item.classList.remove('open');
+    });
+  }
+
+  function positionDropdown(item) {
+    const dropdown = item.querySelector(':scope > .dropdown');
+    const link = item.querySelector(':scope > .chapter-link');
+    if (!dropdown || !link || isMobileNav()) return;
+
+    const linkRect = link.getBoundingClientRect();
+    const navRect = document.getElementById('main-nav').getBoundingClientRect();
+    const width = Math.ceil(linkRect.width);
+    dropdown.style.width = `${width}px`;
+    const left = Math.max(8, Math.min(linkRect.left, window.innerWidth - width - 8));
+
+    dropdown.style.left = `${left}px`;
+    dropdown.style.top = `${navRect.bottom - 1}px`;
+  }
+
   function buildNavMaps() {
     document.querySelectorAll('.chapter-item').forEach((item) => {
       const topLink = item.querySelector(':scope > .chapter-link');
@@ -255,12 +276,27 @@
     const targetId = href.slice(1);
     const hasDropdown = Boolean(item.querySelector(':scope > .dropdown'));
 
-    if (isMobileNav() && hasDropdown && !item.classList.contains('open')) {
+    if (hasDropdown) {
       event.preventDefault();
-      document.querySelectorAll('.chapter-item.open').forEach((openItem) => {
-        if (openItem !== item) openItem.classList.remove('open');
-      });
-      item.classList.add('open');
+
+      if (isMobileNav()) {
+        if (!item.classList.contains('open')) {
+          closeAllDropdowns(item);
+          item.classList.add('open');
+          return;
+        }
+
+        renderChapter(targetId, { updateHash: true, behavior: 'auto' });
+        closeMobileNav();
+        return;
+      }
+
+      const willOpen = !item.classList.contains('open');
+      closeAllDropdowns(item);
+      item.classList.toggle('open', willOpen);
+      if (willOpen) {
+        requestAnimationFrame(() => positionDropdown(item));
+      }
       return;
     }
 
@@ -290,10 +326,25 @@
 
           event.preventDefault();
           renderChapter(href.slice(1), { updateHash: true, behavior: 'smooth' });
+          closeAllDropdowns();
           closeMobileNav();
         });
       });
     });
+
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.chapter-item')) {
+        closeAllDropdowns();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.chapter-item.open').forEach((item) => positionDropdown(item));
+    });
+
+    chapterList.addEventListener('scroll', () => {
+      document.querySelectorAll('.chapter-item.open').forEach((item) => positionDropdown(item));
+    }, { passive: true });
 
     prevButton.addEventListener('click', () => navigateRelative(-1));
     nextButton.addEventListener('click', () => navigateRelative(1));
