@@ -684,6 +684,75 @@ This method allows PP to be reprocessed at a larger, industrial scale, providing
     <p>For educators and technicians, the modular platform serves as a practical teaching tool for extrusion fundamentals, process optimisation, and material–process relationships, supporting incremental learning and hands-on troubleshooting.</p>
   </div>
 
+  <div class="table-divider" aria-hidden="true"></div>
+
+  <div id="appendix-m" class="subsection">
+    <h3>Appendix M: Diameter Data Acquisition and Processing Workflow</h3>
+    <p>To obtain continuous filament diameter measurements along a 2.5 m extrusion length, a video-based data acquisition and OCR processing pipeline was developed. The target sampling interval was set at 1 second per reading, which, based on the calibrated pull speed of the system, corresponds to approximately 3 cm per sample.</p>
+    <p>Diameter measurements were acquired using two orthogonally positioned dial gauges, measuring horizontal and vertical dimensions of the filament. Their displays were recorded continuously using a camera over the duration of extrusion. This enabled automated extraction of readings while eliminating the need for manual transcription.</p>
+    <p>The recorded videos were processed using a custom Python pipeline incorporating SSOCR [14] for digit extraction from seven-segment displays. The workflow is summarised below.</p>
+
+    <p class="appendix-figure-label">Processing Workflow</p>
+
+    <p class="appendix-figure-label">Step 1: Frame extraction and ROI definition</p>
+    <ul class="appendix-list">
+      <li>Videos were decomposed into frames at 1 frame per second, corresponding to one measurement per second.</li>
+      <li>For each frame, a region of interest (ROI) containing the dial gauge display was cropped using fixed pixel coordinates.</li>
+      <li>The ROI coordinates were manually calibrated once and kept constant across all frames to ensure consistent alignment.</li>
+    </ul>
+
+    <p class="appendix-figure-label">Step 2: Image preprocessing</p>
+    <p>Each ROI was processed to improve OCR reliability:</p>
+    <ul class="appendix-list">
+      <li>Grayscale conversion: simplifies the image representation and reduces computational complexity.</li>
+      <li>Contrast enhancement (CLAHE): contrast-limited adaptive histogram equalisation was applied to improve digit visibility under non-uniform lighting conditions.</li>
+      <li>Upscaling (4&times;): the ROI was upscaled by a factor of four using bicubic interpolation prior to thresholding, to improve segment resolution for SSOCR.</li>
+      <li>Gaussian blur: a 3&times;3 Gaussian blur was applied to suppress high-frequency noise before thresholding.</li>
+      <li>Thresholding (binary segmentation): Otsu's method was used to convert the image into a high-contrast binary format, isolating illuminated segments of the display.</li>
+      <li>Connected component filtering: small foreground blobs below an area threshold of 80 pixels were removed to eliminate noise artefacts while preserving digit segments.</li>
+      <li>Tight crop to content: the binary image was cropped to the bounding box of remaining foreground content, with padding, to remove excess background before passing to SSOCR.</li>
+    </ul>
+
+    <p class="appendix-figure-label">Step 3: Shear-based correction (calibration phase)</p>
+    <p>To improve digit readability under perspective distortion, a search over horizontal shear transformations was performed.</p>
+    <ul class="appendix-list">
+      <li>A range of shear values from &minus;0.12 to +0.08 was evaluated in 11 steps, with an increment of 0.02.</li>
+      <li>For a single representative frame, each shear transformation was applied in OpenCV and passed through SSOCR.</li>
+      <li>The resulting OCR outputs were evaluated and ranked based on successful numeric parsing, validity within the expected diameter range, and overall plausibility of the reading.</li>
+      <li>The optimal shear value was selected based on the best candidate output.</li>
+      <li>This calibration step was performed once per video, as the camera position, angle, and framing remained constant throughout the recording.</li>
+    </ul>
+
+    <p class="appendix-figure-label">Step 4: Diameter extraction using fixed shear (inference phase)</p>
+    <ul class="appendix-list">
+      <li>The selected optimal shear value was applied to all subsequent frames. A single shear value was used per frame; no sweep was performed during inference.</li>
+      <li>Each processed ROI was passed through SSOCR to obtain a digit string, followed by immediate post-processing to correct OCR formatting issues such as unregistered decimal points, for example converting "1140" to 1.140 mm.</li>
+    </ul>
+
+    <p class="appendix-figure-label">Step 5: Data generation and visualisation</p>
+    <ul class="appendix-list">
+      <li>Extracted diameter readings were stored in CSV format with corresponding timestamps.</li>
+      <li>The pipeline automatically generated raw time-series plots of diameter against time.</li>
+      <li>The pipeline also generated filtered plots, where outliers and OCR misreads were removed.</li>
+      <li>Filtering was applied using a range threshold of 0.5 mm to 3.0 mm to remove physically implausible values and OCR misreads.</li>
+      <li>This resulted in both raw datasets and cleaned datasets for analysis.</li>
+    </ul>
+
+    <p class="appendix-figure-label">Step 6: Automation interface</p>
+    <p>A Telegram-based interface was implemented to allow:</p>
+    <ul class="appendix-list">
+      <li>uploading of recorded videos;</li>
+      <li>automatic execution of the processing pipeline; and</li>
+      <li>generation of CSV outputs and plots.</li>
+    </ul>
+    <p>This enabled rapid and repeatable processing without requiring direct interaction with the code.</p>
+
+    <p class="appendix-figure-label">Step 7: Post-processing and analysis</p>
+    <p>The generated CSV files were exported to Excel for further analysis. Statistical measures such as mean diameter and standard deviation were computed. As each dial gauge video was processed independently, ovality was subsequently derived by aligning the two diameter time-series in Excel, offsetting timestamps by the filament travel time between the two gauge positions, and computing the difference between orthogonal diameter measurements at corresponding sample points.</p>
+  </div>
+
+  <div class="table-divider" aria-hidden="true"></div>
+
   <div id="appendix-references" class="subsection">
     <h3>References</h3>
     <p>[1] Hopewell, J., Dvorak, R., &amp; Kosior, E. (2009). Plastics recycling: Challenges and opportunities. Philosophical Transactions of the Royal Society B: Biological Sciences, 364(1526), 2115-2126. https://doi.org/10.1098/rstb.2008.0311; WRAP UK. (2021). Plastic packaging recycling. https://wrap.org.uk/</p>
@@ -699,5 +768,6 @@ This method allows PP to be reprocessed at a larger, industrial scale, providing
     <p>[11] Wikipedia contributors, “Heisler chart,” Wikipedia, Oct. 04, 2024. https://en.wikipedia.org/wiki/Heisler_chart</p>
     <p>[12] X. Zhang and M. Fujii, “Measurements of the thermal conductivity and thermal diffusivity of polymers,” Polymer Engineering and Science, vol. 43, no. 11, pp. 1755–1764, Nov. 2003, https://doi.org/10.1002/pen.10148</p>
     <p>[13] B. Abbasgholi-Na, S. R. Nokhbeh, O. A. Aldaghri, K. H. Ibnaouf, N. Madkhali, and H. Cabrera, “Thermal diffusivity and conductivity of polyolefins by thermal lens technique,” Polymers, vol. 14, no. 13, p. 2707, Jul. 2022, https://doi.org/10.3390/polym14132707</p>
+    <p>[14] E. Auerswald, ssocr: Seven Segment Optical Character Recognition, version 2.25.1. Accessed: Apr. 1, 2026. [Online]. Available: https://www.unix-ag.uni-kl.de/~auerswal/ssocr/</p>
   </div>
 </section>

@@ -1111,10 +1111,14 @@ p.formula-inline,
 .appendix-list {
   margin: 0.35rem 0 0 1.5rem;
   padding-left: 1rem;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.85;
 }
 
 .appendix-list li {
   margin: 0.08rem 0;
+  text-align: justify;
 }
 
 .appendix-sublist {
@@ -1404,7 +1408,7 @@ footer {
     border-top: 0.5px solid var(--border);
     padding: 1rem 0 2rem;
     height: auto;
-    align-items: flex-start;
+    align-items: center;
     touch-action: pan-y;
     scrollbar-width: auto;
   }
@@ -1415,6 +1419,7 @@ footer {
 
   .chapter-item {
     width: 100%;
+    max-width: 34rem;
     align-items: stretch;
     flex-direction: column;
     flex-shrink: 0;
@@ -1448,21 +1453,26 @@ footer {
   .dropdown {
     display: none;
     position: static;
-    top: auto;
-    left: auto;
+    top: auto !important;
+    left: auto !important;
     border: none;
     border-top: none;
-    border-left: 2px solid var(--border);
+    border-left: none;
     box-shadow: none;
-    margin-left: 2rem;
+    margin: 0 auto;
     padding: 0.25rem 0 0.6rem;
     min-width: auto;
-    width: calc(100% - 2rem);
+    width: 100% !important;
     max-height: none;
     overflow: visible;
     background: transparent;
     backdrop-filter: none;
     z-index: auto;
+    text-align: center;
+  }
+
+  .dropdown li a.sub2 {
+    padding-left: 1.25rem;
   }
   .nav-chapters.open .chapter-item.open .dropdown,
   #main-nav.nav-open .chapter-item.open .dropdown {
