@@ -941,10 +941,27 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   padding-left: 1.5rem;
 }
 
-.paper-formula {
+.paper-formula,
+.subsection .paper-formula {
   max-width: 72ch;
   margin: 0 auto 1.1rem;
-  padding-left: 1.25rem;
+  padding-left: 0;
+  text-align: center;
+}
+
+p.formula-inline,
+.subsection p.formula-inline {
+  display: block;
+  text-align: center;
+  margin: 0.9rem auto 1.1rem;
+  max-width: 72ch;
+}
+
+.indented-block p.formula-inline {
+  width: calc(100% + 2rem);
+  max-width: none;
+  margin-left: -2rem;
+  margin-right: 0;
 }
 
 .formula-inline {
@@ -1135,19 +1152,47 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
 
 /* Callout text */
 .callout-text {
-  font-family: var(--serif);
-  font-size: 24px;
-  font-weight: 400;
-  font-style: italic;
+  position: relative;
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 300;
+  font-style: normal;
   color: var(--ink);
-  line-height: 1.7;
-  text-align: center;
+  line-height: 1.85;
+  text-align: left;
   border-left: none;
-  margin: 1.75rem auto;
-  max-width: 64ch;
-  background: linear-gradient(135deg, rgba(74, 124, 89, 0.06), rgba(255, 255, 255, 0.72));
-  padding: 1.25rem 1.5rem;
-  border-radius: 20px;
+  margin: 1.75rem 0;
+  max-width: none;
+  background: linear-gradient(90deg, rgba(74, 124, 89, 0.08), rgba(255, 255, 255, 0));
+  padding: 1.35rem 2.5rem 1.35rem 3rem;
+  border-radius: 0;
+}
+
+.callout-text::before,
+.callout-text::after {
+  position: absolute;
+  font-family: var(--serif);
+  font-size: 56px;
+  line-height: 1;
+  color: var(--green);
+  opacity: 0.9;
+}
+
+.callout-text::before {
+  content: '“';
+  top: 0.35rem;
+  left: 0.35rem;
+}
+
+.callout-text::after {
+  content: '”';
+  right: 0.6rem;
+  bottom: 0.05rem;
+}
+
+.callout-text strong {
+  color: var(--green);
+  font-weight: 700;
 }
 
 /* Spec table */
@@ -1200,6 +1245,15 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
 
 .spec-table tr:last-child td { border-bottom: none; }
 .spec-table tr:hover td { background: linear-gradient(90deg, rgba(74, 124, 89, 0.02) 0%, transparent 100%); }
+.spec-table tr:hover td.cell-highlight-green,
+.spec-table td.cell-highlight-green:hover {
+  background: rgba(130, 182, 108, 0.28);
+}
+
+.spec-table tr:hover td.cell-highlight-yellow,
+.spec-table td.cell-highlight-yellow:hover {
+  background: rgba(236, 214, 120, 0.34);
+}
 
 /* Conclusion body */
 .conclusion-body {

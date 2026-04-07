@@ -57,6 +57,7 @@
   let suppressHashChange = false;
   let currentChapterId = null;
   let currentTargetId = null;
+  let alignmentToken = 0;
   let navScrollbar = null;
   let navScrollbarTrack = null;
   let navScrollbarThumb = null;
@@ -414,21 +415,51 @@
       return;
     }
 
-    target.scrollIntoView({ behavior, block: 'start' });
+    const stageRect = chapterStage.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    const targetTop = chapterStage.scrollTop + targetRect.top - stageRect.top - 12;
+
+    chapterStage.scrollTo({
+      top: Math.max(0, targetTop),
+      behavior
+    });
+
     currentTargetId = targetId;
     updateActiveLinks(currentChapterId, targetId);
   }
 
   function queueTargetAlignment(targetId, behavior) {
-    requestAnimationFrame(() => {
-      scrollToTarget(targetId, behavior);
+    const token = ++alignmentToken;
+    const targetChapterId = getChapterId(targetId);
 
-      window.setTimeout(() => {
-        if (currentTargetId === targetId || currentChapterId === getChapterId(targetId)) {
-          scrollToTarget(targetId, 'auto');
-        }
-      }, 80);
+    const align = (nextBehavior = 'auto') => {
+      if (token !== alignmentToken || currentChapterId !== targetChapterId) return;
+      scrollToTarget(targetId, nextBehavior);
+    };
+
+    requestAnimationFrame(() => {
+      align(behavior);
     });
+
+    [80, 220, 500, 1000].forEach((delay) => {
+      window.setTimeout(() => align('auto'), delay);
+    });
+
+    const pendingImages = Array.from(chapterStage.querySelectorAll('img'))
+      .filter((image) => !image.complete);
+
+    if (pendingImages.length === 0) return;
+
+    Promise.allSettled(pendingImages.map((image) => {
+      if (typeof image.decode === 'function') {
+        return image.decode();
+      }
+
+      return new Promise((resolve) => {
+        image.addEventListener('load', resolve, { once: true });
+        image.addEventListener('error', resolve, { once: true });
+      });
+    })).then(() => align('auto'));
   }
 
   async function renderChapter(targetId, options = {}) {
@@ -458,7 +489,7 @@
       animateLoadedContent();
       queueTargetAlignment(targetId, behavior);
     } else {
-      scrollToTarget(targetId, behavior);
+      queueTargetAlignment(targetId, behavior);
     }
 
     updateViewerMeta(chapterId);
