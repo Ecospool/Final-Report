@@ -909,6 +909,12 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   text-align: justify;
 }
 
+#ch10 .subsection p {
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
+}
+
 .subsection p + p {
   margin-top: 1.1rem;
 }
@@ -1235,6 +1241,14 @@ p.formula-inline,
   padding: 0.8rem 1rem;
   border-bottom: 1px solid var(--border);
   background: linear-gradient(135deg, #f9f7f2 0%, #f5f2eb 100%);
+}
+
+.spec-table th[colspan] {
+  text-align: center;
+}
+
+.spec-table .table-center {
+  text-align: center;
 }
 
 .spec-table td {
