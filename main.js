@@ -10,6 +10,7 @@
   const nextButton = document.getElementById('next-chapter');
   const toggle = document.getElementById('nav-toggle');
   const chapterList = document.getElementById('nav-chapters');
+  const mainNav = document.getElementById('main-nav');
   const navInner = chapterList.parentElement;
 
   if (!chapterStage || !viewerHeading || !viewerPosition || !prevButton || !nextButton || !toggle || !chapterList) {
@@ -100,6 +101,7 @@
         <circle cx="12" cy="12" r="3"    fill="#d4cfc4" stroke="rgba(74,124,89,0.25)" stroke-width="0.6"/>
         <circle cx="12" cy="12" r="1.5"  fill="#b0c8b8" stroke="rgba(74,124,89,0.4)"  stroke-width="0.5"/>
       </svg>
+      <span class="nav-scrollbar-label">scroll to spool :)</span>
     `;
 
     navInner.appendChild(navScrollbar);
@@ -238,6 +240,8 @@
 
   function closeMobileNav() {
     chapterList.classList.remove('open');
+    mainNav.classList.remove('nav-open');
+    document.body.classList.remove('nav-open');
     toggle.setAttribute('aria-expanded', 'false');
     document.querySelectorAll('.chapter-item.open').forEach((item) => item.classList.remove('open'));
   }
@@ -542,8 +546,12 @@
   function bindNavigation() {
     toggle.setAttribute('aria-expanded', 'false');
 
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
       const open = chapterList.classList.toggle('open');
+      mainNav.classList.toggle('nav-open', open);
+      document.body.classList.toggle('nav-open', open);
       toggle.setAttribute('aria-expanded', String(open));
     });
 

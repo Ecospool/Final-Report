@@ -107,7 +107,7 @@ body {
   position: absolute;
   left: 6%;
   right: 6%;
-  bottom: -1px;
+  bottom: -5px;
   height: 24px;
   pointer-events: none;
   z-index: 220;
@@ -118,6 +118,21 @@ body {
 
 .nav-scrollbar[hidden] {
   display: none;
+}
+
+.nav-scrollbar-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 1px);
+  transform: translateX(-50%);
+  color: var(--green);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.72;
 }
 
 /* The two spool icons */
@@ -1341,6 +1356,18 @@ footer {
 
 /* ─── Mobile nav overlay ─────────────────────────────────────── */
 @media (max-width: 1024px) {
+  #main-nav {
+    z-index: 100000;
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
+  .nav-inner {
+    padding: 0 1rem;
+  }
+
   .nav-toggle { display: flex; }
 
   .nav-scrollbar { display: none; }
@@ -1348,46 +1375,92 @@ footer {
   .nav-chapters {
     display: none;
     position: fixed;
-    top: var(--nav-h);
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: var(--nav-h) 0 0 0;
+    z-index: 100001;
     background: var(--sand);
     flex-direction: column;
+    overflow-x: hidden;
     overflow-y: auto;
     border-top: 0.5px solid var(--border);
     padding: 1rem 0 2rem;
     height: auto;
     align-items: flex-start;
+    touch-action: pan-y;
+    scrollbar-width: auto;
   }
-  .nav-chapters.open { display: flex; z-index: 999; }
+  .nav-chapters.open,
+  #main-nav.nav-open .nav-chapters {
+    display: flex;
+  }
 
-  .chapter-item { width: 100%; align-items: flex-start; flex-direction: column; }
+  .chapter-item {
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
 
   .chapter-link {
-    padding: 0.75rem 1.5rem;
+    justify-content: center;
+    padding: 0.85rem 1.5rem;
     height: auto;
     border-top: none;
     border-top-color: transparent;
     width: 100%;
     font-size: 11px;
+    white-space: normal;
+  }
+
+  .chapter-link .ch-num {
+    margin-right: 0;
+  }
+
+  .chapter-link .chapter-link-label,
+  .chapter-link .ch-num + :not(.chevron) {
+    text-align: center;
+  }
+
+  .chapter-link .chevron {
+    position: absolute;
+    right: 1.5rem;
   }
 
   .dropdown {
     display: none;
     position: static;
+    top: auto;
+    left: auto;
     border: none;
     border-top: none;
     border-left: 2px solid var(--border);
     box-shadow: none;
     margin-left: 2rem;
-    padding: 0;
+    padding: 0.25rem 0 0.6rem;
     min-width: auto;
     width: calc(100% - 2rem);
+    max-height: none;
+    overflow: visible;
+    background: transparent;
+    backdrop-filter: none;
+    z-index: auto;
   }
-  .chapter-item.open .dropdown { display: block; }
+  .nav-chapters.open .chapter-item.open .dropdown,
+  #main-nav.nav-open .chapter-item.open .dropdown {
+    display: block;
+  }
 
-  .chapter-item:hover .dropdown { display: none; }
+  .chapter-item:hover .dropdown,
+  .chapter-item:focus-within .dropdown {
+    display: none;
+  }
+
+  .nav-chapters.open .chapter-item.open:hover .dropdown,
+  .nav-chapters.open .chapter-item.open:focus-within .dropdown,
+  #main-nav.nav-open .chapter-item.open:hover .dropdown,
+  #main-nav.nav-open .chapter-item.open:focus-within .dropdown {
+    display: block;
+  }
+
   .chapter-item.open .chevron { transform: rotate(180deg); opacity: 1; }
 
   .viewer-shell {
