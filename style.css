@@ -510,12 +510,52 @@ body {
 
 /* ─── Hero ────────────────────────────────────────────────────── */
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto;
   min-height: calc(100vh - var(--nav-h));
   border-bottom: 0.5px solid var(--border);
   background: linear-gradient(135deg, var(--sand) 0%, #f5f2eb 100%);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: -30% 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.21;
+  background-repeat: repeat;
+  animation: pp-flake-rain 54s linear infinite;
+}
+
+.hero::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='360' viewBox='0 0 260 360'%3E%3Crect x='28' y='24' width='7' height='7' rx='1' fill='%23ffffff' fill-opacity='0.9'/%3E%3Crect x='145' y='58' width='10' height='5' rx='1' transform='rotate(-13 150 60)' fill='%2369a5cd' fill-opacity='0.64'/%3E%3Cpolygon points='214,88 222,100 208,101' fill='%237aaa8a' fill-opacity='0.5'/%3E%3Crect x='74' y='164' width='8' height='8' rx='1' transform='rotate(18 78 168)' fill='%23ffffff' fill-opacity='0.78'/%3E%3Crect x='198' y='226' width='12' height='6' rx='1' transform='rotate(22 204 229)' fill='%2369a5cd' fill-opacity='0.54'/%3E%3Cpolygon points='44,284 55,289 47,298' fill='%23ffffff' fill-opacity='0.7'/%3E%3C/svg%3E");
+  background-position: 12% 8%;
+  background-size: 260px 360px;
+}
+
+.hero::after {
+  opacity: 0.14;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='430' viewBox='0 0 320 430'%3E%3Crect x='48' y='52' width='6' height='6' rx='1' transform='rotate(12 51 55)' fill='%23ffffff' fill-opacity='0.88'/%3E%3Cpolygon points='238,70 247,80 234,84' fill='%234a90be' fill-opacity='0.58'/%3E%3Crect x='152' y='138' width='11' height='5' rx='1' transform='rotate(-21 157 140)' fill='%23ffffff' fill-opacity='0.74'/%3E%3Crect x='270' y='226' width='7' height='7' rx='1' fill='%234a90be' fill-opacity='0.48'/%3E%3Cpolygon points='88,306 98,310 91,320' fill='%237aaa8a' fill-opacity='0.45'/%3E%3Crect x='188' y='368' width='12' height='6' rx='1' transform='rotate(17 194 371)' fill='%23ffffff' fill-opacity='0.68'/%3E%3C/svg%3E");
+  background-position: 34% 14%;
+  background-size: 320px 430px;
+  animation-duration: 76s;
+  animation-delay: -24s;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes pp-flake-rain {
+  from { transform: translate3d(0, -18%, 0); }
+  to { transform: translate3d(0, 18%, 0); }
 }
 
 .hero-left {
@@ -1428,6 +1468,48 @@ footer {
 }
 .footer-links a:hover { color: var(--green); }
 .footer-links .sep { opacity: 0.4; }
+
+.confetti-burst {
+  position: fixed;
+  inset: 0;
+  z-index: 100002;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-burst span {
+  position: absolute;
+  top: var(--y-start);
+  left: 50%;
+  width: var(--size);
+  height: var(--size);
+  border-radius: var(--radius);
+  background: var(--confetti-color);
+  opacity: 0.64;
+  transform: translate3d(0, 0, 0) rotate(0deg);
+  animation: confetti-pop var(--fall-duration) ease-out forwards;
+  animation-delay: var(--fall-delay);
+}
+
+@keyframes confetti-pop {
+  18% {
+    transform: translate3d(calc(var(--x-drift) * 0.42), -8vh, 0) rotate(calc(var(--spin) * 0.35));
+    opacity: 0.72;
+  }
+
+  to {
+    transform: translate3d(var(--x-drift), 108vh, 0) rotate(var(--spin));
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before,
+  .hero::after,
+  .confetti-burst span {
+    animation: none;
+  }
+}
 
 /* ─── Mobile nav overlay ─────────────────────────────────────── */
 @media (max-width: 1024px) {

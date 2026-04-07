@@ -62,10 +62,15 @@
   let navScrollbar = null;
   let navScrollbarTrack = null;
   let navScrollbarThumb = null;
+  let conclusionConfettiFired = false;
   const dropdownCloseTimers = new WeakMap();
 
   function isMobileNav() {
     return window.getComputedStyle(toggle).display !== 'none';
+  }
+
+  function prefersReducedMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
   function ensureNavScrollbar() {
@@ -403,6 +408,48 @@
     updateActiveLinks(currentChapterId, currentChapterId);
   }
 
+  function launchConclusionConfetti() {
+    if (prefersReducedMotion()) return;
+
+    const burst = document.createElement('div');
+    burst.className = 'confetti-burst';
+    burst.setAttribute('aria-hidden', 'true');
+
+    const colors = ['#4a7c59', '#7aaa8a', '#b0c8b8', '#f0ede6'];
+
+    for (let i = 0; i < 28; i += 1) {
+      const piece = document.createElement('span');
+      const size = 3 + Math.random() * 4;
+      const drift = (Math.random() - 0.5) * window.innerWidth * 0.54;
+      const spin = (Math.random() > 0.5 ? 1 : -1) * (180 + Math.random() * 420);
+
+      piece.style.setProperty('--x-drift', `${drift}px`);
+      piece.style.setProperty('--y-start', `${78 + Math.random() * 10}vh`);
+      piece.style.setProperty('--size', `${size}px`);
+      piece.style.setProperty('--radius', Math.random() > 0.55 ? '50%' : '2px');
+      piece.style.setProperty('--confetti-color', colors[i % colors.length]);
+      piece.style.setProperty('--fall-duration', `${1.8 + Math.random() * 1.2}s`);
+      piece.style.setProperty('--fall-delay', `${Math.random() * 0.12}s`);
+      piece.style.setProperty('--spin', `${spin}deg`);
+      burst.appendChild(piece);
+    }
+
+    document.body.appendChild(burst);
+    window.setTimeout(() => burst.remove(), 3200);
+  }
+
+  function checkConclusionConfetti() {
+    if (conclusionConfettiFired || currentChapterId !== 'ch9') return;
+
+    const maxScroll = chapterStage.scrollHeight - chapterStage.clientHeight;
+    if (maxScroll <= 0) return;
+
+    if (chapterStage.scrollTop >= maxScroll - 12) {
+      conclusionConfettiFired = true;
+      launchConclusionConfetti();
+    }
+  }
+
   function scrollToTarget(targetId, behavior) {
     if (!targetId || targetId === currentChapterId) {
       chapterStage.scrollTo({ top: 0, behavior });
@@ -645,7 +692,10 @@
     prevButton.addEventListener('click', () => navigateRelative(-1));
     nextButton.addEventListener('click', () => navigateRelative(1));
 
-    chapterStage.addEventListener('scroll', syncVisibleSubsection, { passive: true });
+    chapterStage.addEventListener('scroll', () => {
+      syncVisibleSubsection();
+      checkConclusionConfetti();
+    }, { passive: true });
 
     window.addEventListener('hashchange', () => {
       if (suppressHashChange) {
