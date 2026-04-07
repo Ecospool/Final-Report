@@ -848,7 +848,7 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
 
 .acknowledgements-figure img {
   display: block;
-  width: min(100%, 170px);
+  width: clamp(72px, 10vw, 110px);
   height: auto;
   object-fit: contain;
   border-radius: 34px;
@@ -1543,7 +1543,7 @@ a.chapter-link {
   .content-section { padding: 3.5rem 2rem; }
   .abstract-grid { grid-template-columns: 80px 1fr; gap: 2rem; }
   .abstract-num { font-size: 48px; }
-  .acknowledgements-figure img { width: min(100%, 90px); }
+  .acknowledgements-figure img { width: clamp(56px, 12vw, 72px); }
   .chapter-header { grid-template-columns: 64px 1fr; gap: 1.5rem; }
   .ch-number-large { font-size: 52px; }
   .stats-row { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
