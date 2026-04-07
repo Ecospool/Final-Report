@@ -608,6 +608,12 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   margin-top: 2rem;
 }
 
+.hero-summary p {
+  font-size: 15px;
+  color: var(--quiet);
+  line-height: 1.85;
+}
+
 .hero-summary p + p {
   margin-top: 1rem;
 }
@@ -1099,6 +1105,11 @@ p.formula-inline,
 
 .appendix-figure-label {
   margin-top: 1rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 0.06em;
 }
 
 .appendix-caption {
@@ -1124,6 +1135,46 @@ p.formula-inline,
 .appendix-sublist {
   list-style-type: circle;
   margin-top: 0.3rem;
+}
+
+#appendices .subsection > p,
+#appendices .appendix-list,
+#appendices .table-label,
+#appendices .appendix-figure-label,
+#appendices .appendix-caption {
+  max-width: 72ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#appendices .subsection h3 {
+  max-width: 72ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#appendix-a .spec-table td {
+  white-space: pre-line;
+}
+
+#appendix-i {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+#appendix-i h3 {
+  grid-column: 1 / -1;
+}
+
+#appendix-i .figure-block {
+  margin: 0;
+  max-width: none;
+}
+
+#appendix-i .figure-image {
+  height: 100%;
+  object-fit: contain;
 }
 
 .indented-block {
