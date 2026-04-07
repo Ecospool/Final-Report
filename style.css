@@ -1033,6 +1033,16 @@ p.formula-inline,
   color: var(--quiet);
 }
 
+.figure-block + .figure-caption,
+.figure-block + .appendix-caption {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 .table-label {
   text-align: center;
 }
@@ -1050,6 +1060,13 @@ p.formula-inline,
 
 .appendix-figure-label {
   margin-top: 1rem;
+}
+
+.appendix-caption {
+  margin: 0.55rem auto 1.4rem;
+  text-align: center;
+  font-size: 12px;
+  color: var(--quiet);
 }
 
 .appendix-list {
