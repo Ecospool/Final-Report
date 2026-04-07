@@ -839,6 +839,24 @@ h1 em { font-style: italic; color: var(--green); font-weight: 400; }
   padding-top: 0.25rem;
 }
 
+.acknowledgements-figure {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.25rem;
+}
+
+.acknowledgements-figure img {
+  display: block;
+  width: min(100%, 170px);
+  height: auto;
+  object-fit: contain;
+  border-radius: 34px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
 .abstract-body h2 {
   font-family: var(--serif);
   font-size: 36px;
@@ -1525,6 +1543,7 @@ a.chapter-link {
   .content-section { padding: 3.5rem 2rem; }
   .abstract-grid { grid-template-columns: 80px 1fr; gap: 2rem; }
   .abstract-num { font-size: 48px; }
+  .acknowledgements-figure img { width: min(100%, 90px); }
   .chapter-header { grid-template-columns: 64px 1fr; gap: 1.5rem; }
   .ch-number-large { font-size: 52px; }
   .stats-row { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
@@ -1552,6 +1571,7 @@ a.chapter-link {
   .nav-inner { padding: 0 1.25rem; }
   .abstract-grid { grid-template-columns: 1fr; }
   .abstract-num { display: none; }
+  .acknowledgements-figure { display: none; }
   h1 { font-size: 44px; }
   .hero-team-grid { grid-template-columns: 1fr; }
   .team-card h3 { font-size: 22px; }
