@@ -17,7 +17,9 @@
   --serif:       'Cormorant Garamond', Georgia, serif;
   --sans:        Arial, sans-serif;
   --nav-h:       56px;
-  --nav-scroll-h: 4px;
+  --nav-scroll-h: 12px;
+  --spool-flange: 12px;
+  --spool-hub:    6px;
 }
 
 html {
@@ -42,12 +44,14 @@ body {
 #main-nav {
   position: relative;
   z-index: 200;
-  background: rgba(247, 245, 240, 0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 0.5px solid var(--border);
+  background: rgba(247, 245, 240, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1.5px solid var(--border);
   height: var(--nav-h);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
   overflow: visible;
+  /* Extra bottom padding so the spool sits on the border */
+  padding-bottom: 0;
 }
 
 .nav-inner {
@@ -93,71 +97,174 @@ body {
   display: none;
 }
 
+/* ─── Spool Scrollbar ──────────────────────────────────────── */
+/*
+ * The track is a filament line; the thumb is a spool reel.
+ * Two circular flanges (::before / ::after) flank the wound filament body.
+ */
+
 .nav-scrollbar {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 4px;
-  height: var(--nav-scroll-h);
+  left: 6%;
+  right: 6%;
+  bottom: -1px;
+  height: 24px;
   pointer-events: none;
   z-index: 220;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .nav-scrollbar[hidden] {
   display: none;
 }
 
-.nav-scrollbar-track {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 999px;
-  background: rgba(122, 170, 138, 0.14);
-  box-shadow: inset 0 0 0 1px rgba(74, 124, 89, 0.08);
+/* The two spool icons */
+.nav-spool-svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  pointer-events: none;
+  transition: transform 0.15s ease;
+  transform-origin: center center;
 }
 
+/* Take-up spool grows — transform driven by JS inline style */
+.nav-spool-take {
+  transform-origin: center center;
+}
+
+/* The "filament line" track */
+.nav-scrollbar-track {
+  position: relative;
+  flex: 1 1 auto;
+  height: var(--nav-scroll-h);
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}
+
+/* Filament wire rendered as a pseudo-element so it sits behind the thumb */
+.nav-scrollbar-track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1.5px;
+  border-radius: 1px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(74,124,89,0.18) 0px,
+      rgba(74,124,89,0.18) 3px,
+      rgba(74,124,89,0.07) 3px,
+      rgba(74,124,89,0.07) 8px
+    );
+  box-shadow:
+    0 0.5px 0 rgba(255,255,255,0.6),
+    0 -0.5px 0 rgba(0,0,0,0.06);
+}
+
+/* The spool thumb */
 .nav-scrollbar-thumb {
   position: absolute;
   top: 50%;
   left: 0;
-  height: 12px;
-  min-width: 14px;
+  /* filament body is slimmer than the flanges */
+  height: 6px;
+  min-width: 28px;
   border: none;
-  border-radius: 999px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.22) 0 2px,
-      transparent 2px 6px
-    ),
-    linear-gradient(90deg, #92c7a6, #5f9a72);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  border-radius: 2px;
   transform: translateY(-50%);
   cursor: grab;
   pointer-events: auto;
+  background: transparent;
 }
 
+/* Spool flanges — left and right circular discs, taller than the body */
 .nav-scrollbar-thumb::before,
 .nav-scrollbar-thumb::after {
   content: '';
   position: absolute;
   top: 50%;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 1px solid rgba(74, 124, 89, 0.55);
-  background:
-    radial-gradient(circle at center, rgba(74, 124, 89, 0.5) 0 1.3px, transparent 1.5px),
-    radial-gradient(circle at center, rgba(255,255,255,0.95) 0 4.2px, transparent 4.3px),
-    linear-gradient(180deg, #f8fbf9, #d9ebe0);
   transform: translateY(-50%);
+  width: var(--spool-flange);
+  height: var(--spool-flange);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #b0c8b8 0 1.5px, transparent 1.5px),
+    radial-gradient(circle at center, transparent 2.5px, rgba(74,124,89,0.12) 2.5px 3px, transparent 3px),
+    radial-gradient(circle at center, #d4e8da 0 3.5px, #c2d9cb 3.5px 5.5px, #a8c9b4 5.5px);
+  border: 1px solid rgba(74,124,89,0.35);
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.55),
+    inset 0 -1px 0 rgba(0,0,0,0.08);
+  z-index: 2;
 }
+.nav-scrollbar-thumb::before { left: -1px; }
+.nav-scrollbar-thumb::after  { right: -1px; }
 
-.nav-scrollbar-thumb::before { left: -2px; }
-.nav-scrollbar-thumb::after { right: -2px; }
+/* Filament body between flanges */
+.nav-scrollbar-thumb {
+  background:
+    repeating-linear-gradient(
+      92deg,
+      rgba(255,255,255,0.25) 0px,
+      rgba(255,255,255,0.25) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    linear-gradient(180deg,
+      #92c7a6 0%,
+      #6aac85 30%,
+      #5f9a72 50%,
+      #6aac85 70%,
+      #92c7a6 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -1px 0 rgba(0,0,0,0.1),
+    0 1px 3px rgba(0,0,0,0.12);
+}
 
 .nav-scrollbar-thumb:active {
   cursor: grabbing;
+  filter: brightness(0.96);
+}
+
+/* Flanges spin when actively dragging — the spool unwinds! */
+@keyframes spool-spin {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to   { transform: translateY(-50%) rotate(360deg); }
+}
+.nav-scrollbar-thumb.is-dragging::before,
+.nav-scrollbar-thumb.is-dragging::after {
+  animation: spool-spin 0.9s linear infinite;
+}
+
+/* Tooltip hint that appears on hover */
+.nav-scrollbar-thumb::after {
+  /* (flange styles already set above — no tooltip override needed) */
+}
+
+/* Progress indicator: how far through the nav you are */
+.nav-scrollbar-track::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1.5px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, var(--green-light), var(--green));
+  opacity: 0.55;
+  width: var(--spool-progress, 0%);
+  pointer-events: none;
+  transition: width 0.05s linear;
 }
 
 /* Individual chapter item */

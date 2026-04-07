@@ -44,8 +44,8 @@
     ch7: { file: 'chapters/ch7.html', title: 'Chapter 7 · Integrated Prototype Validation' },
     ch8: { file: 'chapters/ch8.html', title: 'Chapter 8 · Limitations & Future Work' },
     ch9: { file: 'chapters/ch9.html', title: 'Chapter 9 · Conclusion' },
-    ch10: { file: 'chapters/ch10.html', title: 'Chapter 10 · Conclusion' },
-    appendices: { file: 'chapters/appendices.html', title: 'Appendices' }
+    appendices: { file: 'chapters/appendices.html', title: 'Appendices' },
+    ch10: { file: 'chapters/ch10.html', title: 'References' }
   };
 
   const navState = {
@@ -73,17 +73,84 @@
     navScrollbar.className = 'nav-scrollbar';
     navScrollbar.hidden = true;
     navScrollbar.innerHTML = `
+      <svg class="nav-spool-svg nav-spool-feed" viewBox="0 0 24 24" aria-hidden="true">
+        <!-- Feed spool: always empty -->
+        <circle cx="12" cy="12" r="10.5" fill="#e8e4dc" stroke="rgba(74,124,89,0.3)" stroke-width="0.8"/>
+        <circle cx="12" cy="12" r="5.5"  fill="#d4cfc4" stroke="rgba(74,124,89,0.2)" stroke-width="0.6"/>
+        <circle cx="12" cy="12" r="2"    fill="#b0c8b8" stroke="rgba(74,124,89,0.4)" stroke-width="0.6"/>
+      </svg>
       <div class="nav-scrollbar-track">
         <button class="nav-scrollbar-thumb" type="button" aria-label="Scroll chapters"></button>
       </div>
+      <svg class="nav-spool-svg nav-spool-take" viewBox="0 0 24 24" aria-hidden="true">
+        <!-- Take-up spool: filament layers grow here -->
+        <!-- Wound filament — clipped to a ring between hub (r=2) and flange (r=10.5) -->
+        <defs>
+          <clipPath id="spool-wind-clip">
+            <path d="M12,12 m-10.5,0 a10.5,10.5 0 1,1 21,0 a10.5,10.5 0 1,1 -21,0
+                     M12,12 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" fill-rule="evenodd"/>
+          </clipPath>
+        </defs>
+        <!-- Outer flange disc -->
+        <circle cx="12" cy="12" r="10.5" fill="#e8e4dc" stroke="rgba(74,124,89,0.3)" stroke-width="0.8"/>
+        <!-- Wound filament rings — drawn as concentric strokes, animated via JS -->
+        <g class="spool-wound-rings" clip-path="url(#spool-wind-clip)"></g>
+        <!-- Inner hub -->
+        <circle cx="12" cy="12" r="3"    fill="#d4cfc4" stroke="rgba(74,124,89,0.25)" stroke-width="0.6"/>
+        <circle cx="12" cy="12" r="1.5"  fill="#b0c8b8" stroke="rgba(74,124,89,0.4)"  stroke-width="0.5"/>
+      </svg>
     `;
 
     navInner.appendChild(navScrollbar);
     navScrollbarTrack = navScrollbar.querySelector('.nav-scrollbar-track');
     navScrollbarThumb = navScrollbar.querySelector('.nav-scrollbar-thumb');
 
+    const woundRings = navScrollbar.querySelector('.spool-wound-rings');
+
+    // Draw filament rings on the take-up spool based on scroll progress (0–1)
+    function drawWoundFilament(progress) {
+      if (!woundRings) return;
+      woundRings.innerHTML = '';
+
+      // Hub outer radius = 3, flange inner = 10.5
+      // Each filament layer adds ~1.1px of radius
+      const hubR    = 3;
+      const flangeR = 10;
+      const layerH  = 0.95; // radial thickness per ring
+      const maxRings = Math.floor((flangeR - hubR) / layerH); // ~7 rings max
+      const count    = Math.round(progress * maxRings);
+
+      const ns = 'http://www.w3.org/2000/svg';
+      for (let i = 0; i < count; i++) {
+        const r = hubR + layerH * i + layerH / 2;
+        const c = document.createElementNS(ns, 'circle');
+        c.setAttribute('cx', '12');
+        c.setAttribute('cy', '12');
+        c.setAttribute('r',  String(r));
+        c.setAttribute('fill', 'none');
+        // Alternate shades for wound-layer depth
+        const lightness = i % 2 === 0 ? '0.55' : '0.38';
+        c.setAttribute('stroke', `rgba(74,124,89,${lightness})`);
+        c.setAttribute('stroke-width', String(layerH * 0.88));
+        woundRings.appendChild(c);
+      }
+
+      // Rotate the whole spool group to simulate spinning
+      const deg = progress * 720; // two full rotations at max scroll
+      woundRings.setAttribute('transform', `rotate(${deg} 12 12)`);
+
+      // Scale up the entire take-up SVG slightly as it fills
+      const takeSvg = navScrollbar.querySelector('.nav-spool-take');
+      if (takeSvg) {
+        const scale = 1 + progress * 0.28; // grows up to 28% larger
+        takeSvg.style.transform = `scale(${scale})`;
+      }
+    }
+
     const startDrag = (startClientX) => {
       if (!navScrollbarTrack || !navScrollbarThumb) return;
+
+      navScrollbarThumb.classList.add('is-dragging');
 
       const trackRect = navScrollbarTrack.getBoundingClientRect();
       const thumbRect = navScrollbarThumb.getBoundingClientRect();
@@ -94,6 +161,10 @@
         const nextLeft = Math.max(0, Math.min(clientX - trackRect.left - offsetX, maxThumbTravel));
         const maxScroll = chapterList.scrollWidth - chapterList.clientWidth;
         chapterList.scrollLeft = maxThumbTravel > 0 ? (nextLeft / maxThumbTravel) * maxScroll : 0;
+
+        const pct = maxThumbTravel > 0 ? nextLeft / maxThumbTravel : 0;
+        navScrollbarTrack.style.setProperty('--spool-progress', `${pct * 100}%`);
+        drawWoundFilament(pct);
       };
 
       const handleMouseMove = (event) => onMove(event.clientX);
@@ -104,6 +175,7 @@
         }
       };
       const stopDrag = () => {
+        navScrollbarThumb.classList.remove('is-dragging');
         document.removeEventListener('mousemove', handleMouseMove);
         document.removeEventListener('mouseup', stopDrag);
         document.removeEventListener('touchmove', handleTouchMove);
@@ -125,6 +197,9 @@
       if (!event.touches[0]) return;
       startDrag(event.touches[0].clientX);
     }, { passive: true });
+
+    // Expose drawWoundFilament so updateNavScrollbar can call it
+    navScrollbar._drawWound = drawWoundFilament;
   }
 
   function updateNavScrollbar() {
@@ -146,12 +221,18 @@
     navScrollbar.hidden = false;
 
     const trackWidth = navScrollbarTrack.clientWidth;
-    const thumbWidth = Math.max(16, ((chapterList.clientWidth / chapterList.scrollWidth) * trackWidth) * 0.6);
+    // Spool thumb: wider proportionally so the flanges read clearly
+    const thumbWidth = Math.max(40, ((chapterList.clientWidth / chapterList.scrollWidth) * trackWidth) * 0.72);
     const maxThumbTravel = Math.max(0, trackWidth - thumbWidth);
     const left = maxScroll > 0 ? (chapterList.scrollLeft / maxScroll) * maxThumbTravel : 0;
 
     navScrollbarThumb.style.width = `${thumbWidth}px`;
     navScrollbarThumb.style.left = `${left}px`;
+
+    // Sync wound filament on the take-up spool
+    const progress = maxScroll > 0 ? chapterList.scrollLeft / maxScroll : 0;
+    if (navScrollbar._drawWound) navScrollbar._drawWound(progress);
+    if (navScrollbarTrack) navScrollbarTrack.style.setProperty('--spool-progress', `${progress * 100}%`);
   }
 
   function closeMobileNav() {
@@ -338,6 +419,18 @@
     updateActiveLinks(currentChapterId, targetId);
   }
 
+  function queueTargetAlignment(targetId, behavior) {
+    requestAnimationFrame(() => {
+      scrollToTarget(targetId, behavior);
+
+      window.setTimeout(() => {
+        if (currentTargetId === targetId || currentChapterId === getChapterId(targetId)) {
+          scrollToTarget(targetId, 'auto');
+        }
+      }, 80);
+    });
+  }
+
   async function renderChapter(targetId, options = {}) {
     const { updateHash = true, behavior = 'auto' } = options;
     const chapterId = getChapterId(targetId);
@@ -363,10 +456,12 @@
       currentChapterId = chapterId;
       chapterStage.scrollTo({ top: 0, behavior: 'auto' });
       animateLoadedContent();
+      queueTargetAlignment(targetId, behavior);
+    } else {
+      scrollToTarget(targetId, behavior);
     }
 
     updateViewerMeta(chapterId);
-    scrollToTarget(targetId, behavior);
 
     if (updateHash) {
       suppressHashChange = true;
@@ -500,6 +595,12 @@
     chapterList.addEventListener('scroll', () => {
       document.querySelectorAll('.chapter-item.open').forEach((item) => positionDropdown(item));
       updateNavScrollbar();
+      // Sync the filled progress line
+      if (navScrollbarTrack) {
+        const maxScroll = chapterList.scrollWidth - chapterList.clientWidth;
+        const pct = maxScroll > 0 ? (chapterList.scrollLeft / maxScroll) * 100 : 0;
+        navScrollbarTrack.style.setProperty('--spool-progress', `${pct}%`);
+      }
     }, { passive: true });
 
     prevButton.addEventListener('click', () => navigateRelative(-1));
